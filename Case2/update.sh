@@ -1,0 +1,1 @@
+wsk -i action update greetingjs greeting.js -a provide-api-key true --timeout 30000

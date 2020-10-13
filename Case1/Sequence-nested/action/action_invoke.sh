@@ -9,5 +9,5 @@
 # PURPOSE.
 # See the Mulan PSL v1 for more details.
 #
-wsk -i action invoke arraySumNested --param n 3 --result --blocking
+wsk -i action invoke arraySumNested --param n 1 --result --blocking
 
