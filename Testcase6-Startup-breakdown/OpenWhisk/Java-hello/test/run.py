@@ -19,6 +19,9 @@ def main():
     clientNum = argv[0]
     loopTimes = argv[1]
     warmupTimes = argv[2]
+    clientNum = 36
+    loopTimes = 1
+    warmupTimes = 1
     threads = []
 
     containerName = "hellojava"
