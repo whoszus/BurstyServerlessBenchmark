@@ -10,8 +10,8 @@
 # PURPOSE.
 # See the Mulan PSL v1 for more details.
 #
-javac -cp ./gson-2.8.2.jar Hello.java
-jar cvf hello.jar Hello.class
+# javac -cp ./gson-2.8.2.jar Hello.java
+# jar cvf hello.jar Hello.class
 
 wsk -i action update hello-java hello.jar --main Hello --docker openwhisk/java8action
 
