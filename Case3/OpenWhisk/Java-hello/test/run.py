@@ -1,3 +1,4 @@
+
 # Copyright (c) 2020 Institution of Parallel and Distributed System, Shanghai Jiao Tong University
 # ServerlessBench is licensed under the Mulan PSL v1.
 # You can use this software according to the terms and conditions of the Mulan PSL v1.
@@ -13,7 +14,6 @@ import threading
 import time
 import sys, getopt
 
-
 def main():
     argv = getargv()
     clientNum = argv[0]
@@ -21,16 +21,14 @@ def main():
     warmupTimes = argv[2]
     threads = []
 
-    containerName = "hellojava"
     actionName = "hello-java"
     params = ""
-
-    # r = os.popen("docker stop `docker ps | grep %s | awk {'print $1'}`" %containerName)
+    # r = os.popen("for p in $( kubectl get pods -n openwhisk | grep  hello | tail -n +2 | awk -F ' ' '{print $1}'); do kubectl delete pod -n openwhisk $p --grace-period=0 --force;done")
     # r.read()
-
+    
     # First: warm up
     for i in range(clientNum):
-        t = threading.Thread(target=warmup, args=(i, warmupTimes, actionName, params))
+        t = threading.Thread(target=warmup,args=(i,warmupTimes,actionName,params))
         threads.append(t)
 
     for i in range(clientNum):
@@ -49,7 +47,7 @@ def main():
 
     # Create the clients
     for i in range(clientNum):
-        t = threading.Thread(target=client, args=(i, results, loopTimes))
+        t = threading.Thread(target=client,args=(i,results,loopTimes))
         threads.append(t)
 
     # start the clients
@@ -59,7 +57,8 @@ def main():
     for i in range(clientNum):
         threads[i].join()
 
-    outfile = open("result.csv", "w")
+
+    outfile = open("result.csv","w")
     outfile.write("invokeTime,startTime,endTime\n")
 
     latencies = []
@@ -82,23 +81,26 @@ def main():
                 minInvokeTime = int(clientResult[j][0])
             if int(clientResult[j][-1]) > maxEndTime:
                 maxEndTime = int(clientResult[j][-1])
-    formatResult(latencies, maxEndTime - minInvokeTime, clientNum, loopTimes, warmupTimes)
+    formatResult(latencies,maxEndTime - minInvokeTime, clientNum, loopTimes, warmupTimes)
 
 
-def client(i, results, loopTimes):
-    print("client %d start" % i)
-    command = "./single-cold_warm.sh -R -t " + str(loopTimes)
-    r = os.popen(command)
-    text = r.read()
+
+
+
+
+def client(i,results,loopTimes):
+    print("client %d start" %i)
+    command = "./single-cold_warm.sh -t " + str(loopTimes)
+    r = os.popen(command)  
+    text = r.read()  
     results[i] = text
-    print("client %d finished" % i)
+    print("client %d finished" %i)
 
-
-def warmup(i, warmupTimes, actionName, params):
+def warmup(i,warmupTimes,actionName,params):
     for j in range(warmupTimes):
-        r = os.popen("wsk -i action invoke %s %s --result --blocking" % (actionName, params))
-        text = r.read()
-    print("client %d warmup finished" % i)
+        r = os.popen("wsk -i action invoke %s %s --result --blocking" %(actionName,params))  
+        text = r.read() 
+    print("client %d warmup finished" %i) 
 
 
 def parseResult(result):
@@ -107,22 +109,21 @@ def parseResult(result):
     for line in lines:
         if line.find("invokeTime") == -1:
             continue
-        parsedTimes = ['', '', '']
+        parsedTimes = ['','','']
 
         i = 0
         count = 0
         while count < 3:
             while i < len(line):
                 if line[i].isdigit():
-                    parsedTimes[count] = line[i:i + 13]
+                    parsedTimes[count] = line[i:i+13]
                     i += 13
                     count += 1
                     continue
                 i += 1
-
+        
         parsedResults.append(parsedTimes)
     return parsedResults
-
 
 def getargv():
     if len(sys.argv) != 3 and len(sys.argv) != 4:
@@ -132,7 +133,7 @@ def getargv():
         print("Usage: python3 run.py <client number> <loop times> [<warm up times>]")
         print("Client number and loop times must be an positive integer")
         exit(0)
-
+    
     if len(sys.argv) == 4:
         if not str.isdigit(sys.argv[3]) or int(sys.argv[3]) < 1:
             print("Usage: python3 run.py <client number> <loop times> [<warm up times>]")
@@ -140,12 +141,12 @@ def getargv():
             exit(0)
 
     else:
-        return (int(sys.argv[1]), int(sys.argv[2]), 1)
+        return (int(sys.argv[1]),int(sys.argv[2]),1)
 
-    return (int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
+    return (int(sys.argv[1]),int(sys.argv[2]),int(sys.argv[3]))
 
-
-def formatResult(latencies, duration, client, loop, warmup):
+def formatResult(latencies,duration,client,loop,warmup):
+    print("formatResult")
     requestNum = len(latencies)
     latencies.sort()
     duration = float(duration)
@@ -162,18 +163,14 @@ def formatResult(latencies, duration, client, loop, warmup):
     _95pcLatency = latencies[int(requestNum * 0.95) - 1]
     _99pcLatency = latencies[int(requestNum * 0.99) - 1]
     print("latency (ms):\navg\t50%\t75%\t90%\t95%\t99%")
-    print("%.2f\t%d\t%d\t%d\t%d\t%d" % (
-    averageLatency, _50pcLatency, _75pcLatency, _90pcLatency, _95pcLatency, _99pcLatency))
-    print("throughput (n/s):\n%.2f" % (requestNum / (duration / 1000)))
+    print("%.2f\t%d\t%d\t%d\t%d\t%d" %(averageLatency,_50pcLatency,_75pcLatency,_90pcLatency,_95pcLatency,_99pcLatency))
+    print("throughput (n/s):\n%.2f" %(requestNum / (duration/1000)))
     # output result to file
-    resultfile = open("eval-result.log", "a")
+    resultfile = open("eval-result.log","a")
     resultfile.write("\n\n------------------ (concurrent)result ---------------------\n")
     resultfile.write("client: %d, loop_times: %d, warup_times: %d\n" % (client, loop, warmup))
-    resultfile.write("%d requests finished in %.2f seconds\n" % (requestNum, (duration / 1000)))
+    resultfile.write("%d requests finished in %.2f seconds\n" %(requestNum, (duration/1000)))
     resultfile.write("latency (ms):\navg\t50%\t75%\t90%\t95%\t99%\n")
-    resultfile.write("%.2f\t%d\t%d\t%d\t%d\t%d\n" % (
-    averageLatency, _50pcLatency, _75pcLatency, _90pcLatency, _95pcLatency, _99pcLatency))
-    resultfile.write("throughput (n/s):\n%.2f\n" % (requestNum / (duration / 1000)))
-
-
+    resultfile.write("%.2f\t%d\t%d\t%d\t%d\t%d\n" %(averageLatency,_50pcLatency,_75pcLatency,_90pcLatency,_95pcLatency,_99pcLatency))
+    resultfile.write("throughput (n/s):\n%.2f\n" %(requestNum / (duration/1000)))    
 main()

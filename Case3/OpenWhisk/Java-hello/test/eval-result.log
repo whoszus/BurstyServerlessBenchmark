@@ -1,0 +1,236 @@
+
+
+------------------ (single)result ---------------------
+
+mode: cold, loop_times: 3, warmup_times: 0
+Latency (ms):
+Avg	50%	75%	90%	95%	99%	
+1094	1075	1090	1090	1090	1090	
+
+
+------------------ (single)result ---------------------
+
+mode: warm, loop_times: 10, warmup_times: 1
+Latency (ms):
+Avg	50%	75%	90%	95%	99%	
+1098	1104	1107	1108	1108	1108	
+
+
+------------------ (concurrent)result ---------------------
+client: 8, loop_times: 1, warup_times: 1
+8 requests finished in 1.11 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1106.25	1106	1108	1109	1109	1109
+throughput (n/s):
+7.20
+
+
+------------------ (concurrent)result ---------------------
+client: 16, loop_times: 1, warup_times: 1
+16 requests finished in 1.19 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1114.12	1116	1123	1138	1139	1139
+throughput (n/s):
+13.41
+
+
+------------------ (concurrent)result ---------------------
+client: 16, loop_times: 1, warup_times: 1
+16 requests finished in 1.18 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1107.19	1110	1120	1127	1129	1129
+throughput (n/s):
+13.56
+
+
+------------------ (concurrent)result ---------------------
+client: 16, loop_times: 1, warup_times: 1
+16 requests finished in 1.16 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1102.88	1100	1114	1116	1121	1121
+throughput (n/s):
+13.79
+
+
+------------------ (concurrent)result ---------------------
+client: 16, loop_times: 1, warup_times: 1
+16 requests finished in 11.55 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1217.44	1094	1099	1100	1101	1101
+throughput (n/s):
+1.38
+
+
+------------------ (concurrent)result ---------------------
+client: 16, loop_times: 1, warup_times: 1
+16 requests finished in 1.16 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1098.56	1102	1110	1114	1114	1114
+throughput (n/s):
+13.79
+
+
+------------------ (concurrent)result ---------------------
+client: 16, loop_times: 1, warup_times: 1
+16 requests finished in 19.74 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1111.94	1096	1098	1111	1225	1225
+throughput (n/s):
+0.81
+
+
+------------------ (concurrent)result ---------------------
+client: 32, loop_times: 1, warup_times: 1
+32 requests finished in 13.66 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1124.66	1114	1133	1178	1179	1180
+throughput (n/s):
+2.34
+
+
+------------------ (concurrent)result ---------------------
+client: 32, loop_times: 1, warup_times: 1
+32 requests finished in 1.21 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1072.47	1098	1118	1131	1134	1135
+throughput (n/s):
+26.38
+
+
+------------------ (concurrent)result ---------------------
+client: 8, loop_times: 1, warup_times: 1
+8 requests finished in 7.46 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1081.88	1081	1084	1086	1086	1086
+throughput (n/s):
+1.07
+
+
+------------------ (concurrent)result ---------------------
+client: 16, loop_times: 1, warup_times: 1
+16 requests finished in 1.23 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1123.12	1119	1122	1140	1146	1146
+throughput (n/s):
+13.02
+
+
+------------------ (concurrent)result ---------------------
+client: 16, loop_times: 1, warup_times: 1
+16 requests finished in 4.13 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1107.81	1108	1113	1115	1122	1122
+throughput (n/s):
+3.88
+
+
+------------------ (concurrent)result ---------------------
+client: 64, loop_times: 1, warup_times: 1
+64 requests finished in 3.34 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1104.92	1104	1114	1123	1129	1133
+throughput (n/s):
+19.14
+
+
+------------------ (concurrent)result ---------------------
+client: 128, loop_times: 1, warup_times: 1
+128 requests finished in 3.71 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1220.23	1091	1118	1182	3090	3101
+throughput (n/s):
+34.45
+
+
+------------------ (concurrent)result ---------------------
+client: 256, loop_times: 1, warup_times: 1
+256 requests finished in 9.42 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1160.51	1093	1111	1137	1182	3111
+throughput (n/s):
+27.18
+
+
+------------------ (concurrent)result ---------------------
+client: 512, loop_times: 1, warup_times: 1
+512 requests finished in 15.64 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1220.52	1122	1146	1174	1206	3129
+throughput (n/s):
+32.74
+
+
+------------------ (concurrent)result ---------------------
+client: 256, loop_times: 1, warup_times: 1
+256 requests finished in 47.16 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+6272.69	6476	6567	6637	6669	8393
+throughput (n/s):
+5.43
+
+
+------------------ (concurrent)result ---------------------
+client: 256, loop_times: 1, warup_times: 1
+256 requests finished in 62.04 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+2348.05	2438	2502	2531	2552	3987
+throughput (n/s):
+4.13
+
+
+------------------ (concurrent)result ---------------------
+client: 256, loop_times: 1, warup_times: 2
+256 requests finished in 19.50 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1142.74	1095	1125	1147	1163	3110
+throughput (n/s):
+13.13
+
+
+------------------ (concurrent)result ---------------------
+client: 256, loop_times: 1, warup_times: 2
+256 requests finished in 5.75 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1105.07	1090	1111	1134	1149	3072
+throughput (n/s):
+44.53
+
+
+------------------ (concurrent)result ---------------------
+client: 1, loop_times: 1, warup_times: 2
+1 requests finished in 1.08 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1085.00	1085	1085	1085	1085	1085
+throughput (n/s):
+0.92
+
+
+------------------ (concurrent)result ---------------------
+client: 256, loop_times: 1, warup_times: 2
+256 requests finished in 9.10 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1196.56	1093	1133	1157	1175	3103
+throughput (n/s):
+28.12
