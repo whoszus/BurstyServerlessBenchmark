@@ -234,3 +234,83 @@ avg	50%	75%	90%	95%	99%
 1196.56	1093	1133	1157	1175	3103
 throughput (n/s):
 28.12
+
+
+------------------ (concurrent)result ---------------------
+client: 256, loop_times: 1, warup_times: 2
+256 requests finished in 4.73 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1125.61	1094	1114	1130	1142	3089
+throughput (n/s):
+54.12
+
+
+------------------ (concurrent)result ---------------------
+client: 256, loop_times: 1, warup_times: 2
+256 requests finished in 8.85 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1228.29	1091	1114	1141	3091	3115
+throughput (n/s):
+28.94
+
+
+------------------ (concurrent)result ---------------------
+client: 256, loop_times: 1, warup_times: 2
+256 requests finished in 7.24 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1167.71	1093	1115	1141	1178	3099
+throughput (n/s):
+35.35
+
+
+------------------ (concurrent)result ---------------------
+client: 128, loop_times: 1, warup_times: 2
+128 requests finished in 62.11 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1143.55	1094	1110	1122	1133	3090
+throughput (n/s):
+2.06
+
+
+------------------ (concurrent)result ---------------------
+client: 1, loop_times: 1, warup_times: 2
+1 requests finished in 1.08 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1082.00	1082	1082	1082	1082	1082
+throughput (n/s):
+0.92
+
+
+------------------ (concurrent)result ---------------------
+client: 1, loop_times: 1, warup_times: 2
+3 requests finished in 15.14 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+4949.33	1094	1125	1125	1125	1125
+throughput (n/s):
+0.20
+
+
+------------------ (concurrent)result ---------------------
+client: 1, loop_times: 1, warup_times: 0
+3 requests finished in 3.54 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1082.67	1069	1075	1075	1075	1075
+throughput (n/s):
+0.85
+
+
+------------------ (concurrent)result ---------------------
+client: 1, loop_times: 1, warup_times: 0
+3 requests finished in 3.59 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1099.67	1095	1097	1097	1097	1097
+throughput (n/s):
+0.84

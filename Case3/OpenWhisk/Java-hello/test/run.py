@@ -26,17 +26,17 @@ def main():
     # r = os.popen("for p in $( kubectl get pods -n openwhisk | grep  hello | tail -n +2 | awk -F ' ' '{print $1}'); do kubectl delete pod -n openwhisk $p --grace-period=0 --force;done")
     # r.read()
     
-    # First: warm up
-    for i in range(clientNum):
-        t = threading.Thread(target=warmup,args=(i,warmupTimes,actionName,params))
-        threads.append(t)
+    # # First: warm up
+    # for i in range(clientNum):
+    #     t = threading.Thread(target=warmup,args=(i,warmupTimes,actionName,params))
+    #     threads.append(t)
 
-    for i in range(clientNum):
-        threads[i].start()
+    # for i in range(clientNum):
+    #     threads[i].start()
 
-    for i in range(clientNum):
-        threads[i].join()
-    print("Warm up complete")
+    # for i in range(clientNum):
+    #     threads[i].join()
+    # print("Warm up complete")
     # Second: invoke the actions
     # Initialize the results and the clients
     threads = []
@@ -90,9 +90,11 @@ def main():
 
 def client(i,results,loopTimes):
     print("client %d start" %i)
-    command = "./single-cold_warm.sh -t " + str(loopTimes)
+    # command = "./single-cold_warm.sh -t " + str(loopTimes) 
+    command = "./handler.sh -m cold"
     r = os.popen(command)  
-    text = r.read()  
+    text = r.read()
+    r.close()
     results[i] = text
     print("client %d finished" %i)
 
@@ -100,6 +102,7 @@ def warmup(i,warmupTimes,actionName,params):
     for j in range(warmupTimes):
         r = os.popen("wsk -i action invoke %s %s --result --blocking" %(actionName,params))  
         text = r.read() 
+        r.close()
     print("client %d warmup finished" %i) 
 
 
@@ -135,7 +138,7 @@ def getargv():
         exit(0)
     
     if len(sys.argv) == 4:
-        if not str.isdigit(sys.argv[3]) or int(sys.argv[3]) < 1:
+        if not str.isdigit(sys.argv[3]) or int(sys.argv[3]) < 0:
             print("Usage: python3 run.py <client number> <loop times> [<warm up times>]")
             print("Warm up times must be an positive integer")
             exit(0)
