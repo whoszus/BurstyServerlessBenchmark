@@ -10,8 +10,26 @@
 # PURPOSE.
 # See the Mulan PSL v1 for more details.
 #
-# javac -cp ./gson-2.8.2.jar Hello.java
-# jar cvf hello.jar Hello.class
+source eval-config
+result=eval-result.log
+if [[ -z `wsk -i action list | grep $ACTIONNAME` ]];then
+    echo "The action is not deployed, deploy it now."
+    cd ../action/
+    ./action_update.sh
+    cd ../test
+    echo -e "\n\n"
+fi
+if [[ -e $result ]]; then
+    rm $result
+fi
+echo "1. measuring cold-invoke..."
+./handler.sh -m cold -t $cold_loop -r $result
 
-wsk -i action update hello-java hello.jar --main Hello --docker openwhisk/java8action --web true
+echo "2. measuring warm-invoke..."
+./handler.sh -t $warm_loop -r $result
 
+echo "3. measuring concurrent invoking..."
+python3 run.py $concurrent_client $concurrent_loop $concurrent_warmup
+
+echo "$ACTIONNAME running result: "
+cat $result
