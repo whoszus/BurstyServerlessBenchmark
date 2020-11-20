@@ -13,5 +13,5 @@
 # javac -cp ./gson-2.8.2.jar Hello.java
 # jar cvf hello.jar Hello.class
 
-wsk -i action update hello-java hello.jar --main Hello --docker openwhisk/java8action --web true
+wsk -i action update hello-java hello.jar --main Hello --docker tinker.siat.ac.cn/openwhisk/java8action --web true
 

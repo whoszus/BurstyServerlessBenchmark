@@ -25,18 +25,19 @@ def main():
     params = ""
     # r = os.popen("for p in $( kubectl get pods -n openwhisk | grep  hello | tail -n +2 | awk -F ' ' '{print $1}'); do kubectl delete pod -n openwhisk $p --grace-period=0 --force;done")
     # r.read()
+    # r.close()
     
-    # # First: warm up
-    # for i in range(clientNum):
-    #     t = threading.Thread(target=warmup,args=(i,warmupTimes,actionName,params))
-    #     threads.append(t)
+    # First: warm up
+    for i in range(clientNum):
+        t = threading.Thread(target=warmup,args=(i,warmupTimes,actionName,params))
+        threads.append(t)
 
-    # for i in range(clientNum):
-    #     threads[i].start()
+    for i in range(clientNum):
+        threads[i].start()
 
-    # for i in range(clientNum):
-    #     threads[i].join()
-    # print("Warm up complete")
+    for i in range(clientNum):
+        threads[i].join()
+    print("Warm up complete")
     # Second: invoke the actions
     # Initialize the results and the clients
     threads = []

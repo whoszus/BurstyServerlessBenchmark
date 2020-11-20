@@ -2,7 +2,7 @@
 cold_loop=1
 warm_loop=10
 warm_warmup=3
-concurrent_client=8
+concurrent_client=32
 concurrent_loop=1
 concurrent_warmup=3
 
