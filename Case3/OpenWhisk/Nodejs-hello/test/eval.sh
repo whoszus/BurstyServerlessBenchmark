@@ -22,11 +22,11 @@ fi
 if [[ -e $result ]]; then
     rm $result
 fi
-echo "1. measuring cold-invoke..."
-./single-cold_warm.sh -m cold -t $cold_loop -r $result
+# echo "1. measuring cold-invoke..."
+# ./single-cold_warm.sh -m cold -t $cold_loop -r $result
 
-echo "2. measuring warm-invoke..."
-./single-cold_warm.sh -t $warm_loop -r $result
+# echo "2. measuring warm-invoke..."
+# ./single-cold_warm.sh -t $warm_loop -r $result
 
 echo "3. measuring concurrent invoking..."
 python3 run.py $concurrent_client $concurrent_loop $concurrent_warmup

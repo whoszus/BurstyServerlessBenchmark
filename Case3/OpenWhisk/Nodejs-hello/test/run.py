@@ -14,34 +14,19 @@ import threading
 import time
 import sys, getopt
 
-def client(i,results,loopTimes):
-    print("client %d start" %i)
-    command = "./single-cold_warm.sh -R -t " + str(loopTimes)
-    r = os.popen(command)  
-    text = r.read()  
-    results[i] = text
-    print("client %d finished" %i)
-
-def warmup(i,warmupTimes,actionName,params):
-    for j in range(warmupTimes):
-        r = os.popen("wsk -i action invoke %s %s --result --blocking" %(actionName,params))  
-        text = r.read() 
-    print("client %d warmup finished" %i) 
-
 def main():
     argv = getargv()
     clientNum = argv[0]
     loopTimes = argv[1]
     warmupTimes = argv[2]
     threads = []
-    
-    containerName = "hellonodejs"
+
     actionName = "hello-nodejs"
     params = ""
-
-    r = os.popen("docker stop `docker ps | grep %s | awk {'print $1'}`" %containerName)
-    r.read()
-
+    # r = os.popen("for p in $( kubectl get pods -n openwhisk | grep  hello | tail -n +2 | awk -F ' ' '{print $1}'); do kubectl delete pod -n openwhisk $p --grace-period=0 --force;done")
+    # r.read()
+    # r.close()
+    
     # First: warm up
     for i in range(clientNum):
         t = threading.Thread(target=warmup,args=(i,warmupTimes,actionName,params))
@@ -51,7 +36,7 @@ def main():
         threads[i].start()
 
     for i in range(clientNum):
-        threads[i].join()    
+        threads[i].join()
     print("Warm up complete")
     # Second: invoke the actions
     # Initialize the results and the clients
@@ -73,10 +58,12 @@ def main():
     for i in range(clientNum):
         threads[i].join()
 
+    print("all functions finished ")
+
 
     outfile = open("result.csv","w")
     outfile.write("invokeTime,startTime,endTime\n")
-   
+
     latencies = []
     minInvokeTime = 0x7fffffffffffffff
     maxEndTime = 0
@@ -86,8 +73,8 @@ def main():
         # print the result of every loop of the client
         for j in range(len(clientResult)):
             outfile.write(clientResult[j][0] + ',' + clientResult[j][1] + \
-            ',' + clientResult[j][2] + '\n') 
-        
+                          ',' + clientResult[j][2] + '\n')
+
             # Collect the latency
             latency = int(clientResult[j][-1]) - int(clientResult[j][0])
             latencies.append(latency)
@@ -98,6 +85,33 @@ def main():
             if int(clientResult[j][-1]) > maxEndTime:
                 maxEndTime = int(clientResult[j][-1])
     formatResult(latencies,maxEndTime - minInvokeTime, clientNum, loopTimes, warmupTimes)
+
+
+
+
+
+
+def client(i,results,loopTimes):
+    # print("client %d start" %i)
+    # command = "./single-cold_warm.sh -t " + str(loopTimes) 
+    command = "./handler.sh -m cold"
+    r = os.popen(command)  
+    text = r.read()
+    r.close()
+    if  str.contains(text, "Measure cold start up time"):
+    # print("test",text)
+        results[i] = text
+        # print("client %d finished" %i)
+    else:
+        print("exception:",text)
+
+def warmup(i,warmupTimes,actionName,params):
+    for j in range(warmupTimes):
+        r = os.popen("wsk -i action invoke %s %s --result --blocking" %(actionName,params))  
+        text = r.read() 
+        r.close()
+    # print("client %d warmup finished" %i) 
+
 
 def parseResult(result):
     lines = result.split('\n')
@@ -131,7 +145,7 @@ def getargv():
         exit(0)
     
     if len(sys.argv) == 4:
-        if not str.isdigit(sys.argv[3]) or int(sys.argv[3]) < 1:
+        if not str.isdigit(sys.argv[3]) or int(sys.argv[3]) < 0:
             print("Usage: python3 run.py <client number> <loop times> [<warm up times>]")
             print("Warm up times must be an positive integer")
             exit(0)
@@ -142,6 +156,7 @@ def getargv():
     return (int(sys.argv[1]),int(sys.argv[2]),int(sys.argv[3]))
 
 def formatResult(latencies,duration,client,loop,warmup):
+    print("formatResult")
     requestNum = len(latencies)
     latencies.sort()
     duration = float(duration)

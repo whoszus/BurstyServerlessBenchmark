@@ -404,3 +404,13 @@ avg	50%	75%	90%	95%	99%
 1561.13	1428	1653	1768	3437	3810
 throughput (n/s):
 129.11
+
+
+------------------ (concurrent)result ---------------------
+client: 1024, loop_times: 1, warup_times: 1
+3072 requests finished in 25.57 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1268.60	1133	1161	1197	3125	3216
+throughput (n/s):
+120.16

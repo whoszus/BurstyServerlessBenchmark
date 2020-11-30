@@ -10,5 +10,5 @@
 # PURPOSE.
 # See the Mulan PSL v1 for more details.
 #
-wsk -i action update hello-nodejs hello.js --docker openwhisk/action-nodejs-v10
+wsk -i action update hello-nodejs hello.js
 

@@ -1,1 +1,0 @@
-wsk -i action update /guest/demo/hello hello.js --web true

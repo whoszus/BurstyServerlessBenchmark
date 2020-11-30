@@ -2,9 +2,9 @@
 cold_loop=3
 warm_loop=10
 warm_warmup=3
-concurrent_client=3
-concurrent_loop=3
-concurrent_warmup=3
+concurrent_client=16
+concurrent_loop=1
+concurrent_warmup=1
 
 # Single test params 
 RUNTIME=nodejs
