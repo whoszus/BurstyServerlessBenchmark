@@ -10,6 +10,7 @@ BLOCKING = 'true'
 RESULT = 'true'
 
 url = APIHOST + '/api/v1/namespaces/' + NAMESPACE + '/actions/' + ACTION
-user_pass = AUTH_KEY.split(':')
-response = requests.post(url, json=PARAMS, params={'blocking': BLOCKING, 'result': RESULT}, auth=(user_pass[0], user_pass[1]))
+user_pass = AUTH_KEY.decode().split(':')
+# response = requests.post(url, json=PARAMS, params={'blocking': BLOCKING, 'result': RESULT}, auth=(user_pass[0], user_pass[1]))
+response = requests.post(url, json=PARAMS, params={'blocking': BLOCKING, 'result': RESULT}, auth=('guest', '23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP'))
 print(response.text)
