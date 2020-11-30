@@ -364,3 +364,43 @@ avg	50%	75%	90%	95%	99%
 2794.67	1092	1098	1103	1103	1103
 throughput (n/s):
 0.44
+
+
+------------------ (concurrent)result ---------------------
+client: 16, loop_times: 1, warup_times: 1
+48 requests finished in 3.42 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1116.25	1113	1126	1141	1148	1152
+throughput (n/s):
+14.03
+
+
+------------------ (concurrent)result ---------------------
+client: 156, loop_times: 1, warup_times: 1
+468 requests finished in 5.91 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1150.83	1120	1145	1177	1201	3099
+throughput (n/s):
+79.24
+
+
+------------------ (concurrent)result ---------------------
+client: 512, loop_times: 1, warup_times: 1
+1536 requests finished in 13.60 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1229.07	1141	1181	1219	3094	3196
+throughput (n/s):
+112.91
+
+
+------------------ (concurrent)result ---------------------
+client: 1024, loop_times: 1, warup_times: 1
+3072 requests finished in 23.79 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1561.13	1428	1653	1768	3437	3810
+throughput (n/s):
+129.11
