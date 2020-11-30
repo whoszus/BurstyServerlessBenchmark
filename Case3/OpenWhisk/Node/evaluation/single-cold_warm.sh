@@ -110,12 +110,11 @@ fi
 
 # mode = warm: kill all the running containers and then warm up
 if [[ $MODE = "warm" && $RUNONLY = false ]]; then
-    # echo "Warm up.."
-    # if [[ -n `docker ps | grep $CONTAINERNAME | awk {'print $1'}` ]];then
-    #     echo 'Stop the running container..'
-    #     # docker stop `docker ps | grep $CONTAINERNAME | awk {'print $1'}`
-    #     for p in $( kubectl get pods -n openwhisk | grep  hello | tail -n +2 | awk -F ' ' '{print $1}'); do kubectl delete pod -n openwhisk $p --grace-period=0 --force;done
-    # fi
+    echo "Warm up.."
+    if [[ -n `docker ps | grep $CONTAINERNAME | awk {'print $1'}` ]];then
+        echo 'Stop the running container..'
+        docker stop `docker ps | grep $CONTAINERNAME | awk {'print $1'}`
+    fi
     for i in $(seq 1 $WARMUP)
     do
         echo "The $i-th warmup..."
@@ -138,11 +137,10 @@ LATENCYSUM=0
 
 for i in $(seq 1 $TIMES)
 do
-    # if [[ $MODE = 'cold' ]]; then
-    #     echo 'Stop the running container..'
-    #     # docker stop `docker ps | grep $CONTAINERNAME | awk {'print $1'}`
-    #     for p in $( kubectl get pods -n openwhisk | grep  hello | tail -n +2 | awk -F ' ' '{print $1}'); do kubectl delete pod -n openwhisk $p --grace-period=0 --force;done
-    # fi
+    if [[ $MODE = 'cold' ]]; then
+        echo 'Stop the running container..'
+        docker stop `docker ps | grep $CONTAINERNAME | awk {'print $1'}`
+    fi
 
     echo Measure $MODE start up time: no.$i
     

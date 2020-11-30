@@ -1,3 +1,15 @@
+#!/bin/bash
+#
+# Copyright (c) 2020 Institution of Parallel and Distributed System, Shanghai Jiao Tong University
+# ServerlessBench is licensed under the Mulan PSL v1.
+# You can use this software according to the terms and conditions of the Mulan PSL v1.
+# You may obtain a copy of Mulan PSL v1 at:
+#     http://license.coscl.org.cn/MulanPSL
+# THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+# PURPOSE.
+# See the Mulan PSL v1 for more details.
+#
 source eval-config
 PRINTLOG=false
 WARMUPONLY=false
@@ -96,24 +108,25 @@ else
     WARMUP=0
 fi
 
-# # mode = warm: kill all the running containers and then warm up
-# if [[ $MODE = "warm" && $RUNONLY = false ]]; then
-#     echo "Warm up.."
-#     if [[ -n `docker ps | grep $CONTAINERNAME | awk {'print $1'}` ]];then
-#         echo 'Stop the running container..'
-#         docker stop `docker ps | grep $CONTAINERNAME | awk {'print $1'}`
-#     fi
-#     for i in $(seq 1 $WARMUP)
-#     do
-#         echo "The $i-th warmup..."
-#         wsk -i action invoke $ACTIONNAME --blocking --result $PARAMS > /dev/null
-#     done
-#     echo "Warm up complete"
-#     if [[ $WARMUPONLY = true ]]; then
-#         echo "No real action is needed."
-#         exit
-#     fi
-# fi
+# mode = warm: kill all the running containers and then warm up
+if [[ $MODE = "warm" && $RUNONLY = false ]]; then
+    echo "Warm up.."
+    if [[ -n `docker ps | grep $CONTAINERNAME | awk {'print $1'}` ]];then
+        echo 'Stop the running container..'
+        # docker stop `docker ps | grep $CONTAINERNAME | awk {'print $1'}`
+        for p in $( kubectl get pods -n openwhisk | grep  hello | tail -n +2 | awk -F ' ' '{print $1}'); do kubectl delete pod -n openwhisk $p --grace-period=0 --force;done
+    fi
+    for i in $(seq 1 $WARMUP)
+    do
+        echo "The $i-th warmup..."
+        wsk -i action invoke $ACTIONNAME --blocking --result $PARAMS > /dev/null
+    done
+    echo "Warm up complete"
+    if [[ $WARMUPONLY = true ]]; then
+        echo "No real action is needed."
+        exit
+    fi
+fi
 
 
 if [[ $PRINTLOG = true && ! -e $LOGFILE ]]; then
@@ -126,7 +139,8 @@ LATENCYSUM=0
 for i in $(seq 1 $TIMES)
 do
     if [[ $MODE = 'cold' ]]; then
-        echo 'Stop the running pods..'
+        echo 'Stop the running container..'
+        # docker stop `docker ps | grep $CONTAINERNAME | awk {'print $1'}`
         for p in $( kubectl get pods -n openwhisk | grep  hello | tail -n +2 | awk -F ' ' '{print $1}'); do kubectl delete pod -n openwhisk $p --grace-period=0 --force;done
     fi
 
@@ -184,5 +198,4 @@ if [ ! -z $RESULT ]; then
     echo -e "Avg\t50%\t75%\t90%\t95%\t99%\t" >> $RESULT
     echo -e "`expr $LATENCYSUM / $TIMES`\t$_50platency\t$_75platency\t$_90platency\t$_95platency\t$_99platency\t" >> $RESULT
 fi
-
 
