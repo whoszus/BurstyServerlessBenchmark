@@ -89,8 +89,6 @@ def main():
 
 
 
-
-
 def client(i,results,loopTimes):
     # print("client %d start" %i)
     # command = "./single-cold_warm.sh -t " + str(loopTimes) 
@@ -98,7 +96,7 @@ def client(i,results,loopTimes):
     r = os.popen(command)  
     text = r.read()
     r.close()
-    if  str.contains(text, "Measure cold start up time"):
+    if  text.__contains__("Measure cold start up time"):
     # print("test",text)
         results[i] = text
         # print("client %d finished" %i)
