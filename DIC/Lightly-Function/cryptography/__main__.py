@@ -6,4 +6,4 @@ def main(args):
     f = MultiFernet([key1, key2])
     
     token = f.encrypt(b"Secret message!")
-    return {"hash": token}
+    return {"hash": token} ``
