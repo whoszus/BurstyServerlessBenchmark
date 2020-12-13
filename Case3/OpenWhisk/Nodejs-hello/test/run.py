@@ -14,6 +14,9 @@ import threading
 import time
 import sys, getopt
 
+start_time =  time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+end_time = 0
+
 def main():
     argv = getargv()
     clientNum = argv[0]
@@ -85,7 +88,7 @@ def main():
             if int(clientResult[j][-1]) > maxEndTime:
                 maxEndTime = int(clientResult[j][-1])
     formatResult(latencies,maxEndTime - minInvokeTime, clientNum, loopTimes, warmupTimes)
-
+    
 
 
 
@@ -153,6 +156,7 @@ def getargv():
     return (int(sys.argv[1]),int(sys.argv[2]),int(sys.argv[3]))
 
 def formatResult(latencies,duration,client,loop,warmup):
+    end_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     print("formatResult")
     requestNum = len(latencies)
     latencies.sort()
@@ -174,6 +178,8 @@ def formatResult(latencies,duration,client,loop,warmup):
     print("throughput (n/s):\n%.2f" %(requestNum / (duration/1000)))
     # output result to file
     resultfile = open("eval-result.log","a")
+    resultfile.write("\nstart time: " + str(start_time))
+    resultfile.write("\nend time: " + str(end_time))
     resultfile.write("\n\n------------------ (concurrent)result ---------------------\n")
     resultfile.write("client: %d, loop_times: %d, warup_times: %d\n" % (client, loop, warmup))
     resultfile.write("%d requests finished in %.2f seconds\n" %(requestNum, (duration/1000)))

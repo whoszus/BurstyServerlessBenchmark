@@ -1,120 +1,78 @@
 
 
------------------- (concurrent)result ---------------------
-client: 16, loop_times: 1, warup_times: 1
-48 requests finished in 3.40 seconds
-latency (ms):
-avg	50%	75%	90%	95%	99%
-1112.46	1105	1125	1148	1158	1167
-throughput (n/s):
-14.11
-
-
------------------- (concurrent)result ---------------------
-client: 1, loop_times: 1, warup_times: 1
-3 requests finished in 3.29 seconds
-latency (ms):
-avg	50%	75%	90%	95%	99%
-1087.00	1075	1085	1085	1085	1085
-throughput (n/s):
-0.91
-
-
------------------- (concurrent)result ---------------------
-client: 512, loop_times: 1, warup_times: 1
-1536 requests finished in 12.27 seconds
-latency (ms):
-avg	50%	75%	90%	95%	99%
-1192.91	1125	1174	1210	1236	3157
-throughput (n/s):
-125.14
-
-
------------------- (concurrent)result ---------------------
-client: 1024, loop_times: 1, warup_times: 1
-3072 requests finished in 26.15 seconds
-latency (ms):
-avg	50%	75%	90%	95%	99%
-1832.93	1800	2048	2215	3875	4257
-throughput (n/s):
-117.49
-
-
------------------- (concurrent)result ---------------------
-client: 16, loop_times: 1, warup_times: 1
-48 requests finished in 10.96 seconds
-latency (ms):
-avg	50%	75%	90%	95%	99%
-2073.85	1092	1477	7534	7650	8740
-throughput (n/s):
-4.38
-
+start time: 2020-12-09 16:23:18
+end time: 2020-12-09 16:23:22
 
 ------------------ (concurrent)result ---------------------
 client: 32, loop_times: 1, warup_times: 1
-96 requests finished in 13.74 seconds
+96 requests finished in 3.50 seconds
 latency (ms):
 avg	50%	75%	90%	95%	99%
-1580.71	1134	1170	1248	1277	11254
+1120.53	1109	1154	1186	1197	1203
 throughput (n/s):
-6.99
+27.44
 
+
+
+start time: 2020-12-09 17:03:27
+end time: 2020-12-09 17:03:36
+
+------------------ (concurrent)result ---------------------
+client: 32, loop_times: 1, warup_times: 1
+96 requests finished in 8.65 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1262.53	1111	1393	1475	1493	1532
+throughput (n/s):
+11.09
+
+
+
+
+start time: 2020-12-09 17:13:57
+end time: 2020-12-09 17:14:03
 
 ------------------ (concurrent)result ---------------------
 client: 64, loop_times: 1, warup_times: 1
-192 requests finished in 11.74 seconds
+192 requests finished in 5.46 seconds
 latency (ms):
 avg	50%	75%	90%	95%	99%
-1236.29	1109	1246	1273	1304	3115
+1204.62	1166	1235	1316	1368	1404
 throughput (n/s):
-16.35
+35.13
 
+start time: 2020-12-09 17:14:18
+end time: 2020-12-09 17:14:24
 
 ------------------ (concurrent)result ---------------------
 client: 128, loop_times: 1, warup_times: 1
-384 requests finished in 9.71 seconds
+384 requests finished in 6.00 seconds
 latency (ms):
 avg	50%	75%	90%	95%	99%
-1255.35	1126	1377	1409	1420	3105
+1208.29	1142	1268	1381	1414	3078
 throughput (n/s):
-39.55
+63.99
 
+start time: 2020-12-11 09:22:45
+end time: 2020-12-11 09:22:50
 
 ------------------ (concurrent)result ---------------------
-client: 128, loop_times: 1, warup_times: 1
-384 requests finished in 7.42 seconds
+client: 32, loop_times: 1, warup_times: 1
+96 requests finished in 5.53 seconds
 latency (ms):
 avg	50%	75%	90%	95%	99%
-1204.29	1112	1165	1403	1521	3105
+1174.06	1103	1201	1247	1264	3084
 throughput (n/s):
-51.72
+17.37
 
+start time: 2020-12-11 09:22:59
+end time: 2020-12-11 09:23:12
 
 ------------------ (concurrent)result ---------------------
-client: 1024, loop_times: 1, warup_times: 1
-3072 requests finished in 30.69 seconds
+client: 512, loop_times: 1, warup_times: 1
+1536 requests finished in 12.77 seconds
 latency (ms):
 avg	50%	75%	90%	95%	99%
-6544.56	5049	11509	11938	12172	12346
+2220.95	2184	2793	2934	2992	4941
 throughput (n/s):
-100.09
-
-
------------------- (concurrent)result ---------------------
-client: 1, loop_times: 1, warup_times: 1
-3 requests finished in 3.28 seconds
-latency (ms):
-avg	50%	75%	90%	95%	99%
-1085.67	1074	1076	1076	1076	1076
-throughput (n/s):
-0.91
-
-
------------------- (concurrent)result ---------------------
-client: 1024, loop_times: 1, warup_times: 1
-3072 requests finished in 26.95 seconds
-latency (ms):
-avg	50%	75%	90%	95%	99%
-2179.79	2205	2544	2822	3630	4861
-throughput (n/s):
-113.98
+120.30
