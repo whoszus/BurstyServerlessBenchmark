@@ -1,9 +1,13 @@
 from cryptography.fernet import Fernet, MultiFernet
+
+
 def main(args):
-    obj  = args.get("array","hashtest")
+    obj = args.get("array", "hashtest")
+    obj = bytes(obj, 'utf-8')
     key1 = Fernet(Fernet.generate_key())
     key2 = Fernet(Fernet.generate_key())
     f = MultiFernet([key1, key2])
-    
-    token = f.encrypt(b"Secret message!")
-    return {"hash": token} ``
+
+    token = f.encrypt(obj)
+    print(token)
+    return {"token": token}

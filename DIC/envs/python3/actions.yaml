@@ -3,14 +3,18 @@ actions:
         hello-world-python
         quicksort
         hash
-
+        MultiFernet
+        md5forfile
 
 
     web-services:
 
     
 
-    machine-learngig-inference:
+    machine-learning-inference:
+
+
+    Video Transcoding:
 
 
         
