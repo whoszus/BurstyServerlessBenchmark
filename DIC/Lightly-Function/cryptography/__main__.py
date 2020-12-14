@@ -9,5 +9,4 @@ def main(args):
     f = MultiFernet([key1, key2])
 
     token = f.encrypt(obj)
-    print(token)
-    return {"token": token}
+    return {"token": str(token)}

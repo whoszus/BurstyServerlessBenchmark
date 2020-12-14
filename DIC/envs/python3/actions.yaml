@@ -3,14 +3,18 @@ actions:
         hello-world-python
         quicksort
         hash
-
-
+        md5
+        cryptography
 
     web-services:
 
     
 
     machine-learngig-inference:
+        Classification:
+            NBC #Naive Bayes text classification MultinomialNB
+            Perceptron # Perceptron
+
 
 
         
