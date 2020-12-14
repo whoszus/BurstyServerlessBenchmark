@@ -3,3 +3,4 @@
 **/virtualenv
 template
 build
+**/**.mp4
