@@ -45,7 +45,7 @@ def main():
     # Initialize the results and the clients
     threads = []
     results = []
-
+    print("start warming sandbox")
     for i in range(clientNum):
         results.append('')
 
@@ -57,7 +57,7 @@ def main():
     # start the clients
     for i in range(clientNum):
         threads[i].start()
-
+    print("start running functions")
     for i in range(clientNum):
         threads[i].join()
 
