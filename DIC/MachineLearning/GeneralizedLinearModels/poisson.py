@@ -1,7 +1,6 @@
 import numpy as np
 
 
-
 def main():
     from sklearn.ensemble import HistGradientBoostingRegressor
     from sklearn.experimental import enable_hist_gradient_boosting  # noqa
