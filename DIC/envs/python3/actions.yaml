@@ -10,13 +10,13 @@ actions:
         Classification:
             NBC #Naive Bayes text classification MultinomialNB
             Perceptron # Perceptron
-            TextClassification  #linear_model compare [SGDClassifier,PassiveAggressiveClassifier,MultinomialNB]
+            TextClassificationComparation  #linear_model compare [SGDClassifier,PassiveAggressiveClassifier,MultinomialNB]
         Clusting:
             Kmeans
 
         Linear regression:
             GeneralizedLinear # Generalized Linear Models with non-normal loss functions
-
+`
     Video transcoding:
         primary:
             videoTrans
