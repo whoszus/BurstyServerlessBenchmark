@@ -1,1 +1,1 @@
-wsk -i  action update  MultiFernet __main__.py --kind python:3
+wsk -i  action update  cryptography __main__.py --kind python:3

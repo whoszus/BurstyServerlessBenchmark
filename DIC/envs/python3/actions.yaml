@@ -10,7 +10,7 @@ actions:
         Classification:
             NBC #Naive Bayes text classification MultinomialNB
             Perceptron # Perceptron
-            TextClassificationComparation  #linear_model compare [SGDClassifier,PassiveAggressiveClassifier,MultinomialNB]
+            TextClassification  #linear_model compare [SGDClassifier,PassiveAggressiveClassifier,MultinomialNB]
         Clusting:
             Kmeans
 
