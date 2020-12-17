@@ -11,7 +11,7 @@ RUN apk add --no-cache \
         lapack \
         openblas-dev \
         yasm \
-        apk add ffmpeg
+        ffmpeg
 COPY requirement.txt /
 # add python packages
 RUN pip install pip setuptools wheel -U

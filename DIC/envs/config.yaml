@@ -1,4 +1,4 @@
 config:
     runtime:
       video-trans:
-        docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3.7 bash -c "cd /tmp && virtualenv virtualenv && source virtualenv/bin/activate && apt-get update && apt-get -y install ffmpeg && apt-get clean"
+          tinker.siat.ac.cn/tinker/siat-serverless-ow-vt:t.1.0
