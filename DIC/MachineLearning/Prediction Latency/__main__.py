@@ -250,15 +250,20 @@ def benchmark_throughputs(configuration, duration_secs=0.1):
 
 # #############################################################################
 # Main code
-def main():
+def main(args):
+
+    n_train =  args.get("n_train",1000)
+    n_test =  args.get("n_train",100)
+    n_features = args.get("n_features",100)
+
     start_time = time.time()
 
     # #############################################################################
     # Benchmark bulk/atomic prediction speed for various regressors
     configuration = {
-        'n_train': int(1e3),
-        'n_test': int(1e2),
-        'n_features': int(1e2),
+        'n_train': n_train,
+        'n_test': n_test,
+        'n_features': n_features,
         'estimators': [
             {'name': 'Linear Model',
              'instance': SGDRegressor(penalty='elasticnet', alpha=0.01,
@@ -292,7 +297,3 @@ def main():
     stop_time = time.time()
     token = str("example run in %.2fs" % (stop_time - start_time))
     return {"token": token}
-
-
-if __name__ == '__main__':
-    print(main())

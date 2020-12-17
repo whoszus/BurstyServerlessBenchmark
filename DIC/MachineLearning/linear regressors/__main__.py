@@ -3,12 +3,15 @@ from sklearn.datasets import make_regression
 from sklearn.linear_model import Lasso
 import numpy as np
 
-n_samples, n_features = 1000, 20
-rng = np.random.RandomState(0)
-X, y = make_regression(n_samples, n_features, random_state=rng)
-sample_weight = rng.rand(n_samples)
-X_train, X_test, y_train, y_test, sw_train, sw_test = train_test_split(
-    X, y, sample_weight, random_state=rng)
-reg = Lasso()
-reg.fit(X_train, y_train, sample_weight=sw_train)
-print(reg.score(X_test, y_test, sw_test))
+def main(args):
+    n_samples = args.get("n_samples",3000)
+    n_features = args.get("n_features",30)
+    rng = np.random.RandomState(0)
+    X, y = make_regression(n_samples, n_features, random_state=rng)
+    sample_weight = rng.rand(n_samples)
+    X_train, X_test, y_train, y_test, sw_train, sw_test = train_test_split(
+        X, y, sample_weight, random_state=rng)
+    reg = Lasso()
+    reg.fit(X_train, y_train, sample_weight=sw_train)
+    token = str(reg.score(X_test, y_test, sw_test))
+    return {"token":token}

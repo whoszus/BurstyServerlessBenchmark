@@ -76,3 +76,159 @@ avg	50%	75%	90%	95%	99%
 2220.95	2184	2793	2934	2992	4941
 throughput (n/s):
 120.30
+
+start time: 2020-12-17 15:35:36
+end time: 2020-12-17 15:35:55
+
+------------------ (concurrent)result ---------------------
+client: 1024, loop_times: 1, warup_times: 1
+3072 requests finished in 19.07 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1762.84	1807	2000	2181	3076	4148
+throughput (n/s):
+161.07
+
+start time: 2020-12-17 17:07:47
+end time: 2020-12-17 17:07:59
+
+------------------ (concurrent)result ---------------------
+client: 128, loop_times: 1, warup_times: 1
+384 requests finished in 11.99 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1495.56	1144	1779	1972	2028	8771
+throughput (n/s):
+32.03
+
+start time: 2020-12-17 17:08:02
+end time: 2020-12-17 17:08:08
+
+------------------ (concurrent)result ---------------------
+client: 128, loop_times: 1, warup_times: 1
+384 requests finished in 5.74 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1136.78	1110	1125	1147	1162	3104
+throughput (n/s):
+66.96
+
+start time: 2020-12-17 17:08:11
+end time: 2020-12-17 17:08:18
+
+------------------ (concurrent)result ---------------------
+client: 128, loop_times: 1, warup_times: 1
+384 requests finished in 7.56 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1132.94	1113	1129	1141	1153	3086
+throughput (n/s):
+50.81
+
+start time: 2020-12-17 17:08:25
+end time: 2020-12-17 17:08:31
+
+------------------ (concurrent)result ---------------------
+client: 64, loop_times: 1, warup_times: 1
+192 requests finished in 5.51 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1133.42	1109	1132	1151	1168	3105
+throughput (n/s):
+34.82
+
+start time: 2020-12-17 17:09:03
+end time: 2020-12-17 17:09:06
+
+------------------ (concurrent)result ---------------------
+client: 32, loop_times: 1, warup_times: 1
+96 requests finished in 3.48 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1121.93	1110	1143	1179	1199	1220
+throughput (n/s):
+27.59
+
+start time: 2020-12-17 17:09:15
+end time: 2020-12-17 17:09:19
+
+------------------ (concurrent)result ---------------------
+client: 32, loop_times: 1, warup_times: 1
+96 requests finished in 3.48 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1112.98	1121	1140	1159	1177	1189
+throughput (n/s):
+27.59
+
+start time: 2020-12-17 17:09:20
+end time: 2020-12-17 17:09:26
+
+------------------ (concurrent)result ---------------------
+client: 32, loop_times: 1, warup_times: 1
+96 requests finished in 5.38 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1132.58	1107	1129	1149	1158	1178
+throughput (n/s):
+17.85
+
+start time: 2020-12-17 17:10:57
+end time: 2020-12-17 17:11:01
+
+------------------ (concurrent)result ---------------------
+client: 32, loop_times: 1, warup_times: 1
+96 requests finished in 3.50 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1125.76	1126	1144	1156	1164	1188
+throughput (n/s):
+27.44
+
+start time: 2020-12-17 17:11:10
+end time: 2020-12-17 17:11:34
+
+------------------ (concurrent)result ---------------------
+client: 1024, loop_times: 1, warup_times: 1
+3072 requests finished in 24.36 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1251.14	1154	1203	1341	3087	3231
+throughput (n/s):
+126.11
+
+start time: 2020-12-17 17:16:50
+end time: 2020-12-17 17:17:15
+
+------------------ (concurrent)result ---------------------
+client: 1024, loop_times: 1, warup_times: 1
+3072 requests finished in 24.81 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+2196.39	2318	2619	2781	3119	4712
+throughput (n/s):
+123.82
+
+start time: 2020-12-17 17:17:18
+end time: 2020-12-17 17:17:41
+
+------------------ (concurrent)result ---------------------
+client: 1024, loop_times: 1, warup_times: 1
+3072 requests finished in 23.43 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+2912.67	2970	3700	4014	5290	6053
+throughput (n/s):
+131.10
+
+start time: 2020-12-17 17:17:47
+end time: 2020-12-17 17:18:12
+
+------------------ (concurrent)result ---------------------
+client: 1024, loop_times: 1, warup_times: 1
+3072 requests finished in 25.50 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+3908.46	4110	5093	5531	6477	7656
+throughput (n/s):
+120.46

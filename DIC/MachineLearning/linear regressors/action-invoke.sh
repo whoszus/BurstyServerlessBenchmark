@@ -1,0 +1,1 @@
+wsk -i action invoke lr --param n_samples 5000 --param n_features 50 --result

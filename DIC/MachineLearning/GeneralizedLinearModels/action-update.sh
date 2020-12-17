@@ -1,4 +1,1 @@
-docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3.7 bash -c \
-"cd /tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirement.txt" &&
-zip -r env.zip ./* &&
-wsk -i  action update  glm_score  env.zip --kind python:3
+wsk -i  action update  glm_score __main__.py --docker tinker.siat.ac.cn/tinker/siat-serverless-ow-py:t.1.0
