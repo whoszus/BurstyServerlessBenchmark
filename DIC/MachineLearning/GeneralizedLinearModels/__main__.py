@@ -2,12 +2,12 @@ import numpy as np
 
 
 def main(args):
-    
+    n_samples = args.get("n_samples",4000)
+    n_features = args.get("n_features",40)
     from sklearn.ensemble import HistGradientBoostingRegressor
     from sklearn.experimental import enable_hist_gradient_boosting  # noqa
     from sklearn.linear_model import PoissonRegressor
     from sklearn.model_selection import train_test_split
-    n_samples, n_features = 2000, 20
     rng = np.random.RandomState(0)
     X = rng.randn(n_samples, n_features)
     # positive integer target correlated with X[:, 5] with many zeros:
