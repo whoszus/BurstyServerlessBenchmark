@@ -145,7 +145,7 @@ def stream_reuters_documents(data_path="./reuters"):
             yield doc
 
 
-def main():
+def main(args):
     vectorizer = HashingVectorizer(decode_error='ignore', n_features=2 ** 18,
                                    alternate_sign=False)
 
@@ -266,4 +266,4 @@ def main():
                 token += t
         if i % 3 == 0:
             print('\n')
-        return {"result": token}
+    return {"result": token}

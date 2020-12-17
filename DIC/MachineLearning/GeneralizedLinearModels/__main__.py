@@ -1,7 +1,8 @@
 import numpy as np
 
 
-def main():
+def main(args):
+    
     from sklearn.ensemble import HistGradientBoostingRegressor
     from sklearn.experimental import enable_hist_gradient_boosting  # noqa
     from sklearn.linear_model import PoissonRegressor
