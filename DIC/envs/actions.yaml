@@ -1,24 +1,32 @@
-actions:
-    lightly-function:
-        hello-world-python
-        quicksort
-        hash
-        md5
-        cryptography
+# actions
+lightly-function:
+    hello-world-python: "--param name {name}"
+    quicksort: "--param array {array}"
+    hash: "--param array {array}"
+    md5: "--param file {file}"
+    cryptography: "--param crypt {crypt}"
 
-    machine-learngig-inference:
-        Classification:
-            NBC #Naive Bayes text classification MultinomialNB
-            Perceptron # Perceptron
-            TextClassificationComparation  #linear_model compare [SGDClassifier,PassiveAggressiveClassifier,MultinomialNB]
-        Clusting:
-            Kmeans
+machine-learngig-inference:
+    #Classification:
+    #Naive Bayes text classification MultinomialNB
+    NBC: "--param name {name}"
+    # Perceptron
+    Perceptron: "--param n_samples {n_samples}"
+    #linear_model compare [SGDClassifier,PassiveAggressiveClassifier,MultinomialNB]
+    TextClassification: "--param name {name}"
+    #Clusting:
+    Kmeans: "--param n_samples {n_samples}"
+    # Generalized Linear Models with non-normal loss functions
+    glm_score:  "--param n_samples {n_samples} --param n_features {n_features}"
+    mmsh:  "--param n_samples {n_samples}"
+    pl:  "--param n_train {n_train} --param n_test {n_test}  --param n_features {n_features} "
+    scc:  "--param name {name}"
 
-        Linear regression:
-            GeneralizedLinear # Generalized Linear Models with non-normal loss functions
-`
-    Video transcoding:
-        primary:
-            videoTrans
+    #Linear regression:
+    lr: "--param n_samples {n_features}"
+
+Video transcoding:
+
+    videoTrans: "--param name {name}"
 
         

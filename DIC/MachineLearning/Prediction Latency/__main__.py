@@ -254,7 +254,7 @@ def main(args):
     startTime = time.time()
 
     n_train =  args.get("n_train",1000)
-    n_test =  args.get("n_train",100)
+    n_test =  args.get("n_test",100)
     n_features = args.get("n_features",100)
 
     start_time = time.time()

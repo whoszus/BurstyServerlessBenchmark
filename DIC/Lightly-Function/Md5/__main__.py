@@ -6,7 +6,7 @@ import time
 def main(args):
     global token
     startTime = time.time()
-    array = args.get("level")
+    array = args.get('file','file')
     if array == "file":
         file_path = './ccf.pdf'
         if os.path.isfile(file_path):

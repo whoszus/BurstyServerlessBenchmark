@@ -7,8 +7,7 @@ start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 end_time = 0
 
 
-def handler():
-    argv = getargv()
+def handler(argv):
     action_name = argv.get("action_name")
     client_num = argv.get("client_num")
 
@@ -136,3 +135,8 @@ def formatResult(latencies, duration, client, loop, warmup):
     resultfile.write("%.2f\t%d\t%d\t%d\t%d\t%d\n" % (
         averageLatency, _50pcLatency, _75pcLatency, _90pcLatency, _95pcLatency, _99pcLatency))
     resultfile.write("throughput (n/s):\n%.2f\n" % (requestNum / (duration / 1000)))
+
+def main():
+    lf_action_names = ['hello-world-python','quicksort','hash','md5','cryptography']
+    mli_action_names= ['']
+    vt_action_names =['']
