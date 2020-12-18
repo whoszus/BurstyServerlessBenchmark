@@ -1,12 +1,15 @@
 from sklearn.datasets import load_digits
 from sklearn.linear_model import Perceptron
+import time
 
 
 def main(args):
-    n_samples = args.get("n_samples",3000)
+    startTime = time.time()
+
+    n_samples = args.get("n_samples", 3000)
     X, y = load_digits(return_X_y=True)
     clf = Perceptron(tol=1e-3, random_state=0)
     clf.fit(X, y)
     Perceptron()
-    token = clf.score(X, y)
-    return {"result": str(token)}
+    token = str(clf.score(X, y))
+    return {'token': token, 'startTime': int(round(startTime * 1000))}

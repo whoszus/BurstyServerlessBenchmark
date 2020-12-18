@@ -1,7 +1,9 @@
 from cryptography.fernet import Fernet, MultiFernet
+import time
 
 
 def main(args):
+    startTime = time.time()
     obj = args.get("array", "hashtest")
     obj = bytes(obj, 'utf-8')
     key1 = Fernet(Fernet.generate_key())
@@ -9,4 +11,5 @@ def main(args):
     f = MultiFernet([key1, key2])
 
     token = f.encrypt(obj)
-    return {"token": str(token)}
+
+    return {'token': str(token), 'startTime': int(round(startTime * 1000))}

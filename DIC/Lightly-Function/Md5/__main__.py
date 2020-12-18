@@ -1,10 +1,12 @@
 import hashlib
 import os
+import time
 
 
 def main(args):
+    global token
+    startTime = time.time()
     array = args.get("level")
-    md5 = None
     if array == "file":
         file_path = './ccf.pdf'
         if os.path.isfile(file_path):
@@ -13,5 +15,5 @@ def main(args):
             md5_obj.update(f.read())
             hash_code = md5_obj.hexdigest()
             f.close()
-            md5 = str(hash_code).lower()
-    return {"md5": md5}
+            token = str(hash_code).lower()
+    return {'token': token, 'startTime': int(round(startTime * 1000))}

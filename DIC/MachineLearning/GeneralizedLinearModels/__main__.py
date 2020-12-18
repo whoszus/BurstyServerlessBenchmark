@@ -1,9 +1,11 @@
 import numpy as np
+import time
 
 
 def main(args):
-    n_samples = args.get("n_samples",4000)
-    n_features = args.get("n_features",40)
+    n_samples = args.get("n_samples", 4000)
+    n_features = args.get("n_features", 40)
+    startTime = time.time()
     from sklearn.ensemble import HistGradientBoostingRegressor
     from sklearn.experimental import enable_hist_gradient_boosting  # noqa
     from sklearn.linear_model import PoissonRegressor
@@ -17,6 +19,5 @@ def main(args):
     gbdt = HistGradientBoostingRegressor(loss='poisson', learning_rate=.01)
     glm.fit(X_train, y_train)
     gbdt.fit(X_train, y_train)
-
-    return {"glm_score": str(glm.score(X_test, y_test)), "gbdt_score":str(gbdt.score(X_test, y_test)) }
-
+    token = "glm_score:" + str(glm.score(X_test, y_test)) + " gbdt_score:" + str(gbdt.score(X_test, y_test))
+    return {'token': token, 'startTime': int(round(startTime * 1000))}

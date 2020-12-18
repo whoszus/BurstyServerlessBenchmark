@@ -146,6 +146,8 @@ def stream_reuters_documents(data_path="./reuters"):
 
 
 def main(args):
+    startTime = time.time()
+
     vectorizer = HashingVectorizer(decode_error='ignore', n_features=2 ** 18,
                                    alternate_sign=False)
 
@@ -266,4 +268,4 @@ def main(args):
                 token += t
         if i % 3 == 0:
             print('\n')
-    return {"result": token}
+    return {'token': token, 'startTime': int(round(startTime * 1000))}

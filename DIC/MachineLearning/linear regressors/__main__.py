@@ -2,8 +2,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.datasets import make_regression
 from sklearn.linear_model import Lasso
 import numpy as np
+import time
 
 def main(args):
+    startTime = time.time()
+
     n_samples = args.get("n_samples",3000)
     n_features = args.get("n_features",30)
     rng = np.random.RandomState(0)
@@ -14,4 +17,4 @@ def main(args):
     reg = Lasso()
     reg.fit(X_train, y_train, sample_weight=sw_train)
     token = str(reg.score(X_test, y_test, sw_test))
-    return {"token":token}
+    return {'token': token, 'startTime': int(round(startTime * 1000))}

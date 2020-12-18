@@ -1,3 +1,7 @@
 from helper import helper
+import time
+
+
 def main(args):
- return helper(args)
+    startTime = time.time()
+    return {'token': helper(args), 'startTime': int(round(startTime * 1000))}

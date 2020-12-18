@@ -10,124 +10,10 @@
 # PURPOSE.
 # See the Mulan PSL v1 for more details.
 #
-source eval-config
+#source eval-config
 PRINTLOG=false
-WARMUPONLY=false
-RUNONLY=false
-while getopts "r:m:t:w:lWR" OPT; do
-    case $OPT in
-    # Mode: cold or warm.
-    r)
-        RESULT=$OPTARG
-        ;;
-    m)
-        MODE=$OPTARG
-        if [[ $MODE != 'cold' && $MODE != 'warm' ]] ;then
-            echo "usage: "
-            echo "./single-code_warm -m <mode> -t <loop times> -w <warm ups>"
-            echo 'mode: warm, cold'
-            exit
-        fi
-        ;;
-    
-    # The loop time
-    t)
-        TIMES=$OPTARG
-        expr $TIMES + 0 &>/dev/null
-        if [[ $? != 0 ]] || [[ $TIMES -lt 1 ]]; then
-            echo "Error: loop times must be a positive integer"
-            exit
-        fi
-        ;;
-    
-    # The warm up times
-    w)
-        WARMUP=$OPTARG
-        expr $WARMUP + 0 &>/dev/null
-        if [[ $? != 0 ]] || [[ $WARMUP -lt 1 ]]; then
-            echo "Error: warm up times must be a positive integer"
-            exit
-        fi
-        ;;
-
-    # Output the results to the log with this argument.
-    l)
-        PRINTLOG=true
-        LOGFILE=$ACTIONNAME-$MODE.csv
-        ;;
-
-    # "Warm up only" with this argument: warm up and then exit with no output.
-    W)
-        if [[ $RUNONLY = true || $MODE = "cold" ]]; then
-            echo "Error: contradictory arguments"
-            exit
-        fi
-        echo "Warm up only mode."
-        WARMUPONLY=true
-        ;;
-    
-    # "Run only" with this argument: invoke the first action without warm up. Paused containers are needed.
-    R)
-        if [[ $WARMUPONLY = true ]]; then
-            echo "Error: contradictory arguments"
-            exit
-        fi
-        # If there's no paused container, the mode should not be supported
-        if [[ -z `docker ps | grep $CONTAINERNAME | awk {'print $1'}` ]];then
-            echo "Error: could not find paused containers of the action"
-            exit
-        fi
-        echo "Run only mode"
-        RUNONLY=true
-        WARMUP=0
-        ;;
-    ?)
-        echo "unknown arguments"
-    esac
-done
-
-if [[ -z $MODE ]];then
-    echo "default mode: warm"
-    MODE="warm"
-fi
-
-if [[ -z $TIMES && $WARMUPONLY = false ]]; then
-    if [ $MODE = "warm" ];then
-        echo "default warm loop times: 10"
-        TIMES=10
-    else
-        echo "default cold loop times: 3"
-        TIMES=3
-    fi
-fi
-
-if [[ $MODE = "warm" ]] && [[ -z $WARMUP ]] && [[ $RUNONLY = false ]]; then
-    echo "default warm up times: 1"
-    WARMUP=1
-else
-    WARMUP=0
-fi
-
-# mode = warm: kill all the running containers and then warm up
-if [[ $MODE = "warm" && $RUNONLY = false ]]; then
-    # echo "Warm up.."
-    # if [[ -n `docker ps | grep $CONTAINERNAME | awk {'print $1'}` ]];then
-    #     echo 'Stop the running container..'
-    #     # docker stop `docker ps | grep $CONTAINERNAME | awk {'print $1'}`
-    #     for p in $( kubectl get pods -n openwhisk | grep  hello | tail -n +2 | awk -F ' ' '{print $1}'); do kubectl delete pod -n openwhisk $p --grace-period=0 --force;done
-    # fi
-    for i in $(seq 1 $WARMUP)
-    do
-        echo "The $i-th warmup..."
-        wsk -i action invoke $ACTIONNAME --blocking --result $PARAMS > /dev/null
-    done
-    echo "Warm up complete"
-    if [[ $WARMUPONLY = true ]]; then
-        echo "No real action is needed."
-        exit
-    fi
-fi
-
+TIMES=1
+ACTIONNAME=$1
 
 if [[ $PRINTLOG = true && ! -e $LOGFILE ]]; then
     echo logfile:$LOGFILE
@@ -138,19 +24,14 @@ LATENCYSUM=0
 
 for i in $(seq 1 $TIMES)
 do
-    # if [[ $MODE = 'cold' ]]; then
-    #     echo 'Stop the running container..'
-    #     # docker stop `docker ps | grep $CONTAINERNAME | awk {'print $1'}`
-    #     for p in $( kubectl get pods -n openwhisk | grep  hello | tail -n +2 | awk -F ' ' '{print $1}'); do kubectl delete pod -n openwhisk $p --grace-period=0 --force;done
-    # fi
 
-    echo Measure $MODE start up time: no.$i
-    
+    echo Measure start up time: no.$i
+
     invokeTime=`date +%s%3N`
     times=`wsk -i action invoke $ACTIONNAME --blocking --result $PARAMS`
     endTime=`date +%s%3N`
     startTime=`echo $times | jq -r '.startTime'`
-    echo "invokeTime: $invokeTime, startTime: $startTime, endTime: $endTime" 
+    echo "invokeTime: $invokeTime, startTime: $startTime, endTime: $endTime"
 
     latency=`expr $endTime - $invokeTime`
     LATENCYSUM=`expr $latency + $LATENCYSUM`

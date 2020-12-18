@@ -251,6 +251,7 @@ def benchmark_throughputs(configuration, duration_secs=0.1):
 # #############################################################################
 # Main code
 def main(args):
+    startTime = time.time()
 
     n_train =  args.get("n_train",1000)
     n_test =  args.get("n_train",100)
@@ -296,4 +297,4 @@ def main(args):
 
     stop_time = time.time()
     token = str("example run in %.2fs" % (stop_time - start_time))
-    return {"token": token}
+    return {'token': "token", 'startTime': int(round(startTime * 1000))}
