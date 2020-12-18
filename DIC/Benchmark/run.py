@@ -2,6 +2,7 @@ import os
 import threading
 import time
 import sys
+import yaml
 
 start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 end_time = 0
@@ -137,6 +138,9 @@ def formatResult(latencies, duration, client, loop, warmup):
     resultfile.write("throughput (n/s):\n%.2f\n" % (requestNum / (duration / 1000)))
 
 def main():
-    lf_action_names = ['hello-world-python','quicksort','hash','md5','cryptography']
-    mli_action_names= ['']
-    vt_action_names =['']
+    with open("../envs/actions.yaml", 'r') as stream:
+        data_loaded = yaml.safe_load(stream)
+        lf_action = data_loaded.get("lightly-function")
+        for action_name, params in lf_action.items():
+            print(params)
+main()

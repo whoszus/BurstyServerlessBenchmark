@@ -26,7 +26,6 @@ machine-learngig-inference:
     lr: "--param n_samples {n_features}"
 
 Video transcoding:
-
     videoTrans: "--param name {name}"
 
         
