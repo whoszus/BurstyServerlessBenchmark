@@ -11,9 +11,30 @@
 # See the Mulan PSL v1 for more details.
 #
 #source eval-config
-PRINTLOG=false
-TIMES=1
-ACTIONNAME=$1
+PRINTLOG=true
+ACTIONNAME=''
+TIMES=''
+PARAMS=''
+while getopts "a:t:p:lWR" OPT; do
+    case $OPT in
+    a)
+      ACTIONNAME=$OPTARG
+      LOGFILE=$ACTIONNAME.csv
+      ;;
+    t)
+      TIMES=$OPTARG
+      ;;
+
+    # "Warm up only" with this argument: warm up and then exit with no output.
+    p)
+      PARAMS=$OPTARG
+        ;;
+    ?)
+        echo "unknown arguments"
+    esac
+done
+
+
 
 if [[ $PRINTLOG = true && ! -e $LOGFILE ]]; then
     echo logfile:$LOGFILE
