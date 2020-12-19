@@ -1,24 +1,21 @@
 import os
 import threading
 import time
-import sys
+
 import yaml
 
 start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 end_time = 0
 
 
-def handler(argv):
-    action_name = argv.get("action_name")
-    client_num = argv.get("client_num")
-
+def handler(action_name, params, client_num, times):
     threads = []
     results = []
     for i in range(client_num):
         results.append('')
 
     for i in range(client_num):
-        t = threading.Thread(target=client, args=(i, results))
+        t = threading.Thread(target=client, args=(i, results, action_name, times, params))
         threads.append(t)
 
     # start the clients
@@ -52,11 +49,12 @@ def handler(argv):
                 minInvokeTime = int(clientResult[j][0])
             if int(clientResult[j][-1]) > maxEndTime:
                 maxEndTime = int(clientResult[j][-1])
-    formatResult(latencies, maxEndTime - minInvokeTime, clientNum, loopTimes, warmupTimes)
+    formatResult(latencies, maxEndTime - minInvokeTime, client_num, times)
 
 
-def client(i, results):
-    command = "./handler.sh -m cold"
+def client(i, results, action_name, times, params):
+    command = "./handler.sh -a {action_name} -t {times} -param {param}"
+    command = command.format(action_name=action_name, times=times, params=params)
     r = os.popen(command)
     text = r.read()
     r.close()
@@ -89,21 +87,7 @@ def parseResult(result):
     return parsedResults
 
 
-def getargv():
-    if len(sys.argv) != 3 and len(sys.argv) != 4:
-        print("Usage: python3 run.py <client number> <loop times> [<warm up times>]")
-        exit(0)
-    if not str.isdigit(sys.argv[1]) or not str.isdigit(sys.argv[2]) or int(sys.argv[1]) < 1 or int(sys.argv[2]) < 1:
-        print("Usage: python3 run.py <client number> <loop times> [<warm up times>]")
-        print("Client number and loop times must be an positive integer")
-        exit(0)
-    action_name = sys.argv[0]
-    client_num = int(sys.argv[1])
-    # {"action": "Kmeans", "clientNum":1024, ""}
-    return {"action_name": action_name, "client_num": client_num}
-
-
-def formatResult(latencies, duration, client, loop, warmup):
+def formatResult(latencies, duration, client, loop):
     end_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     print("formatResult")
     requestNum = len(latencies)
@@ -130,17 +114,24 @@ def formatResult(latencies, duration, client, loop, warmup):
     resultfile.write("\nstart time: " + str(start_time))
     resultfile.write("\nend time: " + str(end_time))
     resultfile.write("\n\n------------------ (concurrent)result ---------------------\n")
-    resultfile.write("client: %d, loop_times: %d, warup_times: %d\n" % (client, loop, warmup))
+    resultfile.write("client: %d, loop_times: %d\n" % (client, loop))
     resultfile.write("%d requests finished in %.2f seconds\n" % (requestNum, (duration / 1000)))
     resultfile.write("latency (ms):\navg\t50%\t75%\t90%\t95%\t99%\n")
     resultfile.write("%.2f\t%d\t%d\t%d\t%d\t%d\n" % (
         averageLatency, _50pcLatency, _75pcLatency, _90pcLatency, _95pcLatency, _99pcLatency))
     resultfile.write("throughput (n/s):\n%.2f\n" % (requestNum / (duration / 1000)))
 
+
+def random_generation():
+    return
+
+
 def main():
     with open("../envs/actions.yaml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
         lf_action = data_loaded.get("lightly-function")
         for action_name, params in lf_action.items():
-            print(params)
+            handler(action_name, params, 8, 1)
+
+
 main()

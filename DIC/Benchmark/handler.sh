@@ -34,6 +34,9 @@ while getopts "a:t:p:lWR" OPT; do
     esac
 done
 
+if [[ -z $TIMES ]];then
+  TIMES=1
+
 
 
 if [[ $PRINTLOG = true && ! -e $LOGFILE ]]; then
