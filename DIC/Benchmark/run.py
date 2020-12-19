@@ -1,8 +1,12 @@
 import os
+import random
+import string
 import threading
 import time
 
 import yaml
+from numpy.random import seed
+from numpy.random import shuffle
 
 start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 end_time = 0
@@ -126,12 +130,58 @@ def random_generation():
     return
 
 
+def form_params(params):
+    if -1 != params.find("name"):
+        name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=12))
+        params = params.format(name=name)
+
+    if -1 != params.find('array'):
+        seed(1)
+        random_i = random.randrange(1, 500)
+        sequence = [i for i in range(random_i)]
+        sequence = shuffle(sequence)
+        params = params.format(array=sequence)
+
+    if -1 != params.find('file'):
+        params = params.format(file="file")
+
+    if -1 != params.find('crypt'):
+        seed(1)
+        # prepare a sequence
+        random_i = random.randrange(1, 500)
+        sequence = [i for i in range(random_i)]
+        params = params.format(crypt=sequence)
+
+    if -1 != params.find('n_samples'):
+        seed(1)
+        random_i = random.randrange(1000, 10000)
+        params = params.format(n_samples=random_i)
+
+    if -1 != params.find('n_features'):
+        seed(1)
+        random_i = random.randrange(50, 100)
+        params = params.format(n_features=random_i)
+
+    if -1 != params.find('n_train'):
+        seed(1)
+        random_i = random.randrange(1000, 10000)
+        params = params.format(n_train=random_i)
+
+    if -1 != params.find('n_test'):
+        seed(1)
+        random_i = random.randrange(200, 1000)
+        params = params.format(n_features=random_i)
+
+    return params
+
+
 def main():
     with open("../envs/actions.yaml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
         lf_action = data_loaded.get("lightly-function")
-        
+
         for action_name, params in lf_action.items():
+            params = form_params(params)
             handler(action_name, params, 8, 1)
 
 
