@@ -53,7 +53,7 @@ def handler(action_name, params, client_num, times):
 
 
 def client(i, results, action_name, times, params):
-    command = "./handler.sh -a {action_name} -t {times} -param {param}"
+    command = "./handler.sh -a {action_name} -t {times} -params {params}"
     command = command.format(action_name=action_name, times=times, params=params)
     r = os.popen(command)
     text = r.read()
@@ -130,6 +130,7 @@ def main():
     with open("../envs/actions.yaml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
         lf_action = data_loaded.get("lightly-function")
+        
         for action_name, params in lf_action.items():
             handler(action_name, params, 8, 1)
 
