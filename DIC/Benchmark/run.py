@@ -57,8 +57,9 @@ def handler(action_name, params, client_num, times):
 
 
 def client(i, results, action_name, times, params):
-    command = "./handler.sh -a {action_name} -t {times} -params {params}"
+    command = "./handler.sh -a {action_name} -t {times} -p '{params}'"
     command = command.format(action_name=action_name, times=times, params=params)
+    print("-----------------",command)
     r = os.popen(command)
     text = r.read()
     r.close()
