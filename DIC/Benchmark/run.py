@@ -10,6 +10,7 @@ from numpy.random import shuffle
 
 start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 end_time = 0
+exception_count=0
 
 
 def handler(action_name, params, client_num, times):
@@ -38,9 +39,12 @@ def handler(action_name, params, client_num, times):
     latencies = []
     minInvokeTime = 0x7fffffffffffffff
     maxEndTime = 0
-    requests = client_num*times
-    for i in range(requests):
+    requests = client_num*times - exception_count -1 
+    print("------request:-------", requests)
+    
+    for i in range(len(results)):
         clientResult = parseResult(results[i])
+        print("------clientResult:", clientResult)
         # print the result of every loop of the client
         for j in range(len(clientResult)):
             outfile.write(clientResult[j][0] + ',' + clientResult[j][1] + ',' + clientResult[j][2] + '\n')
@@ -68,6 +72,7 @@ def client(i, results, action_name, times, params):
         results[i] = text
     else:
         print("exception:", text)
+        exception_count +=1 
 
 
 def parseResult(result):
@@ -128,9 +133,6 @@ def formatResult(latencies, duration, client, loop):
     resultfile.write("throughput (n/s):\n%.2f\n" % (requestNum / (duration / 1000)))
 
 
-def random_generation():
-    return
-
 
 def form_params(params):
     if -1 != params.find("name"):
@@ -178,11 +180,15 @@ def form_params(params):
 
 
 def main():
+    lf_action = None
+    mf_action = None
+    vt_action = None
     with open("../envs/actions.yaml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
         lf_action = data_loaded.get("lightly-function")
 
-        for action_name, params in lf_action.items():
+    for action_name, params in lf_action.items():
+        if action_name == "hello-world-python":
             params = form_params(params)
-            handler(action_name, params, 8, 8)
+            handler(action_name, params, 2, 8)
 main()

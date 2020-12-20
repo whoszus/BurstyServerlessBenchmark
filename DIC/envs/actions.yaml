@@ -1,7 +1,7 @@
 # actions
 lightly-function:
     hello-world-python: "--param name {name}"
-    quicksort: "--param array {array}"
+    # quicksort: "--param array {array}"
     hash: "--param array {array}"
     md5: "--param file {file}"
     cryptography: "--param crypt {crypt}"
