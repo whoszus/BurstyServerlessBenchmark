@@ -64,7 +64,7 @@ def client(i, results, action_name, times, params):
     r = os.popen(command)
     text = r.read()
     r.close()
-    if text.__contains__("Measure cold start up time"):
+    if text.__contains__("Measure start up time"):
         results[i] = text
     else:
         print("exception:", text)
@@ -184,7 +184,5 @@ def main():
 
         for action_name, params in lf_action.items():
             params = form_params(params)
-            handler(action_name, params, 8, 1)
-
-
+            handler(action_name, params, 8, 8)
 main()

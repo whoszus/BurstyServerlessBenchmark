@@ -232,3 +232,27 @@ avg	50%	75%	90%	95%	99%
 3908.46	4110	5093	5531	6477	7656
 throughput (n/s):
 120.46
+
+start time: 2020-12-20 16:04:11
+end time: 2020-12-20 16:04:13
+
+------------------ (concurrent)result ---------------------
+client: 8, loop_times: 1
+8 requests finished in 1.11 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1097.38	1098	1104	1106	1106	1106
+throughput (n/s):
+7.18
+
+start time: 2020-12-20 16:04:11
+end time: 2020-12-20 16:04:22
+
+------------------ (concurrent)result ---------------------
+client: 8, loop_times: 1
+8 requests finished in 9.64 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+8883.25	8534	9432	9558	9558	9558
+throughput (n/s):
+0.83
