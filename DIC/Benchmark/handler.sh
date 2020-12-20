@@ -45,7 +45,6 @@ if [[ $PRINTLOG = true && ! -e $LOGFILE ]]; then
 fi
 
 LATENCYSUM=0
-
 for i in $(seq 1 $TIMES)
 do
 
@@ -70,11 +69,7 @@ done
 # Sort the latencies
 for((i=0; i<$TIMES+1; i++)){
   for((j=i+1; j<$TIMES+1; j++)){
-<<<<<<< HEAD
     if [[ ${LATENCIES[i]} -gt ${LATENCIES[j]} ]];then
-=======
-    if [[ ${LATENCIES[i]} -gt ${LATENCIES[j]} ]]; then
->>>>>>> 26a0f77e86b3224e6a25d8e26e8b951d0ab4dc21
       temp=${LATENCIES[i]}
       LATENCIES[i]=${LATENCIES[j]}
       LATENCIES[j]=$temp
