@@ -38,7 +38,8 @@ def handler(action_name, params, client_num, times):
     latencies = []
     minInvokeTime = 0x7fffffffffffffff
     maxEndTime = 0
-    for i in range(client_num):
+    requests = client_num*times
+    for i in range(requests):
         clientResult = parseResult(results[i])
         # print the result of every loop of the client
         for j in range(len(clientResult)):
