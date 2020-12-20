@@ -141,7 +141,7 @@ def form_params(params):
         seed(1)
         random_i = random.randrange(1, 500)
         sequence = [i for i in range(random_i)]
-        sequence = shuffle(sequence)
+        shuffle(sequence)
         params = params.format(array=sequence)
 
     if -1 != params.find('file'):
