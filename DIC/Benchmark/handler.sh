@@ -27,7 +27,8 @@ while getopts "a:t:p:lWR" OPT; do
 
     # "Warm up only" with this argument: warm up and then exit with no output.
     p)
-      PARAMS=$OPTARG
+      
+      PARAMS=$(echo $OPTARG | sed $'s/\'//g')
         ;;
     ?)
         echo "unknown arguments"
@@ -49,9 +50,8 @@ for i in $(seq 1 $TIMES)
 do
 
     echo Measure start up time: no.$i
-
     invokeTime=`date +%s%3N`
-    times=`wsk -i action invoke $ACTIONNAME --blocking --result $PARAMS`
+    times=`wsk -i action invoke $ACTIONNAME --blocking --result $PARAMS` 
     endTime=`date +%s%3N`
     startTime=`echo $times | jq -r '.startTime'`
     echo "invokeTime: $invokeTime, startTime: $startTime, endTime: $endTime"

@@ -256,3 +256,123 @@ avg	50%	75%	90%	95%	99%
 8883.25	8534	9432	9558	9558	9558
 throughput (n/s):
 0.83
+
+start time: 2020-12-23 17:27:25
+end time: 2020-12-23 17:27:38
+
+------------------ (concurrent)result ---------------------
+client: 2, loop_times: 8
+16 requests finished in 13.19 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1633.62	1079	1092	1103	5494	5494
+throughput (n/s):
+1.21
+
+start time: 2020-12-23 17:31:10
+end time: 2020-12-23 17:31:19
+
+------------------ (concurrent)result ---------------------
+client: 2, loop_times: 8
+16 requests finished in 8.77 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1083.44	1076	1100	1100	1109	1109
+throughput (n/s):
+1.82
+
+start time: 2020-12-23 17:43:35
+end time: 2020-12-23 17:43:49
+
+------------------ (concurrent)result ---------------------
+client: 2, loop_times: 8
+16 requests finished in 13.02 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1614.62	1078	1092	1111	5327	5327
+throughput (n/s):
+1.23
+
+start time: 2020-12-23 17:50:52
+end time: 2020-12-23 17:51:08
+
+------------------ (concurrent)result ---------------------
+client: 8, loop_times: 8
+64 requests finished in 16.05 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1606.16	1077	1087	1104	6264	7451
+throughput (n/s):
+3.99
+
+start time: 2020-12-23 17:57:02
+end time: 2020-12-23 17:57:11
+
+------------------ (concurrent)result ---------------------
+client: 8, loop_times: 8
+64 requests finished in 8.93 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1102.62	1103	1115	1122	1129	1135
+throughput (n/s):
+7.17
+
+start time: 2020-12-23 17:57:16
+end time: 2020-12-23 17:57:24
+
+------------------ (concurrent)result ---------------------
+client: 8, loop_times: 8
+64 requests finished in 8.81 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1086.17	1080	1099	1104	1109	1123
+throughput (n/s):
+7.27
+
+start time: 2020-12-23 18:00:08
+end time: 2020-12-23 18:00:17
+
+------------------ (concurrent)result ---------------------
+client: 8, loop_times: 8
+64 requests finished in 8.86 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1094.23	1100	1103	1105	1106	1119
+throughput (n/s):
+7.22
+
+start time: 2020-12-23 18:00:51
+end time: 2020-12-23 18:01:02
+
+------------------ (concurrent)result ---------------------
+client: 8, loop_times: 8
+64 requests finished in 10.71 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1100.27	1082	1097	1103	1109	1114
+throughput (n/s):
+5.98
+
+start time: 2020-12-23 19:11:58
+end time: 2020-12-23 19:12:20
+
+------------------ (concurrent)result ---------------------
+client: 128, loop_times: 8
+1024 requests finished in 22.24 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+2017.26	1103	1127	8016	8109	8137
+throughput (n/s):
+46.05
+
+start time: 2020-12-23 19:16:42
+end time: 2020-12-23 19:16:51
+
+------------------ (concurrent)result ---------------------
+client: 512, loop_times: 2
+1024 requests finished in 8.87 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1276.01	1206	1310	1384	1420	3145
+throughput (n/s):
+115.39

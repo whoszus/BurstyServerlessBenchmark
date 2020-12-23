@@ -39,12 +39,11 @@ def handler(action_name, params, client_num, times):
     latencies = []
     minInvokeTime = 0x7fffffffffffffff
     maxEndTime = 0
-    requests = client_num*times - exception_count -1 
+    requests = client_num*times - exception_count
     print("------request:-------", requests)
     
     for i in range(len(results)):
         clientResult = parseResult(results[i])
-        print("------clientResult:", clientResult)
         # print the result of every loop of the client
         for j in range(len(clientResult)):
             outfile.write(clientResult[j][0] + ',' + clientResult[j][1] + ',' + clientResult[j][2] + '\n')
@@ -64,7 +63,7 @@ def handler(action_name, params, client_num, times):
 def client(i, results, action_name, times, params):
     command = "./handler.sh -a {action_name} -t {times} -p '{params}'"
     command = command.format(action_name=action_name, times=times, params=params)
-    print("-----------------",command)
+    # print("-----------------",command)
     r = os.popen(command)
     text = r.read()
     r.close()
@@ -100,7 +99,8 @@ def parseResult(result):
 
 def formatResult(latencies, duration, client, loop):
     end_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-    print("formatResult")
+    print("------len(latencies)--------:", len(latencies))
+    print("------duration--------:", duration)
     requestNum = len(latencies)
     latencies.sort()
     duration = float(duration)
@@ -120,6 +120,9 @@ def formatResult(latencies, duration, client, loop):
     print("%.2f\t%d\t%d\t%d\t%d\t%d" % (
         averageLatency, _50pcLatency, _75pcLatency, _90pcLatency, _95pcLatency, _99pcLatency))
     print("throughput (n/s):\n%.2f" % (requestNum / (duration / 1000)))
+
+
+
     # output result to file
     resultfile = open("eval-result.log", "a")
     resultfile.write("\nstart time: " + str(start_time))
@@ -187,8 +190,10 @@ def main():
         data_loaded = yaml.safe_load(stream)
         lf_action = data_loaded.get("lightly-function")
 
+    
+    request_threads = []
     for action_name, params in lf_action.items():
-        if action_name == "hello-world-python":
-            params = form_params(params)
-            handler(action_name, params, 2, 8)
+        params = form_params(params)
+        handler(action_name, params, 512, 2)
+
 main()

@@ -232,3 +232,63 @@ avg	50%	75%	90%	95%	99%
 3908.46	4110	5093	5531	6477	7656
 throughput (n/s):
 120.46
+
+start time: 2020-12-21 14:08:38
+end time: 2020-12-21 14:08:49
+
+------------------ (concurrent)result ---------------------
+client: 32, loop_times: 1, warup_times: 1
+96 requests finished in 10.80 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1657.12	1109	1507	1579	7593	8587
+throughput (n/s):
+8.89
+
+start time: 2020-12-21 14:12:56
+end time: 2020-12-21 14:13:02
+
+------------------ (concurrent)result ---------------------
+client: 128, loop_times: 1, warup_times: 1
+384 requests finished in 5.97 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1246.04	1161	1232	1413	1461	3104
+throughput (n/s):
+64.27
+
+start time: 2020-12-21 14:13:21
+end time: 2020-12-21 14:13:32
+
+------------------ (concurrent)result ---------------------
+client: 128, loop_times: 1, warup_times: 1
+384 requests finished in 10.09 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1264.37	1108	1259	1413	3079	3144
+throughput (n/s):
+38.05
+
+start time: 2020-12-21 14:13:35
+end time: 2020-12-21 14:13:41
+
+------------------ (concurrent)result ---------------------
+client: 128, loop_times: 1, warup_times: 1
+384 requests finished in 5.95 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1219.46	1104	1260	1421	1484	3119
+throughput (n/s):
+64.49
+
+start time: 2020-12-21 14:14:14
+end time: 2020-12-21 14:14:32
+
+------------------ (concurrent)result ---------------------
+client: 128, loop_times: 1, warup_times: 1
+384 requests finished in 17.79 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1312.37	1088	1290	1457	3087	3149
+throughput (n/s):
+21.59

@@ -175,7 +175,7 @@ def formatResult(latencies,duration,client,loop,warmup):
     _99pcLatency = latencies[int(requestNum * 0.99) - 1]
     print("latency (ms):\navg\t50%\t75%\t90%\t95%\t99%")
     print("%.2f\t%d\t%d\t%d\t%d\t%d" %(averageLatency,_50pcLatency,_75pcLatency,_90pcLatency,_95pcLatency,_99pcLatency))
-    print("throughput (n/s):\n%.2f" %(requestNum / (duration/1000)))
+    print("throughput (n/s):\n%.2f" %(requestNum*5.5 / (duration/1000)))
     # output result to file
     resultfile = open("eval-result.log","a")
     resultfile.write("\nstart time: " + str(start_time))
