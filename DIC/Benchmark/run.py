@@ -190,13 +190,13 @@ def main():
     with open("../envs/actions.yaml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
         lf_action = data_loaded.get("lightly-function")
-        ml_action = data_loaded.get("machine-learngig-inference")
+        mf_action = data_loaded.get("machine-learngig-inference")
 
     z = lf_action.copy()
-    z.update(ml_action)
+    z.update(mf_action)
     request_threads = []
    
-    for action_name, params in z.items():
+    for action_name, params in mf_action.items():
         # t = threading.Thread(target=handler, args=(action_name, params, random.randrange(100, 800), 2))
         t = threading.Thread(target=handler, args=(action_name, params, 2, 2))
         request_threads.append(t)
