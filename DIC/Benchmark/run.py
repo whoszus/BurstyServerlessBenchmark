@@ -20,6 +20,7 @@ def handler(action_name, params, client_num, times):
         results.append('')
 
     for i in range(client_num):
+        params = form_params(params)
         t = threading.Thread(target=client, args=(i, results, action_name, times, params))
         threads.append(t)
 
@@ -70,7 +71,7 @@ def client(i, results, action_name, times, params):
     if text.__contains__("Measure start up time"):
         results[i] = text
     else:
-        print("exception:", text)
+        # print("exception:", text)
         exception_count +=1 
 
 
@@ -189,11 +190,21 @@ def main():
     with open("../envs/actions.yaml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
         lf_action = data_loaded.get("lightly-function")
+        ml_action = data_loaded.get("machine-learngig-inference")
 
-    
+    z = lf_action.copy()
+    z.update(ml_action)
     request_threads = []
-    for action_name, params in lf_action.items():
-        params = form_params(params)
-        handler(action_name, params, 512, 2)
+   
+    for action_name, params in z.items():
+        # t = threading.Thread(target=handler, args=(action_name, params, random.randrange(100, 800), 2))
+        t = threading.Thread(target=handler, args=(action_name, params, 2, 2))
+        request_threads.append(t)
 
+    total = len(request_threads)
+    for i in range(total):
+        request_threads[i].start()    
+
+    for i in range(total):
+        request_threads[i].join()
 main()

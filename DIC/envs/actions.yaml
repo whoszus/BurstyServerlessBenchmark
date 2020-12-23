@@ -9,7 +9,7 @@ lightly-function:
 machine-learngig-inference:
     #Classification:
     #Naive Bayes text classification MultinomialNB
-    NBC: "--param name {name}"
+    # NBC: "--param name {name}"
     # Perceptron
     Perceptron: "--param n_samples {n_samples}"
     #linear_model compare [SGDClassifier,PassiveAggressiveClassifier,MultinomialNB]
