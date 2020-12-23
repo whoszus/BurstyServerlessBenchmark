@@ -23,7 +23,7 @@ machine-learngig-inference:
     scc:  "--param name {name}"
 
     #Linear regression:
-    lr: "--param n_samples {n_features}"
+    lr: "--param n_samples {n_samples}"
 
 Video transcoding:
     videoTrans: "--param name {name}"
