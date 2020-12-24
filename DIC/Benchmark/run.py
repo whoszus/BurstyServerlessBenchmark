@@ -50,7 +50,7 @@ def handler(action_name, params, client_num, times):
     for i in range(len(results)):
         clientResult = parseResult(results[i])
         if -1 == clientResult:
-            time_out+=1
+            time_out += 1
             continue
         # print the result of every loop of the client
         for j in range(len(clientResult)):
@@ -81,7 +81,7 @@ def client(i, results, action_name, times, params, exception_count):
 
 
 def parseResult(result):
-    if -1 == result.find("not yet finished") | -1 == result.find("unavailable") :
+    if -1 == result.find("not yet finished") | -1 == result.find("unavailable"):
         return -1
     lines = result.split('\n')
     parsedResults = []
@@ -106,13 +106,13 @@ def parseResult(result):
 
 
 def formatResult(latencies, duration, client, loop, action_name, exception_count):
-    total_req = client* loop
+    total_req = client * loop
     end_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     print("------len(latencies)--------:", len(latencies))
     print("------duration--------:", duration)
     requestNum = len(latencies)
     if requestNum == 0:
-        print("All failed in {}".format(duration/1000))
+        print("All failed in {}".format(duration / 1000))
         return
     latencies.sort()
     duration = float(duration)
@@ -121,7 +121,7 @@ def formatResult(latencies, duration, client, loop, action_name, exception_count
     for latency in latencies:
         total += latency
     print("\n")
-    print("--result for {}, in {} requests--".format(action_name,total_req) )
+    print("--result for {}, in {} requests--".format(action_name, total_req))
     averageLatency = float(total) / requestNum
     _50pcLatency = latencies[int(requestNum * 0.5) - 1]
     _75pcLatency = latencies[int(requestNum * 0.75) - 1]
@@ -133,19 +133,19 @@ def formatResult(latencies, duration, client, loop, action_name, exception_count
         averageLatency, _50pcLatency, _75pcLatency, _90pcLatency, _95pcLatency, _99pcLatency))
     print("throughput (n/s):\n%.2f" % (requestNum / (duration / 1000)))
     print("exceptions:", exception_count)
-    print("success rate: {} %".format(requestNum/total_req))
+    print("success rate: {} %".format(requestNum / total_req))
 
     # output result to file
     resultfile = open("eval-result.log", "a")
-    resultfile.write("--result for {}, in {} requests --".format(action_name,client*loop))
-    resultfile.write("\nstart time: {} , end_time: {}".format(str(start_time),str(end_time)))
+    resultfile.write("--result for {}, in {} requests --".format(action_name, client * loop))
+    resultfile.write("\nstart time: {} , end_time: {}".format(str(start_time), str(end_time)))
     resultfile.write("%d requests finished in %.2f seconds\n" % (requestNum, (duration / 1000)))
     resultfile.write("latency (ms):\navg\t50%\t75%\t90%\t95%\t99%\n")
     resultfile.write("%.2f\t%d\t%d\t%d\t%d\t%d\n" % (
         averageLatency, _50pcLatency, _75pcLatency, _90pcLatency, _95pcLatency, _99pcLatency))
     resultfile.write("throughput (n/s):\n%.2f\n" % (requestNum / (duration / 1000)))
     resultfile.write("\n exceptions:{}".format(exception_count))
-    resultfile.write("\n success rate: {} %".format(requestNum/total_req))
+    resultfile.write("\n success rate: {} %".format(requestNum / total_req))
     resultfile.close()
 
 
@@ -154,23 +154,25 @@ def form_params(params):
         name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=12))
         params = params.format(name=name)
 
-    if -1 != params.find('array'):
-        seed(1)
-        random_i = random.randrange(1, 500)
-        sequence = [i for i in range(random_i)]
-        shuffle(sequence)
-        sequence = str(sequence)
-        params = params.format(array=sequence)
+    # if -1 != params.find('array'):
+    #     seed(1)
+    #     random_i = random.randrange(1, 500)
+    #     sequence = [i for i in range(random_i)]
+    #     shuffle(sequence)
+    #     sequence = str(sequence)
+    #     params = params.format(array=sequence)
 
     if -1 != params.find('file'):
         params = params.format(file="file")
 
     if -1 != params.find('crypt'):
-        seed(1)
-        # prepare a sequence
-        random_i = random.randrange(1, 500)
-        sequence = [i for i in range(random_i)]
-        params = params.format(crypt=sequence)
+        # seed(1)
+        # # prepare a sequence
+        # random_i = random.randrange(1, 500)
+        # sequence = [i for i in range(random_i)]
+        # params = params.format(crypt=sequence)
+        cs = "sssss"
+        params = params.format(crypt=cs)
 
     if -1 != params.find('n_samples'):
         seed(1)
@@ -211,15 +213,18 @@ def main():
     request_threads = []
 
     for action_name, params in lf_action.items():
-        t = threading.Thread(target=handler, args=(action_name, params, random.randrange(2, 4), 2))
-        request_threads.append(t)
+        params = form_params(params)
+        print(params)
 
-    total = len(request_threads)
-    for i in range(total):
-        request_threads[i].start()
-
-    for i in range(total):
-        request_threads[i].join()
+    #     t = threading.Thread(target=handler, args=(action_name, params, random.randrange(2, 4), 2))
+    #     request_threads.append(t)
+    #
+    # total = len(request_threads)
+    # for i in range(total):
+    #     request_threads[i].start()
+    #
+    # for i in range(total):
+    #     request_threads[i].join()
 
 
 main()
