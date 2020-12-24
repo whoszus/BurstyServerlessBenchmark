@@ -19,6 +19,7 @@ def handler(action_name, params, client_num, times):
     threads = []
     results = []
     exception_count = 0
+    time_out = 0
     for i in range(client_num):
         results.append('')
 
@@ -48,6 +49,9 @@ def handler(action_name, params, client_num, times):
 
     for i in range(len(results)):
         clientResult = parseResult(results[i])
+        if -1 == clientResult:
+            time_out+=1
+            continue
         # print the result of every loop of the client
         for j in range(len(clientResult)):
             outfile.write(clientResult[j][0] + ',' + clientResult[j][1] + ',' + clientResult[j][2] + '\n')
@@ -71,17 +75,15 @@ def client(i, results, action_name, times, params, exception_count):
     text = r.read()
     r.close()
     if text.__contains__("Measure start up time"):
-        mutex.acquire()
         results[i] = text
-        mutex.release()
     else:
-        mutex.acquire()
         exception_count += 1
-        mutex.release()
         raise Exception
 
 
 def parseResult(result):
+    if -1 == result.find("not yet finished") | -1 == result.find("unavailable") :
+        return -1
     lines = result.split('\n')
     parsedResults = []
     for line in lines:
@@ -105,10 +107,14 @@ def parseResult(result):
 
 
 def formatResult(latencies, duration, client, loop, action_name, exception_count):
+    total_req = client* loop
     end_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     print("------len(latencies)--------:", len(latencies))
     print("------duration--------:", duration)
     requestNum = len(latencies)
+    if requestNum == 0:
+        print("All failed in {}".format(duration/1000))
+        return
     latencies.sort()
     duration = float(duration)
     # calculate the average latency
@@ -116,7 +122,7 @@ def formatResult(latencies, duration, client, loop, action_name, exception_count
     for latency in latencies:
         total += latency
     print("\n")
-    print("------------------ result ---------------------", action_name)
+    print("--result for {}, in {} requests--".format(action_name,total_req) )
     averageLatency = float(total) / requestNum
     _50pcLatency = latencies[int(requestNum * 0.5) - 1]
     _75pcLatency = latencies[int(requestNum * 0.75) - 1]
@@ -128,20 +134,20 @@ def formatResult(latencies, duration, client, loop, action_name, exception_count
         averageLatency, _50pcLatency, _75pcLatency, _90pcLatency, _95pcLatency, _99pcLatency))
     print("throughput (n/s):\n%.2f" % (requestNum / (duration / 1000)))
     print("exceptions:", exception_count)
+    print("success rate: {} %".format(requestNum/total_req))
 
     # output result to file
     resultfile = open("eval-result.log", "a")
-    resultfile.write("action_name: {}".format(action_name))
-    resultfile.write("\nstart time: " + str(start_time))
-    resultfile.write("\nend time: " + str(end_time))
-    resultfile.write("\n\n------------------ (concurrent)result ---------------------\n")
-    resultfile.write("client: %d, loop_times: %d\n" % (client, loop))
+    resultfile.write("--result for {}, in {} requests --".format(action_name,client*loop))
+    resultfile.write("\nstart time: {} , end_time: {}".format(str(start_time),str(end_time)))
     resultfile.write("%d requests finished in %.2f seconds\n" % (requestNum, (duration / 1000)))
     resultfile.write("latency (ms):\navg\t50%\t75%\t90%\t95%\t99%\n")
     resultfile.write("%.2f\t%d\t%d\t%d\t%d\t%d\n" % (
         averageLatency, _50pcLatency, _75pcLatency, _90pcLatency, _95pcLatency, _99pcLatency))
     resultfile.write("throughput (n/s):\n%.2f\n" % (requestNum / (duration / 1000)))
-    resultfile.write("exceptions:{}".format(exception_count))
+    resultfile.write("\n exceptions:{}".format(exception_count))
+    resultfile.write("\n success rate: {} %".format(requestNum/total_req))
+    resultfile.close()
 
 
 def form_params(params):
@@ -154,6 +160,7 @@ def form_params(params):
         random_i = random.randrange(1, 500)
         sequence = [i for i in range(random_i)]
         shuffle(sequence)
+        sequence = str(sequence)
         params = params.format(array=sequence)
 
     if -1 != params.find('file'):
@@ -204,11 +211,8 @@ def main():
     z.update(mf_action)
     request_threads = []
 
-    for action_name, params in mf_action.items():
-        t = threading.Thread(target=handler, args=(action_name, params, random.randrange(20, 200), 2))
-        # params = form_params(params)
-
-        # t = threading.Thread(target=handler, args=(action_name, params, 2, 2))
+    for action_name, params in lf_action.items():
+        t = threading.Thread(target=handler, args=(action_name, params, random.randrange(2, ), 2))
         request_threads.append(t)
 
     total = len(request_threads)
