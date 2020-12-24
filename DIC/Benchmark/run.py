@@ -78,7 +78,6 @@ def client(i, results, action_name, times, params, exception_count):
         results[i] = text
     else:
         exception_count += 1
-        raise Exception
 
 
 def parseResult(result):
@@ -212,7 +211,7 @@ def main():
     request_threads = []
 
     for action_name, params in lf_action.items():
-        t = threading.Thread(target=handler, args=(action_name, params, random.randrange(2, ), 2))
+        t = threading.Thread(target=handler, args=(action_name, params, random.randrange(2, 4), 2))
         request_threads.append(t)
 
     total = len(request_threads)
