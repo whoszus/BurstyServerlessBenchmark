@@ -205,10 +205,10 @@ def main():
     request_threads = []
 
     for action_name, params in mf_action.items():
-        # t = threading.Thread(target=handler, args=(action_name, params, random.randrange(100, 800), 2))
+        t = threading.Thread(target=handler, args=(action_name, params, random.randrange(20, 200), 2))
         # params = form_params(params)
 
-        t = threading.Thread(target=handler, args=(action_name, params, 2, 2))
+        # t = threading.Thread(target=handler, args=(action_name, params, 2, 2))
         request_threads.append(t)
 
     total = len(request_threads)

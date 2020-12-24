@@ -17,10 +17,10 @@ machine-learngig-inference:
     #Clusting:
     Kmeans: "--param n_samples {n_samples}"
     # Generalized Linear Models with non-normal loss functions
-    glm_score:  "--param n_samples {n_samples} --param n_features {n_features}"
+    # glm_score:  "--param n_samples {n_samples} --param n_features {n_features}"
     mmsh:  "--param n_samples {n_samples}"
     pl:  "--param n_train {n_train} --param n_test {n_test}  --param n_features {n_features} "
-    scc:  "--param name {name}"
+    # scc:  "--param name {name}"
 
     #Linear regression:
     lr: "--param n_samples {n_samples}"

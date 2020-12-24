@@ -532,3 +532,136 @@ avg	50%	75%	90%	95%	99%
 17739.00	17739	17739	17739	17739	17739
 throughput (n/s):
 0.06
+action_name: mmsh
+start time: 2020-12-23 20:48:03
+end time: 2020-12-23 20:48:30
+
+------------------ (concurrent)result ---------------------
+client: 2, loop_times: 2
+4 requests finished in 27.06 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+12824.25	9178	17866	17866	17866	17866
+throughput (n/s):
+0.15
+exceptions:0action_name: Perceptron
+start time: 2020-12-23 20:48:03
+end time: 2020-12-23 20:48:43
+
+------------------ (concurrent)result ---------------------
+client: 2, loop_times: 2
+4 requests finished in 40.12 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+16944.75	11607	26355	26355	26355	26355
+throughput (n/s):
+0.10
+exceptions:0action_name: lr
+start time: 2020-12-23 20:48:03
+end time: 2020-12-23 20:48:46
+
+------------------ (concurrent)result ---------------------
+client: 2, loop_times: 2
+4 requests finished in 42.72 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+21331.25	18606	24098	24098	24098	24098
+throughput (n/s):
+0.09
+exceptions:0action_name: Kmeans
+start time: 2020-12-23 20:48:03
+end time: 2020-12-23 20:48:48
+
+------------------ (concurrent)result ---------------------
+client: 2, loop_times: 2
+4 requests finished in 45.20 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+21935.00	10136	35044	35044	35044	35044
+throughput (n/s):
+0.09
+exceptions:0action_name: pl
+start time: 2020-12-23 20:48:03
+end time: 2020-12-23 20:49:17
+
+------------------ (concurrent)result ---------------------
+client: 2, loop_times: 2
+4 requests finished in 74.14 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+37006.00	31249	42649	42649	42649	42649
+throughput (n/s):
+0.05
+exceptions:0action_name: mmsh
+start time: 2020-12-23 21:32:12
+end time: 2020-12-23 21:32:34
+
+------------------ (concurrent)result ---------------------
+client: 2, loop_times: 2
+4 requests finished in 22.09 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+9843.25	8162	13909	13909	13909	13909
+throughput (n/s):
+0.18
+exceptions:0action_name: lr
+start time: 2020-12-23 21:32:12
+end time: 2020-12-23 21:32:36
+
+------------------ (concurrent)result ---------------------
+client: 2, loop_times: 2
+4 requests finished in 24.24 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+11674.50	9239	14228	14228	14228	14228
+throughput (n/s):
+0.17
+exceptions:0action_name: Perceptron
+start time: 2020-12-23 21:32:12
+end time: 2020-12-23 21:32:43
+
+------------------ (concurrent)result ---------------------
+client: 2, loop_times: 2
+4 requests finished in 30.63 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+13445.00	10337	14758	14758	14758	14758
+throughput (n/s):
+0.13
+exceptions:0action_name: Kmeans
+start time: 2020-12-23 21:32:12
+end time: 2020-12-23 21:32:44
+
+------------------ (concurrent)result ---------------------
+client: 2, loop_times: 2
+4 requests finished in 31.82 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+15675.50	10859	20047	20047	20047	20047
+throughput (n/s):
+0.13
+exceptions:0action_name: TextClassification
+start time: 2020-12-23 21:32:12
+end time: 2020-12-23 21:33:19
+
+------------------ (concurrent)result ---------------------
+client: 2, loop_times: 2
+4 requests finished in 66.80 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+33315.50	18453	48020	48020	48020	48020
+throughput (n/s):
+0.06
+exceptions:0action_name: pl
+start time: 2020-12-23 21:32:12
+end time: 2020-12-23 21:33:34
+
+------------------ (concurrent)result ---------------------
+client: 2, loop_times: 2
+4 requests finished in 81.67 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+36353.50	31254	33756	33756	33756	33756
+throughput (n/s):
+0.05
+exceptions:0

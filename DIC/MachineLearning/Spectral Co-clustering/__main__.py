@@ -128,4 +128,4 @@ def main(args):
         token += str("categories   : {}".format(cat_string))
         token += str("words        : {}\n".format(', '.join(important_words)))
 
-    return {'token': token, 'startTime': int(round(startTime * 1000))}
+    return {"token": token, "startTime": int(round(startTime * 1000))}

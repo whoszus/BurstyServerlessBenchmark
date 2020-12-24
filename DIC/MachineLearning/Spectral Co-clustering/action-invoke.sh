@@ -1,1 +1,1 @@
-wsk -i action invoke scc --param n_samples 5000 --param n_features 50 --result
+wsk -i action invoke scc --param n_samples 500 --param n_features 50 --result
