@@ -664,4 +664,31 @@ avg	50%	75%	90%	95%	99%
 36353.50	31254	33756	33756	33756	33756
 throughput (n/s):
 0.05
-exceptions:0
+exceptions:0--result for cryptography, in 4 requests --
+start time: 2020-12-24 17:34:18 , end_time: 2020-12-24 17:34:214 requests finished in 2.22 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1099.75	1085	1116	1116	1116	1116
+throughput (n/s):
+1.80
+
+ exceptions:0
+ success rate: 1.0 %--result for hello-world-python, in 6 requests --
+start time: 2020-12-24 17:34:18 , end_time: 2020-12-24 17:34:216 requests finished in 2.22 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1101.33	1098	1110	1114	1114	1114
+throughput (n/s):
+2.70
+
+ exceptions:0
+ success rate: 1.0 %--result for md5, in 6 requests --
+start time: 2020-12-24 17:34:18 , end_time: 2020-12-24 17:34:256 requests finished in 6.39 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1795.67	1100	1104	1111	1111	1111
+throughput (n/s):
+0.94
+
+ exceptions:0
+ success rate: 1.0 %

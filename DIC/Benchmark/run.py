@@ -81,8 +81,6 @@ def client(i, results, action_name, times, params, exception_count):
 
 
 def parseResult(result):
-    if -1 == result.find("not yet finished") | -1 == result.find("unavailable"):
-        return -1
     lines = result.split('\n')
     parsedResults = []
     for line in lines:
@@ -213,18 +211,15 @@ def main():
     request_threads = []
 
     for action_name, params in lf_action.items():
-        params = form_params(params)
-        print(params)
-
-    #     t = threading.Thread(target=handler, args=(action_name, params, random.randrange(2, 4), 2))
-    #     request_threads.append(t)
-    #
-    # total = len(request_threads)
-    # for i in range(total):
-    #     request_threads[i].start()
-    #
-    # for i in range(total):
-    #     request_threads[i].join()
+        t = threading.Thread(target=handler, args=(action_name, params, random.randrange(2, 4), 2))
+        request_threads.append(t)
+    
+    total = len(request_threads)
+    for i in range(total):
+        request_threads[i].start()
+    
+    for i in range(total):
+        request_threads[i].join()
 
 
 main()
