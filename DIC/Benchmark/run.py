@@ -21,9 +21,11 @@ def handler(action_name, params, client_num, times):
     results = []
     exception_count = 0
     time_out = 0
-    thread_time_out = 20
+    thread_time_out = 60
     for i in range(client_num):
         results.append('')
+    
+    print("starting  request")
 
 
     with concurrent.futures.ThreadPoolExecutor() as executor:
@@ -33,52 +35,47 @@ def handler(action_name, params, client_num, times):
             future = executor.submit(client, i, results, action_name, times, params, exception_count)
             try:
                 return_value = future.result(timeout = thread_time_out)
-                print("handler1 return_value :", return_value)
+                # print("handler1 return_value :", return_value)
                 if return_value.__contains__("invokeTime"):
                     results.append(return_value)
             except concurrent.futures.TimeoutError:
-                print("handler timeout in {}".format(thread_time_out))
-                future.interrupt()
+                time_out += 1
+                # print("handler timeout in {}".format(thread_time_out))
+                future.cancel()
 
 
 
 
 
-    # outfile = open("result.csv", "w")
-    # outfile.write("invokeTime,startTime,endTime\n")
+    outfile = open("result.csv", "w")
+    outfile.write("invokeTime,startTime,endTime\n")
 
-    # latencies = []
-    # minInvokeTime = 0x7fffffffffffffff
-    # maxEndTime = 0
-    # requests = client_num * times - exception_count
-    # print("------request:-------", requests)
+    latencies = []
+    minInvokeTime = 0x7fffffffffffffff
+    maxEndTime = 0
+    requests = client_num * times - exception_count
 
-    # # with open("result.log", 'w') as stream:
-    # #     stream.write(str(results))
+    for i in range(len(results)):
+        clientResult = parseResult(results[i])
+        for j in range(len(clientResult)):
+            outfile.write(clientResult[j][0] + ',' + clientResult[j][1] + ',' + clientResult[j][2] + '\n')
 
+            # Collect the latency
+            latency = int(clientResult[j][-1]) - int(clientResult[j][0])
+            latencies.append(latency)
 
-
-    # for i in range(len(results)):
-    #     clientResult = parseResult(results[i])
-    #     for j in range(len(clientResult)):
-    #         outfile.write(clientResult[j][0] + ',' + clientResult[j][1] + ',' + clientResult[j][2] + '\n')
-
-    #         # Collect the latency
-    #         latency = int(clientResult[j][-1]) - int(clientResult[j][0])
-    #         latencies.append(latency)
-
-    #         # Find the first invoked action and the last return one.
-    #         if int(clientResult[j][0]) < minInvokeTime:
-    #             minInvokeTime = int(clientResult[j][0])
-    #         if int(clientResult[j][-1]) > maxEndTime:
-    #             maxEndTime = int(clientResult[j][-1])
-    # formatResult(latencies, maxEndTime - minInvokeTime, client_num, times, action_name, exception_count)
+            # Find the first invoked action and the last return one.
+            if int(clientResult[j][0]) < minInvokeTime:
+                minInvokeTime = int(clientResult[j][0])
+            if int(clientResult[j][-1]) > maxEndTime:
+                maxEndTime = int(clientResult[j][-1])
+    formatResult(latencies, maxEndTime - minInvokeTime, client_num, times, action_name, exception_count)
 
 
 def client(i, results, action_name, times, params, exception_count):
     command = "./handler.sh -a {action_name} -t {times} -p '{params}'"
     command = command.format(action_name=action_name, times=times, params=params)
-    print("client1:", command)
+    # print("client1:", command)
     r = os.popen(command)
     text = r.read()
     r.close()
@@ -128,7 +125,7 @@ def formatResult(latencies, duration, client, loop, action_name, exception_count
     for latency in latencies:
         total += latency
     print("\n")
-    print("--result for {}, in {} requests--".format(action_name, total_req))
+    print("--result for {}, {} requests--in {}s".format(action_name, total_req, total/1000))
     averageLatency = float(total) / requestNum
     _50pcLatency = latencies[int(requestNum * 0.5) - 1]
     _75pcLatency = latencies[int(requestNum * 0.75) - 1]
@@ -145,15 +142,16 @@ def formatResult(latencies, duration, client, loop, action_name, exception_count
 
     # output result to file
     resultfile = open("eval-result.log", "a")
-    resultfile.write("\n --result for {}, in {} requests --".format(action_name, client * loop))
+    resultfile.write("\n --result for {}, {} requests--in {}s".format(action_name, total_req, total/1000))
     resultfile.write("\nstart time: {} , end_time: {}".format(str(start_time), str(end_time)))
     resultfile.write("%d requests finished in %.2f seconds\n" % (requestNum, (duration / 1000)))
     resultfile.write("latency (ms):\navg\t50%\t75%\t90%\t95%\t99%\n")
     resultfile.write("%.2f\t%d\t%d\t%d\t%d\t%d\n" % (
         averageLatency, _50pcLatency, _75pcLatency, _90pcLatency, _95pcLatency, _99pcLatency))
     resultfile.write("throughput (n/s):\n%.2f\n" % (requestNum / (duration / 1000)))
-    resultfile.write("\n exceptions:{}".format(exception_count))
-    resultfile.write("\n success rate: {} %".format(100*(requestNum / total_req)))
+    resultfile.write("\nexceptions:{}".format(exception_count))
+    resultfile.write("\nsuccess rate: {} %".format(100*(requestNum / total_req)))
+    
     resultfile.close()
 
 
@@ -221,7 +219,7 @@ def main():
     request_threads = []
 
     for action_name, params in mf_action.items():
-        t = threading.Thread(target=handler, args=(action_name, params, random.randrange(4, 12), 2))
+        t = threading.Thread(target=handler, args=(action_name, params, random.randrange(4, 20), 3))
         request_threads.append(t)
     
     total = len(request_threads)

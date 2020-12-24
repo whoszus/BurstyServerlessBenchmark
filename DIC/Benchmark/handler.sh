@@ -11,7 +11,7 @@
 # See the Mulan PSL v1 for more details.
 #
 #source eval-config
-PRINTLOG=true
+PRINTLOG=false
 ACTIONNAME=''
 TIMES=''
 PARAMS=''
@@ -55,7 +55,7 @@ do
     endTime=`date +%s%3N`
     startTime=`echo $times | jq -r '.startTime'`
     echo "invokeTime: $invokeTime, startTime: $startTime, endTime: $endTime"
-
+    
     latency=`expr $endTime - $invokeTime`
     LATENCYSUM=`expr $latency + $LATENCYSUM`
     # The array starts from array[1], not array[0]!
