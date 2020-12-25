@@ -329,3 +329,83 @@ throughput (n/s):
 
 exceptions:0
 success rate: 83.33333333333334 %
+ --result for cryptography, 18 requests--in 88.671s
+start time: 2020-12-25 14:00:34 , end_time: 2020-12-25 14:02:0318 requests finished in 89.08 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+4926.17	5403	6356	7387	10497	10497
+throughput (n/s):
+0.20
+
+exceptions:0
+success rate: 100.0 %
+ --result for Perceptron, 18 requests--in 125.689s
+start time: 2020-12-25 14:00:34 , end_time: 2020-12-25 14:02:4018 requests finished in 126.10 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+6982.72	8008	8276	8997	10074	10074
+throughput (n/s):
+0.14
+
+exceptions:0
+success rate: 100.0 %
+ --result for Kmeans, 21 requests--in 211.246s
+start time: 2020-12-25 14:00:34 , end_time: 2020-12-25 14:04:0621 requests finished in 211.76 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+10059.33	8827	10837	11896	14970	15421
+throughput (n/s):
+0.10
+
+exceptions:0
+success rate: 100.0 %
+ --result for md5, 42 requests--in 229.789s
+start time: 2020-12-25 14:00:34 , end_time: 2020-12-25 14:04:2542 requests finished in 230.86 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+5471.17	5340	6587	9707	10221	10516
+throughput (n/s):
+0.18
+
+exceptions:0
+success rate: 100.0 %
+ --result for lr, 36 requests--in 250.539s
+start time: 2020-12-25 14:00:34 , end_time: 2020-12-25 14:04:4636 requests finished in 251.44 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+6959.42	8157	9749	10936	12612	14429
+throughput (n/s):
+0.14
+
+exceptions:0
+success rate: 100.0 %
+ --result for hello-world-python, 51 requests--in 259.396s
+start time: 2020-12-25 14:00:34 , end_time: 2020-12-25 14:04:5551 requests finished in 260.71 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+5086.20	5289	7288	8368	9427	10203
+throughput (n/s):
+0.20
+
+exceptions:0
+success rate: 100.0 %
+ --result for mmsh, 57 requests--in 277.958s
+start time: 2020-12-25 14:00:34 , end_time: 2020-12-25 14:05:1457 requests finished in 279.44 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+4876.46	1190	8171	10040	11712	14604
+throughput (n/s):
+0.20
+
+exceptions:0
+success rate: 100.0 %
+ --result for TextClassification, 33 requests--in 296.804s
+start time: 2020-12-25 14:00:34 , end_time: 2020-12-25 14:10:3218 requests finished in 297.25 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+16489.11	16334	16498	17172	17206	17206
+throughput (n/s):
+0.06
+
+exceptions:0
+success rate: 54.54545454545454 %

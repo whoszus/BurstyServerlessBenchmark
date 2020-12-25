@@ -198,7 +198,6 @@ def form_params(params):
             random_t = random.randrange(200, 1000)
             random_f = random.randrange(50, 100)
             params = params.format(n_test=random_t, n_train=random_i, n_features=random_f)
-
         else:
             params = params.format(n_train=random_i)
 
@@ -218,7 +217,7 @@ def main():
     z.update(mf_action)
     request_threads = []
 
-    for action_name, params in mf_action.items():
+    for action_name, params in z.items():
         t = threading.Thread(target=handler, args=(action_name, params, random.randrange(4, 20), 3))
         request_threads.append(t)
     
@@ -228,6 +227,5 @@ def main():
     
     for i in range(total):
         request_threads[i].join()
-
 
 main()
