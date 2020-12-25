@@ -1,1 +1,1 @@
-wsk -i  action update  pl __main__.py --docker tinker.siat.ac.cn/tinker/siat-serverless-ow-py:t.1.0
+wsk -i  action update  pl -t 300000 __main__.py --docker tinker.siat.ac.cn/tinker/siat-serverless-ow-py:t.1.0

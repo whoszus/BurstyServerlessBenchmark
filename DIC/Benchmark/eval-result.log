@@ -119,3 +119,213 @@ throughput (n/s):
 
  exceptions:0
  success rate: 100.0 %
+ --result for mmsh, 27 requests--in 34.658s
+start time: 2020-12-25 11:37:41 , end_time: 2020-12-25 11:38:1627 requests finished in 35.32 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1283.63	1097	1104	1120	1162	1170
+throughput (n/s):
+0.76
+
+exceptions:0
+success rate: 100.0 %
+ --result for Kmeans, 27 requests--in 65.281s
+start time: 2020-12-25 11:37:41 , end_time: 2020-12-25 11:38:4727 requests finished in 65.95 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+2417.81	2135	2263	2581	2695	2911
+throughput (n/s):
+0.41
+
+exceptions:0
+success rate: 100.0 %
+ --result for Perceptron, 48 requests--in 68.488s
+start time: 2020-12-25 11:37:41 , end_time: 2020-12-25 11:38:5148 requests finished in 69.72 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1426.83	1243	1303	1346	1377	1430
+throughput (n/s):
+0.69
+
+exceptions:0
+success rate: 100.0 %
+ --result for lr, 57 requests--in 73.318s
+start time: 2020-12-25 11:37:41 , end_time: 2020-12-25 11:38:5657 requests finished in 74.79 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1286.28	1139	1211	1234	1250	1301
+throughput (n/s):
+0.76
+
+exceptions:0
+success rate: 100.0 %
+ --result for mmsh, 18 requests--in 26.336s
+start time: 2020-12-25 11:40:46 , end_time: 2020-12-25 11:41:1318 requests finished in 26.76 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1463.11	1107	1114	1157	1388	1388
+throughput (n/s):
+0.67
+
+exceptions:0
+success rate: 100.0 %
+ --result for Perceptron, 18 requests--in 30.889s
+start time: 2020-12-25 11:40:46 , end_time: 2020-12-25 11:41:1818 requests finished in 31.31 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1716.06	1253	1313	1349	1366	1366
+throughput (n/s):
+0.57
+
+exceptions:0
+success rate: 100.0 %
+ --result for lr, 18 requests--in 31.693s
+start time: 2020-12-25 11:40:46 , end_time: 2020-12-25 11:41:1918 requests finished in 32.12 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1760.72	1165	1198	1228	1232	1232
+throughput (n/s):
+0.56
+
+exceptions:0
+success rate: 100.0 %
+ --result for Kmeans, 54 requests--in 110.423s
+start time: 2020-12-25 11:40:46 , end_time: 2020-12-25 11:42:3854 requests finished in 111.84 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+2044.87	1912	2005	2214	2422	3349
+throughput (n/s):
+0.48
+
+exceptions:0
+success rate: 100.0 %
+ --result for mmsh, 18 requests--in 25.852s
+start time: 2020-12-25 12:54:34 , end_time: 2020-12-25 12:55:0018 requests finished in 26.27 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1436.22	1100	1112	1119	1131	1131
+throughput (n/s):
+0.69
+
+exceptions:0
+success rate: 100.0 %
+ --result for Perceptron, 21 requests--in 32.16s
+start time: 2020-12-25 12:54:34 , end_time: 2020-12-25 12:55:0721 requests finished in 32.67 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1531.43	1209	1282	1321	1331	1341
+throughput (n/s):
+0.64
+
+exceptions:0
+success rate: 100.0 %
+ --result for Kmeans, 27 requests--in 45.802s
+start time: 2020-12-25 12:54:34 , end_time: 2020-12-25 12:55:2027 requests finished in 46.46 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1696.37	1500	1583	1663	1766	1777
+throughput (n/s):
+0.58
+
+exceptions:0
+success rate: 100.0 %
+ --result for lr, 54 requests--in 68.151s
+start time: 2020-12-25 12:54:34 , end_time: 2020-12-25 12:55:4354 requests finished in 69.54 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1262.06	1147	1196	1249	1283	1452
+throughput (n/s):
+0.78
+
+exceptions:0
+success rate: 100.0 %
+ --result for mmsh, 12 requests--in 20.234s
+start time: 2020-12-25 13:18:42 , end_time: 2020-12-25 13:19:0212 requests finished in 20.50 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1686.17	1097	1111	1118	1127	1127
+throughput (n/s):
+0.59
+
+exceptions:0
+success rate: 100.0 %
+ --result for Kmeans, 12 requests--in 25.551s
+start time: 2020-12-25 13:18:42 , end_time: 2020-12-25 13:19:0812 requests finished in 25.83 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+2129.25	1525	1576	1671	1873	1873
+throughput (n/s):
+0.46
+
+exceptions:0
+success rate: 100.0 %
+ --result for Perceptron, 15 requests--in 25.803s
+start time: 2020-12-25 13:18:42 , end_time: 2020-12-25 13:19:0815 requests finished in 26.15 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1720.20	1229	1267	1317	1323	1323
+throughput (n/s):
+0.57
+
+exceptions:0
+success rate: 100.0 %
+ --result for lr, 21 requests--in 31.016s
+start time: 2020-12-25 13:18:42 , end_time: 2020-12-25 13:19:1321 requests finished in 31.51 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1476.95	1135	1145	1180	1181	1307
+throughput (n/s):
+0.67
+
+exceptions:0
+success rate: 100.0 %
+ --result for mmsh, 12 requests--in 50.875s
+start time: 2020-12-25 13:21:27 , end_time: 2020-12-25 13:22:1812 requests finished in 51.14 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+4239.58	1100	7427	9050	9173	9173
+throughput (n/s):
+0.23
+
+exceptions:0
+success rate: 100.0 %
+ --result for Perceptron, 30 requests--in 71.273s
+start time: 2020-12-25 13:21:27 , end_time: 2020-12-25 13:22:3930 requests finished in 72.02 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+2375.77	1230	1291	7040	9272	10954
+throughput (n/s):
+0.42
+
+exceptions:0
+success rate: 100.0 %
+ --result for lr, 39 requests--in 76.894s
+start time: 2020-12-25 13:21:27 , end_time: 2020-12-25 13:22:4539 requests finished in 77.89 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1971.64	1120	1145	6962	7624	8304
+throughput (n/s):
+0.50
+
+exceptions:0
+success rate: 100.0 %
+ --result for Kmeans, 57 requests--in 115.264s
+start time: 2020-12-25 13:21:27 , end_time: 2020-12-25 13:23:2457 requests finished in 116.75 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+2022.18	1438	1488	1762	7355	8733
+throughput (n/s):
+0.49
+
+exceptions:0
+success rate: 100.0 %
+ --result for TextClassification, 36 requests--in 506.267s
+start time: 2020-12-25 13:21:27 , end_time: 2020-12-25 13:31:5430 requests finished in 507.03 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+16875.57	16900	17038	17118	17179	17290
+throughput (n/s):
+0.06
+
+exceptions:0
+success rate: 83.33333333333334 %
