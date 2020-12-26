@@ -1,21 +1,20 @@
 # License: BSD 3 clause
 
+import gc
+import pickle
+import time
 from collections import defaultdict
 
-import time
-import gc
-import numpy as np
 import matplotlib.pyplot as plt
-
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
+import numpy as np
 from sklearn.datasets import make_regression
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import Ridge
 from sklearn.linear_model import SGDRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVR
 from sklearn.utils import shuffle
-import pickle
 
 
 def _not_in_sphinx():
@@ -32,6 +31,7 @@ def atomic_benchmark_estimator(estimator, X_test, verbose=False):
         start = time.time()
         estimator.predict(instance)
         runtimes[i] = time.time() - start
+        print("inference in {} ".format(runtimes[i]))
     if verbose:
         print("atomic_benchmark runtimes:", min(runtimes), np.percentile(
             runtimes, 50), max(runtimes))
@@ -139,26 +139,38 @@ def boxplot_runtimes(runtimes, pred_type, configuration):
     plt.show()
 
 
-def benchmark(configuration):
-    """Run the whole benchmark."""
+def train_models(configuration):
     X_train, y_train, X_test, y_test = generate_dataset(
         configuration['n_train'], configuration['n_test'],
         configuration['n_features'])
 
-    stats = {}
     for estimator_conf in configuration['estimators']:
         print("Benchmarking", estimator_conf['instance'])
         estimator_conf['instance'].fit(X_train, y_train)
         gc.collect()
         name = estimator_conf['name']
-        with open("../models/{}".format(name),"wb") as model:
-            pickle.dump(model,estimator_conf['instance'] )
+        with open("../models/{}".format(name), "wb") as model:
+            pickle.dump(estimator_conf['instance'], model)
 
-        a, b = benchmark_estimator(estimator_conf['instance'], X_test)
-        stats[estimator_conf['name']] = {'atomic': a, 'bulk': b}
 
-    cls_names = [estimator_conf['name'] for estimator_conf in configuration[
-        'estimators']]
+def benchmark(configuration):
+    """Run the whole benchmark."""
+
+    X_train, y_train, X_test, y_test = generate_dataset(
+        configuration['n_train'], configuration['n_test'],
+        configuration['n_features'])
+
+    stats = {}
+
+    for estimator_conf in configuration['estimators']:
+        name = estimator_conf['name']
+
+        with open("../models/{}".format(name), "rb") as model:
+            estimator_conf['instance'] = pickle.load(model)
+            a, b = benchmark_estimator(estimator_conf['instance'], X_test)
+            stats[estimator_conf['name']] = {'atomic': a, 'bulk': b}
+
+    cls_names = [estimator_conf['name'] for estimator_conf in configuration['estimators']]
     runtimes = [1e6 * stats[clf_name]['atomic'] for clf_name in cls_names]
     boxplot_runtimes(runtimes, 'atomic', configuration)
     runtimes = [1e6 * stats[clf_name]['bulk'] for clf_name in cls_names]
@@ -166,37 +178,37 @@ def benchmark(configuration):
                      configuration)
 
 
-def n_feature_influence(estimators, n_train, n_test, n_features, percentile):
-    """
-    Estimate influence of the number of features on prediction time.
-
-    Parameters
-    ----------
-
-    estimators : dict of (name (str), estimator) to benchmark
-    n_train : nber of training instances (int)
-    n_test : nber of testing instances (int)
-    n_features : list of feature-space dimensionality to test (int)
-    percentile : percentile at which to measure the speed (int [0-100])
-
-    Returns:
-    --------
-
-    percentiles : dict(estimator_name,
-                       dict(n_features, percentile_perf_in_us))
-
-    """
-    percentiles = defaultdict(defaultdict)
-    for n in n_features:
-        print("benchmarking with %d features" % n)
-        X_train, y_train, X_test, y_test = generate_dataset(n_train, n_test, n)
-        for cls_name, estimator in estimators.items():
-            estimator.fit(X_train, y_train)
-            gc.collect()
-            runtimes = bulk_benchmark_estimator(estimator, X_test, 30, False)
-            percentiles[cls_name][n] = 1e6 * np.percentile(runtimes,
-                                                           percentile)
-    return percentiles
+# def n_feature_influence(estimators, n_train, n_test, n_features, percentile):
+#     """
+#     Estimate influence of the number of features on prediction time.
+#
+#     Parameters
+#     ----------
+#
+#     estimators : dict of (name (str), estimator) to benchmark
+#     n_train : nber of training instances (int)
+#     n_test : nber of testing instances (int)
+#     n_features : list of feature-space dimensionality to test (int)
+#     percentile : percentile at which to measure the speed (int [0-100])
+#
+#     Returns:
+#     --------
+#
+#     percentiles : dict(estimator_name,
+#                        dict(n_features, percentile_perf_in_us))
+#
+#     """
+#     percentiles = defaultdict(defaultdict)
+#     for n in n_features:
+#         print("benchmarking with %d features" % n)
+#         X_train, y_train, X_test, y_test = generate_dataset(n_train, n_test, n)
+#         for cls_name, estimator in estimators.items():
+#             estimator.fit(X_train, y_train)
+#             gc.collect()
+#             runtimes = bulk_benchmark_estimator(estimator, X_test, 30, False)
+#             percentiles[cls_name][n] = 1e6 * np.percentile(runtimes,
+#                                                            percentile)
+#     return percentiles
 
 
 def plot_n_features_influence(percentiles, percentile):
@@ -258,9 +270,9 @@ def plot_benchmark_throughput(throughputs, configuration):
 def main(args):
     startTime = time.time()
 
-    n_train =  args.get("n_train",2000)
-    n_test =  args.get("n_test",200)
-    n_features = args.get("n_features",50)
+    n_train = args.get("n_train", 20000)
+    n_test = args.get("n_test", 200)
+    n_features = args.get("n_features", 500)
 
     start_time = time.time()
 
@@ -286,22 +298,25 @@ def main(args):
              'complexity_computer': lambda clf: len(clf.support_vectors_)},
         ]
     }
-    benchmark(configuration)
+    train_models(configuration)
+
+    # benchmark(configuration)
 
     # benchmark n_features influence on prediction speed
-    percentile = 90
-    percentiles = n_feature_influence({'ridge': Ridge()},
-                                      configuration['n_train'],
-                                      configuration['n_test'],
-                                      [100, 250, 500], percentile)
-    plot_n_features_influence(percentiles, percentile)
+    # percentile = 90
+    # percentiles = n_feature_influence({'ridge': Ridge()},
+    #                                   configuration['n_train'],
+    #                                   configuration['n_test'],
+    #                                   [100, 250, 500], percentile)
+    # plot_n_features_influence(percentiles, percentile)
 
     # benchmark throughput
-    throughputs = benchmark_throughputs(configuration)
-    plot_benchmark_throughput(throughputs, configuration)
+    # throughputs = benchmark_throughputs(configuration)
+    # plot_benchmark_throughput(throughputs, configuration)
 
     stop_time = time.time()
     token = str("example run in %.2fs" % (stop_time - start_time))
     return {"token": token, "startTime": int(round(startTime * 1000))}
+
 
 print(main({}))
