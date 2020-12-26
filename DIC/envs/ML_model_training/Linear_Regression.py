@@ -288,7 +288,7 @@ def main(args):
         'n_test': n_test,
         'n_features': n_features,
         'estimators': [
-            {'name': 'Linear Model',
+            {'name': 'LinearModel',
              'instance': SGDRegressor(penalty='elasticnet', alpha=0.01,
                                       l1_ratio=0.25, tol=1e-4),
              'complexity_label': 'non-zero coefficients',
@@ -305,11 +305,11 @@ def main(args):
     }
 
 
-    train_models(configuration_linear)
+    # train_models(configuration_linear)
 
 
 
-    # benchmark(configuration)
+    benchmark(configuration_linear)
 
     # benchmark n_features influence on prediction speed
     # percentile = 90
