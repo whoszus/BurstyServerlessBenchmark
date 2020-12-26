@@ -15,6 +15,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVR
 from sklearn.utils import shuffle
+from sklearn.datasets import make_s_curve
+import scipy
+
 
 
 def _not_in_sphinx():
@@ -100,6 +103,8 @@ def generate_dataset(n_train, n_test, n_features, noise=0.1, verbose=False):
     if verbose:
         print("ok")
     return X_train, y_train, X_test, y_test
+
+
 
 
 def boxplot_runtimes(runtimes, pred_type, configuration):
@@ -278,7 +283,7 @@ def main(args):
 
     # #############################################################################
     # Benchmark bulk/atomic prediction speed for various regressors
-    configuration = {
+    configuration_linear = {
         'n_train': n_train,
         'n_test': n_test,
         'n_features': n_features,
@@ -295,10 +300,14 @@ def main(args):
             {'name': 'SVR',
              'instance': SVR(kernel='rbf'),
              'complexity_label': 'support vectors',
-             'complexity_computer': lambda clf: len(clf.support_vectors_)},
+             'complexity_computer': lambda clf: len(clf.support_vectors_)}
         ]
     }
-    train_models(configuration)
+
+
+    train_models(configuration_linear)
+
+
 
     # benchmark(configuration)
 
