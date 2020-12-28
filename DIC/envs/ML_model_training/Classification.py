@@ -146,7 +146,6 @@ def stream_reuters_documents(data_path="./reuters"):
 
 
 def main():
-
     vectorizer = HashingVectorizer(decode_error='ignore', n_features=2 ** 18,
                                    alternate_sign=False)
 
@@ -236,9 +235,7 @@ def main():
     total_vect_time = 0.0
 
     # Main loop : iterate on mini-batches of examples
-    token = ''
     for i, (X_train_text, y_train) in enumerate(minibatch_iterators):
-
         tick = time.time()
         X_train = vectorizer.transform(X_train_text)
         total_vect_time += time.time() - tick
@@ -247,9 +244,10 @@ def main():
             with open("../models/{}".format(cls_name), "wb") as model:
                 pickle.dump(cls, model)
 
-            with open("../testData/{}".format(cls_name),"wb") as test_data:
+            with open("../testData/{}".format(cls_name), "wb") as test_data:
                 pickle.dump(X_test, test_data)
 
-            print(cls.score(X_test,y_test))
+            print(cls.score(X_test, y_test))
+
 
 main()
