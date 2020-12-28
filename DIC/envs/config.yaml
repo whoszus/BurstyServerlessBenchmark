@@ -1,4 +1,14 @@
-config:
-    runtime:
-      video-trans:
-          tinker.siat.ac.cn/tinker/siat-serverless-ow-vt:t.1.0
+ml-model:
+  inferences:
+    SGDClassifier
+    FaceRecognition
+    Text-SGD
+    TEXT-Perceptron
+    TEXT-NB-Multinomial
+    TEXT-Passive-Aggressive
+
+  unsupervised:
+    Kmeans
+    DBScan
+    OPTICS
+

@@ -161,10 +161,10 @@ def main():
 
     # Here are some classifiers that support the `partial_fit` method
     partial_fit_classifiers = {
-        'SGD': SGDClassifier(max_iter=5),
-        'Perceptron': Perceptron(),
-        'NB Multinomial': MultinomialNB(alpha=0.01),
-        'Passive-Aggressive': PassiveAggressiveClassifier(),
+        'TEXT-SGD': SGDClassifier(max_iter=5),
+        'TEXT-Perceptron': Perceptron(),
+        'TEXT-NB-Multinomial': MultinomialNB(alpha=0.01),
+        'TEXT-Passive-Aggressive': PassiveAggressiveClassifier(),
     }
 
     def get_minibatch(doc_iter, size, pos_class=positive_class):
