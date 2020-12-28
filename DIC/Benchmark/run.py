@@ -196,9 +196,6 @@ def form_params(params):
 
 
 def main():
-    # lf_action = None
-    # mf_action = None
-    # vt_action = None
     with open("../envs/actions.yaml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
         lf_action = data_loaded.get("lightly-function")
