@@ -22,6 +22,7 @@ def main():
 
 
 def generate_func(path, name):
+    path += '__main__.py'
     with open(tpl_py, 'r') as tpl:
         tpl_script = tpl.readlines()
     tp = ''.join(tpl_script)
@@ -33,7 +34,8 @@ def generate_func(path, name):
     model = '{}()'.format(alg_name)
     s = tp.format(import_modules=import_modules, model_path=model_container_path, data_path=data_path, model=model)
     s += "\n    return {'token':  'inference finished', 'startTime': int(round(startTime * 1000))}"
-    print(s)
+    with open(path, 'w') as func:
+        func.write(s)
 
 
 def generate_invoke_shell(path, name):
