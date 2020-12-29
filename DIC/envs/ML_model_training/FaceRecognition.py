@@ -9,7 +9,14 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 
-print(__doc__)
+scal = 'general'
+
+if scal == 'Large':
+    min_faces_per_person = 20
+else:
+    min_faces_per_person = 50
+
+
 
 # Display progress logs on stdout
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s')
@@ -17,7 +24,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s')
 # #############################################################################
 # Download the data, if not already on disk and load it as numpy arrays
 
-lfw_people = fetch_lfw_people(min_faces_per_person=70, resize=0.4)
+lfw_people = fetch_lfw_people(min_faces_per_person=min_faces_per_person, resize=0.4)
 
 # introspect the images arrays to find the shapes (for plotting)
 n_samples, h, w = lfw_people.images.shape

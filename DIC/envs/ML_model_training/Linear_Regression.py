@@ -1,5 +1,3 @@
-# License: BSD 3 clause
-
 import gc
 import pickle
 import time
@@ -17,6 +15,53 @@ from sklearn.svm import SVR
 from sklearn.utils import shuffle
 from sklearn.datasets import make_s_curve
 import scipy
+
+
+def main(scal):
+    global n_train, n_test, n_features
+    if scal == 'general':
+        n_train, n_test, n_features = 20000, 2000, 80
+    else:
+        n_train, n_test, n_features = 8000, 800, 60
+
+    # #############################################################################
+    # Benchmark bulk/atomic prediction speed for various regressors
+    configuration_linear = {
+        'n_train': n_train,
+        'n_test': n_test,
+        'n_features': n_features,
+        'estimators': [
+            {'name': 'LinearModel-{}'.format(scal),
+             'instance': SGDRegressor(penalty='elasticnet', alpha=0.01,
+                                      l1_ratio=0.25, tol=1e-4),
+             'complexity_label': 'non-zero coefficients',
+             'complexity_computer': lambda clf: np.count_nonzero(clf.coef_)},
+            {'name': 'RandomForest-{}'.format(scal),
+             'instance': RandomForestRegressor(),
+             'complexity_label': 'estimators',
+             'complexity_computer': lambda clf: clf.n_estimators},
+            {'name': 'SVR-{}'.format(scal),
+             'instance': SVR(kernel='rbf'),
+             'complexity_label': 'support vectors',
+             'complexity_computer': lambda clf: len(clf.support_vectors_)}
+        ]
+    }
+
+    train_models(configuration_linear)
+
+    # benchmark(configuration_linear)
+
+    # benchmark n_features influence on prediction speed
+    # percentile = 90
+    # percentiles = n_feature_influence({'ridge': Ridge()},
+    #                                   configuration['n_train'],
+    #                                   configuration['n_test'],
+    #                                   [100, 250, 500], percentile)
+    # plot_n_features_influence(percentiles, percentile)
+
+    # benchmark throughput
+    # throughputs = benchmark_throughputs(configuration)
+    # plot_benchmark_throughput(throughputs, configuration)
 
 
 
@@ -105,8 +150,6 @@ def generate_dataset(n_train, n_test, n_features, noise=0.1, verbose=False):
     return X_train, y_train, X_test, y_test
 
 
-
-
 def boxplot_runtimes(runtimes, pred_type, configuration):
     """
     Plot a new `Figure` with boxplots of prediction runtimes.
@@ -157,6 +200,8 @@ def train_models(configuration):
         with open("../models/{}".format(name), "wb") as model:
             pickle.dump(estimator_conf['instance'], model)
 
+        with open("../testData/{}".format(name), "wb") as test_data:
+            pickle.dump(X_test, test_data)
 
 def benchmark(configuration):
     """Run the whole benchmark."""
@@ -270,62 +315,4 @@ def plot_benchmark_throughput(throughputs, configuration):
     plt.show()
 
 
-# #############################################################################
-# Main code
-def main(args):
-    startTime = time.time()
-
-    n_train = args.get("n_train", 20000)
-    n_test = args.get("n_test", 200)
-    n_features = args.get("n_features", 500)
-
-    start_time = time.time()
-
-    # #############################################################################
-    # Benchmark bulk/atomic prediction speed for various regressors
-    configuration_linear = {
-        'n_train': n_train,
-        'n_test': n_test,
-        'n_features': n_features,
-        'estimators': [
-            {'name': 'LinearModel',
-             'instance': SGDRegressor(penalty='elasticnet', alpha=0.01,
-                                      l1_ratio=0.25, tol=1e-4),
-             'complexity_label': 'non-zero coefficients',
-             'complexity_computer': lambda clf: np.count_nonzero(clf.coef_)},
-            {'name': 'RandomForest',
-             'instance': RandomForestRegressor(),
-             'complexity_label': 'estimators',
-             'complexity_computer': lambda clf: clf.n_estimators},
-            {'name': 'SVR',
-             'instance': SVR(kernel='rbf'),
-             'complexity_label': 'support vectors',
-             'complexity_computer': lambda clf: len(clf.support_vectors_)}
-        ]
-    }
-
-
-    # train_models(configuration_linear)
-
-
-
-    benchmark(configuration_linear)
-
-    # benchmark n_features influence on prediction speed
-    # percentile = 90
-    # percentiles = n_feature_influence({'ridge': Ridge()},
-    #                                   configuration['n_train'],
-    #                                   configuration['n_test'],
-    #                                   [100, 250, 500], percentile)
-    # plot_n_features_influence(percentiles, percentile)
-
-    # benchmark throughput
-    # throughputs = benchmark_throughputs(configuration)
-    # plot_benchmark_throughput(throughputs, configuration)
-
-    stop_time = time.time()
-    token = str("example run in %.2fs" % (stop_time - start_time))
-    return {"token": token, "startTime": int(round(startTime * 1000))}
-
-
-print(main({}))
+print(main('general'))

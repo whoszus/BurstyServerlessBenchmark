@@ -16,6 +16,16 @@ from sklearn.linear_model import Perceptron
 from sklearn.linear_model import SGDClassifier
 from sklearn.naive_bayes import MultinomialNB
 
+scal = 'general'
+
+
+partial_fit_classifiers = {
+    'TEXT-SGD-{}'.format(scal): SGDClassifier(max_iter=5),
+    'TEXT-Perceptron-{}'.format(scal): Perceptron(),
+    'TEXT-NB-Multinomial-{}'.format(scal): MultinomialNB(alpha=0.01),
+    'TEXT-Passive-Aggressive-{}'.format(scal): PassiveAggressiveClassifier(),
+}
+
 
 def _not_in_sphinx():
     # Hack to detect whether we are running by the sphinx builder
@@ -160,12 +170,6 @@ def main():
     positive_class = 'acq'
 
     # Here are some classifiers that support the `partial_fit` method
-    partial_fit_classifiers = {
-        'TEXT-SGD': SGDClassifier(max_iter=5),
-        'TEXT-Perceptron': Perceptron(),
-        'TEXT-NB-Multinomial': MultinomialNB(alpha=0.01),
-        'TEXT-Passive-Aggressive': PassiveAggressiveClassifier(),
-    }
 
     def get_minibatch(doc_iter, size, pos_class=positive_class):
         """Extract a minibatch of examples, return a tuple X_text, y.
