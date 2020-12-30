@@ -1,9 +1,6 @@
 import time
 import numpy
 import pickle
-from sklearn.svm import SVC
-
-{import_modules}
 
 
 def main(args):
@@ -14,10 +11,7 @@ def main(args):
     model_path = "{model_path}"
     data_path = "{data_path}"
     with open(model_path, 'rb') as f:
-        model = pickle.load(f)
+        clf = pickle.load(f)
     with open(data_path, 'rb') as d:
         data = pickle.load(d)
-
-    clf = {model}
     clf.predict(data)
-

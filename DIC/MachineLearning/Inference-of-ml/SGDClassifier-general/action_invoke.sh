@@ -1,1 +1,1 @@
-wsk -i  action invoke  SGDClassifier
+wsk -i  action invoke  sgdclassifier

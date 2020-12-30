@@ -1,1 +1,1 @@
-wsk -i  action invoke  Perceptron
+wsk -i  action invoke  perceptron

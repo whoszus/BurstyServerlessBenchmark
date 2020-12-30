@@ -1,1 +1,1 @@
-wsk -i  action invoke  PassiveAggressiveClassifier
+wsk -i  action invoke  passiveaggressiveclassifier

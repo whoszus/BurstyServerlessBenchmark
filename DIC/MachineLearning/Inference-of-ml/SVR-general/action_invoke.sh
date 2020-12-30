@@ -1,1 +1,1 @@
-wsk -i  action invoke  SVR
+wsk -i  action invoke  svr

@@ -62,7 +62,7 @@ def generate_invoke_shell(path, name):
     path += 'action_invoke.sh'
     model = name.split("-")[0]
 
-    s = 'wsk -i  action invoke  {model_name}'.format(model_name=model)
+    s = 'wsk -i  action invoke  {model_name}'.format(model_name=model.lower())
     with open(path, 'w') as func:
         func.write(s)
 

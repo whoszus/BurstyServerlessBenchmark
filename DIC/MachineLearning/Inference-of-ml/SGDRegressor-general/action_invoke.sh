@@ -1,1 +1,1 @@
-wsk -i  action invoke  SGDRegressor
+wsk -i  action invoke  sgdregressor

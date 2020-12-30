@@ -1,1 +1,1 @@
-wsk -i  action invoke  RandomForestRegressor
+wsk -i  action invoke  randomforestregressor

@@ -1,1 +1,1 @@
-wsk -i  action invoke  FaceRecognition
+wsk -i  action invoke  facerecognition
