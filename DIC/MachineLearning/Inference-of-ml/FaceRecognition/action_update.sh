@@ -1,1 +1,1 @@
-wsk -i  action update  FaceRecognition __main__.py --docker tinker.siat.ac.cn/tinker/siat-serverless-FaceRecognition:1.0.0
+wsk -i  action update  facerecognition __main__.py --docker tinker.siat.ac.cn/tinker/siat-serverless-facerecognition:1.0.0

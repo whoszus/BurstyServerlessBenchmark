@@ -3,7 +3,7 @@ import numpy
 import pickle
 from sklearn.svm import SVC
 
-from sklearn.model_selection import GridSearchCV
+from sklearn.GridSearchCV import FaceRecognition
 
 
 def main(args):
@@ -18,7 +18,8 @@ def main(args):
     with open(data_path, 'rb') as d:
         data = pickle.load(d)
 
-    clf = GridSearchCV(SVC())
+    clf = FaceRecognition()
     clf.predict(data)
 
-    return {'token': 'inference finished', 'startTime': int(round(startTime * 1000))}
+
+    return {'token':  'inference finished', 'startTime': int(round(startTime * 1000))}

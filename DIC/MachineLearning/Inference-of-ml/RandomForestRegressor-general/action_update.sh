@@ -1,1 +1,1 @@
-wsk -i  action update  RandomForestRegressor __main__.py --docker tinker.siat.ac.cn/tinker/siat-serverless-RandomForestRegressor:1.0.0
+wsk -i  action update  randomforestregressor __main__.py --docker tinker.siat.ac.cn/tinker/siat-serverless-randomforestregressor:1.0.0

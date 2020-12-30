@@ -70,10 +70,10 @@ def generate_invoke_shell(path, name):
 def generate_action_update_shell(path, name):
     path += 'action_update.sh'
     model = name.split("-")[0]
-
-    docker_tag = 'tinker.siat.ac.cn/tinker/siat-serverless-{name}:{version}'.format(name=model,
+    docker_tag = 'tinker.siat.ac.cn/tinker/siat-serverless-{name}:{version}'.format(name=model.lower(),
                                                                                     version=version)
-    s = 'wsk -i  action update  {model_name} __main__.py --docker {tag}'.format(model_name=model, tag=docker_tag)
+    s = 'wsk -i  action update  {model_name} __main__.py --docker {tag}'.format(model_name=model.lower(),
+                                                                                tag=docker_tag)
     with open(path, 'w') as func:
         func.write(s)
 

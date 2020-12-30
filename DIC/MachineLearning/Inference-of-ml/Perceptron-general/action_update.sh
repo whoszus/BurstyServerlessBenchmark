@@ -1,1 +1,1 @@
-wsk -i  action update  Perceptron __main__.py --docker tinker.siat.ac.cn/tinker/siat-serverless-Perceptron:1.0.0
+wsk -i  action update  perceptron __main__.py --docker tinker.siat.ac.cn/tinker/siat-serverless-perceptron:1.0.0

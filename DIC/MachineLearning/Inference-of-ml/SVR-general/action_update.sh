@@ -1,1 +1,1 @@
-wsk -i  action update  SVR __main__.py --docker tinker.siat.ac.cn/tinker/siat-serverless-SVR:1.0.0
+wsk -i  action update  svr __main__.py --docker tinker.siat.ac.cn/tinker/siat-serverless-svr:1.0.0
