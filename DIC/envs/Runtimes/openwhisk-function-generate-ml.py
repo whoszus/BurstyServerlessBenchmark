@@ -28,12 +28,13 @@ def get_sub_pack(name):
     package = {
         'RandomForestRegressor': 'sklearn.ensemble',
         'SVR': 'sklearn.svm',
-        'FaceRecognition': 'sklearn.GridSearchCV',
         'SGDRegressor': 'sklearn.linear_model',
         'SGDClassifier': 'sklearn.linear_model',
         'Perceptron': 'sklearn.linear_model',
         'MultinomialNB': 'sklearn.naive_bayes',
-        'PassiveAggressiveClassifier': 'sklearn.linear_model'
+        'PassiveAggressiveClassifier': 'sklearn.linear_model',
+        'FaceRecognition': 'sklearn.GridSearchCV',
+
     }
     return package[name]
 
@@ -46,6 +47,7 @@ def generate_func(path, name):
 
     model = name.split("-")[0]
     imp_name = get_sub_pack(model)
+
     import_modules = 'from {} import {}'.format(imp_name, model)
     model_container_path = '/model/{}'.format(name)
     data_path = '/data/{}'.format(name)

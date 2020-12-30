@@ -1,1 +1,1 @@
-wsk -i  action update  SGDClassifier __main__.py --docker tinker.siat.ac.cn/tinker/siat-serverless-SGDClassifier:'1.0.0'
+wsk -i  action update  SGDClassifier __main__.py --docker tinker.siat.ac.cn/tinker/siat-serverless-SGDClassifier:1.0.0
