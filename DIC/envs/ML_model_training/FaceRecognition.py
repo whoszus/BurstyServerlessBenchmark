@@ -85,10 +85,10 @@ clf = clf.fit(X_train_pca, y_train)
 
 import pickle
 
-with open("../models/{}".format("face-recognition"), "wb") as model:
+with open("../models/{}".format("FaceRecognition"), "wb") as model:
     pickle.dump(clf, model)
 
-with open("../testData/{}".format("face-recognition"), "wb") as test_data:
+with open("../testData/{}".format("FaceRecognition"), "wb") as test_data:
     pickle.dump(X_test_pca, test_data)
 #
 # print("done in %0.3fs" % (time() - t0))

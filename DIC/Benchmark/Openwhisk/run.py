@@ -196,7 +196,7 @@ def form_params(params):
 
 
 def main():
-    with open("../envs/actions.yaml", 'r') as stream:
+    with open("../../envs/actions.yaml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
         lf_action = data_loaded.get("lightly-function")
         mf_action = data_loaded.get("machine-learngig-inference")

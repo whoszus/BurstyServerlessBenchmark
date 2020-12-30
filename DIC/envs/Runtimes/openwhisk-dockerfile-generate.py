@@ -1,7 +1,7 @@
 import os
 
-model_path = '../models/'
-data_path = '../testData/'
+model_path = 'ml-inference-with-data-RT/models/'
+data_path = 'ml-inference-with-data-RT/testData/'
 basic_docker_file = 'Dockerfile'
 docker_file_path = 'ml-inference-with-data-RT/'
 
@@ -16,7 +16,7 @@ def generate_rt():
 
     # copy models
     for m in models:
-        model = model_path + m
+        model = 'models/' + m
         with open(basic_docker_file, 'r') as basic:
             commands = basic.readline()
 
@@ -31,7 +31,7 @@ def generate_rt():
 
     # copy testing data
     for d in datas:
-        model_data_path = data_path + d
+        model_data_path = 'testData/' + d
         if models.__contains__(d):
             copy_model_command = '\nCOPY {data} /data/'.format(data=model_data_path)
             new_docker_file_name = docker_file_path + 'Dockerfile-' + d

@@ -6,7 +6,7 @@ conf.read("Settings_values.cfg")
 docker_file_path = conf['BBServerless']['docker_file_path']
 version = conf['BBServerless']['version']
 functions_dir = '../../MachineLearning/Inference-of-ml/'
-model_path = '../models/'
+model_path = 'ml-inference-with-data-RT/models/'
 tpl_py = './function-templates/openwhisk_function_tpl_py.py'
 
 
@@ -28,7 +28,7 @@ def get_sub_pack(name):
     package = {
         'RandomForestRegressor': 'sklearn.ensemble',
         'SVR': 'sklearn.svm',
-        'face-recognition': 'sklearn.GridSearchCV',
+        'FaceRecognition': 'sklearn.GridSearchCV',
         'SGDRegressor': 'sklearn.linear_model',
         'SGDClassifier': 'sklearn.linear_model',
         'Perceptron': 'sklearn.linear_model',
