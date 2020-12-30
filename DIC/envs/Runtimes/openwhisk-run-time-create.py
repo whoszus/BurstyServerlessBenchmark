@@ -1,7 +1,10 @@
 import os
+from configparser import ConfigParser
 
-docker_file_path = 'ml-inference-with-data-RT/'
-version = '1.0.0'
+conf = ConfigParser()
+conf.read("Settings_values.cfg")
+docker_file_path = conf['BBServerless']['docker_file_path']
+version = conf['BBServerless']['version']
 
 
 def runtime_create():
@@ -12,7 +15,7 @@ def runtime_create():
     for f in docker_files:
         df = docker_file_path + f
         name = f.split('-')[1]
-        docker_tag = 'tinker.siat.ac.cn/tinker/siat-serverless-{name}:{version}'.format(dockerfile=df, name=name,
+        docker_tag = 'tinker.siat.ac.cn/tinker/siat-serverless-{name}:{version}'.format(name=name,
                                                                                         version=version)
         run_command = 'Docker build . -f {dockerfile} -t {tag}'.format(dockerfile=df, tag=docker_tag)
 

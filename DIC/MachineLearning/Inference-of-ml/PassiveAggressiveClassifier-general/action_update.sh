@@ -1,0 +1,1 @@
+wsk -i  action update  PassiveAggressiveClassifier __main__.py --docker tinker.siat.ac.cn/tinker/siat-serverless-PassiveAggressiveClassifier:'1.0.0'

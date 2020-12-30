@@ -3,7 +3,7 @@ import numpy
 import pickle
 from sklearn.svm import SVC
 
-{import_modules}
+from sklearn.linear_model import SGDClassifier
 
 
 def main(args):
@@ -11,13 +11,15 @@ def main(args):
 
     n_samples = args.get("n_samples", 3000)
 
-    model_path = "{model_path}"
-    data_path = "{data_path}"
+    model_path = "/model/SGDClassifier-general"
+    data_path = "/data/SGDClassifier-general"
     with open(model_path, 'rb') as f:
         model = pickle.load(f)
     with open(data_path, 'rb') as d:
         data = pickle.load(d)
 
-    clf = {model}
+    clf = SGDClassifier()
     clf.predict(data)
 
+
+    return {'token':  'inference finished', 'startTime': int(round(startTime * 1000))}

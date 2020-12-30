@@ -20,10 +20,10 @@ scal = 'general'
 
 
 partial_fit_classifiers = {
-    'TEXT-SGD-{}'.format(scal): SGDClassifier(max_iter=5),
-    'TEXT-Perceptron-{}'.format(scal): Perceptron(),
-    'TEXT-NB-Multinomial-{}'.format(scal): MultinomialNB(alpha=0.01),
-    'TEXT-Passive-Aggressive-{}'.format(scal): PassiveAggressiveClassifier(),
+    'SGDClassifier-{}'.format(scal): SGDClassifier(max_iter=5),
+    'Perceptron-{}'.format(scal): Perceptron(),
+    'MultinomialNB-{}'.format(scal): MultinomialNB(alpha=0.01),
+    'PassiveAggressiveClassifier-{}'.format(scal): PassiveAggressiveClassifier(),
 }
 
 
