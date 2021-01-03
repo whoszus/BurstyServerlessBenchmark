@@ -5,7 +5,7 @@ conf = ConfigParser()
 conf.read("Settings_values.cfg")
 docker_file_path = conf['BBServerless']['docker_file_path']
 version = conf['BBServerless']['version']
-functions_dir = '../../MachineLearning/Inference-of-ml/'
+functions_dir = '../../MachineLearning/Inference-of-ml-openfaas/'
 model_path = 'ml-inference-with-data-RT/models/'
 tpl_py = './templates/openwhisk_function_tpl_py.py'
 
@@ -72,8 +72,7 @@ def generate_action_update_shell(path, name):
     model = name.split("-")[0]
     docker_tag = 'tinker.siat.ac.cn/tinker/siat-serverless-{name}:{version}'.format(name=model.lower(),
                                                                                     version=version)
-    s = 'wsk -i  action update  {model_name} __main__.py --docker {tag}'.format(model_name=model.lower(),
-                                                                                tag=docker_tag)
+
     with open(path, 'w') as func:
         func.write(s)
 
