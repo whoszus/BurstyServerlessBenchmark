@@ -1,9 +1,8 @@
 import time
-import numpy
 import pickle
 
 
-def handle(args):
+def handle():
     startTime = time.time()
     model_path = "./function/model/FaceRecognition"
     data_path = "./function/data/FaceRecognition"
@@ -14,11 +13,3 @@ def handle(args):
     clf.predict(data)
 
     return {'token':  'inference finished', 'startTime': int(round(startTime * 1000))}
-
-# def handle(req):
-#     """handle a request to the function
-#     Args:
-#         req (str): request body
-#     """
-
-#     return {"token":"Hello! You said: " + req}
