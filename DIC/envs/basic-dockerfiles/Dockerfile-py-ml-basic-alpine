@@ -1,8 +1,6 @@
-From python:3.8.7-alpine3.12
+From tinker.siat.ac.cn/tinker/python38-alpine:20201218
 
-RUN apk --no-cache add --virtual .builddeps g++ musl-dev
-
-RUN pip install numpy
-RUN pip install scikit-learn
-
-RUN apk del .builddeps     && rm -rf /root/.cache
+# RUN pip install scikit-learn
+RUN apk add --no-cache  py3-scipy 
+RUN apk add --no-cache	py3-scikit-learn
+RUN rm -rf /root/.cache
