@@ -1,5 +1,8 @@
 From python:3.8.7-alpine3.12
 
+RUN apk --no-cache add --virtual .builddeps g++ musl-dev
 
 RUN pip install numpy
-RUN pip install sciki-learn
+RUN pip install scikit-learn
+
+RUN apk del .builddeps     && rm -rf /root/.cache
