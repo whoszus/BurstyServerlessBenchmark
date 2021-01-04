@@ -2,7 +2,7 @@ import os
 
 model_path = 'ml-inference-with-data-RT/models/'
 data_path = 'ml-inference-with-data-RT/testData/'
-basic_docker_file = 'Dockerfile'
+basic_docker_file = '../basic-dockerfiles/Dockerfile-openwhisk'
 docker_file_path = 'ml-inference-with-data-RT/'
 
 
@@ -20,7 +20,7 @@ def generate_rt():
         with open(basic_docker_file, 'r') as basic:
             commands = basic.readline()
 
-        new_docker_file_name = docker_file_path + 'Dockerfile-' + m
+        new_docker_file_name = docker_file_path + 'Dockerfile-openwhisk-' + m
         copy_model_command = '\nCOPY {model} /model/'.format(model=model)
         commands += copy_model_command
 
@@ -34,7 +34,7 @@ def generate_rt():
         model_data_path = 'testData/' + d
         if models.__contains__(d):
             copy_model_command = '\nCOPY {data} /data/'.format(data=model_data_path)
-            new_docker_file_name = docker_file_path + 'Dockerfile-' + d
+            new_docker_file_name = docker_file_path + 'Dockerfile-openwhisk-' + d
             with open(new_docker_file_name, 'a+') as docker_file:
                 docker_file.write(copy_model_command)
                 docker_file.close()

@@ -25,7 +25,7 @@ def main(scal):
         n_train, n_test, n_features = 8000, 800, 60
 
     # #############################################################################
-    # Benchmark bulk/atomic prediction speed for various regressors
+    # testing bulk/atomic prediction speed for various regressors
     configuration_linear = {
         'n_train': n_train,
         'n_test': n_test,

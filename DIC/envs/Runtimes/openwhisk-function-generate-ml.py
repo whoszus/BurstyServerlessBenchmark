@@ -7,7 +7,7 @@ docker_file_path = conf['BBServerless']['docker_file_path']
 version = conf['BBServerless']['version']
 functions_dir = '../../MachineLearning/Inference-of-ml/'
 model_path = 'ml-inference-with-data-RT/models/'
-tpl_py = './function-templates/openwhisk_function_tpl_py.py'
+tpl_py = './templates/openwhisk_function_tpl_py.py'
 
 
 def main():
