@@ -2,7 +2,7 @@ import os
 
 model_path = 'ml-inference-with-data-RT/models/'
 data_path = 'ml-inference-with-data-RT/testData/'
-basic_docker_file = 'templates/Dockerfile-openwhisk'
+basic_docker_file = '../basic-dockerfiles/Dockerfile-openwhisk'
 docker_file_path = 'ml-inference-with-data-RT/'
 
 
