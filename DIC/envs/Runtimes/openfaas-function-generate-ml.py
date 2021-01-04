@@ -19,8 +19,8 @@ def generate_config_file(functions_dir, models):
 
     configs = ''.join(tpl)
     for m in models:
-        configs += "\n  {func_name}: \n    lang: python3\n    handler: ./{func_name}    \n    image: tinker.siat.ac.cn/openfaas-fn/{func_name}:{version}".format(
-            func_name=m, version=version)
+        configs += "\n  {func_name}: \n    lang: python3\n    handler: ./{model}    \n    image: tinker.siat.ac.cn/openfaas-fn/{func_name}:{version}".format(
+            func_name=m.lower(), version=version,model =m)
     config_file = functions_dir + conf_file
     with open(config_file, 'w') as cfg:
         cfg.write(configs)
@@ -129,7 +129,7 @@ def get_action_url(path):
 
 
 def generate_requirement(func_abs_path):
-    path = func_abs_path + 'requirement.txt'
+    path = func_abs_path + 'requirements.txt'
     init_py = func_abs_path + '__init__.py'
     requirements = 'scikit-learn\nnumpy\npickle'
     with open(path, 'w') as rq:

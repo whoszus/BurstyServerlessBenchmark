@@ -9,7 +9,35 @@ functions:
 #    image: tinker.siat.ac.cn/tinker/pycon-tk:latest
 
 
-  MultinomialNB-general: 
+  facerecognition: 
+    lang: python3
+    handler: ./FaceRecognition    
+    image: tinker.siat.ac.cn/openfaas-fn/facerecognition:1.0.0
+  multinomialnb-general: 
     lang: python3
     handler: ./MultinomialNB-general    
-    image: tinker.siat.ac.cn/openfaas-fn/MultinomialNB-general:1.0.0
+    image: tinker.siat.ac.cn/openfaas-fn/multinomialnb-general:1.0.0
+  passiveaggressiveclassifier-general: 
+    lang: python3
+    handler: ./PassiveAggressiveClassifier-general    
+    image: tinker.siat.ac.cn/openfaas-fn/passiveaggressiveclassifier-general:1.0.0
+  perceptron-general: 
+    lang: python3
+    handler: ./Perceptron-general    
+    image: tinker.siat.ac.cn/openfaas-fn/perceptron-general:1.0.0
+  randomforestregressor-general: 
+    lang: python3
+    handler: ./RandomForestRegressor-general    
+    image: tinker.siat.ac.cn/openfaas-fn/randomforestregressor-general:1.0.0
+  sgdclassifier-general: 
+    lang: python3
+    handler: ./SGDClassifier-general    
+    image: tinker.siat.ac.cn/openfaas-fn/sgdclassifier-general:1.0.0
+  sgdregressor-general: 
+    lang: python3
+    handler: ./SGDRegressor-general    
+    image: tinker.siat.ac.cn/openfaas-fn/sgdregressor-general:1.0.0
+  svr-general: 
+    lang: python3
+    handler: ./SVR-general    
+    image: tinker.siat.ac.cn/openfaas-fn/svr-general:1.0.0

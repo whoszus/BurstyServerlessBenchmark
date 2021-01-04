@@ -1,2 +1,9 @@
 
+http://172.169.8.168:31112/function/FaceRecognition.openfaas-fn
 http://172.169.8.168:31112/function/MultinomialNB-general.openfaas-fn
+http://172.169.8.168:31112/function/PassiveAggressiveClassifier-general.openfaas-fn
+http://172.169.8.168:31112/function/Perceptron-general.openfaas-fn
+http://172.169.8.168:31112/function/RandomForestRegressor-general.openfaas-fn
+http://172.169.8.168:31112/function/SGDClassifier-general.openfaas-fn
+http://172.169.8.168:31112/function/SGDRegressor-general.openfaas-fn
+http://172.169.8.168:31112/function/SVR-general.openfaas-fn
