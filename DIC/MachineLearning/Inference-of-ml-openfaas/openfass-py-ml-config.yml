@@ -10,34 +10,73 @@ functions:
 
 
   facerecognition: 
-    lang: python3
+    lang: python3-debian
     handler: ./FaceRecognition    
     image: tinker.siat.ac.cn/openfaas-fn/facerecognition:1.0.0
+    configuration: 
+     copy:
+      - ./data
+      - ./model
+
   multinomialnb-general: 
-    lang: python3
+    lang: python3-debian
     handler: ./MultinomialNB-general    
     image: tinker.siat.ac.cn/openfaas-fn/multinomialnb-general:1.0.0
+    configuration: 
+     copy:
+      - ./data
+      - ./model
+
   passiveaggressiveclassifier-general: 
-    lang: python3
+    lang: python3-debian
     handler: ./PassiveAggressiveClassifier-general    
     image: tinker.siat.ac.cn/openfaas-fn/passiveaggressiveclassifier-general:1.0.0
+    configuration: 
+     copy:
+      - ./data
+      - ./model
+
   perceptron-general: 
-    lang: python3
+    lang: python3-debian
     handler: ./Perceptron-general    
     image: tinker.siat.ac.cn/openfaas-fn/perceptron-general:1.0.0
+    configuration: 
+     copy:
+      - ./data
+      - ./model
+
   randomforestregressor-general: 
-    lang: python3
+    lang: python3-debian
     handler: ./RandomForestRegressor-general    
     image: tinker.siat.ac.cn/openfaas-fn/randomforestregressor-general:1.0.0
+    configuration: 
+     copy:
+      - ./data
+      - ./model
+
   sgdclassifier-general: 
-    lang: python3
+    lang: python3-debian
     handler: ./SGDClassifier-general    
     image: tinker.siat.ac.cn/openfaas-fn/sgdclassifier-general:1.0.0
+    configuration: 
+     copy:
+      - ./data
+      - ./model
+
   sgdregressor-general: 
-    lang: python3
+    lang: python3-debian
     handler: ./SGDRegressor-general    
     image: tinker.siat.ac.cn/openfaas-fn/sgdregressor-general:1.0.0
+    configuration: 
+     copy:
+      - ./data
+      - ./model
+
   svr-general: 
-    lang: python3
+    lang: python3-debian
     handler: ./SVR-general    
     image: tinker.siat.ac.cn/openfaas-fn/svr-general:1.0.0
+    configuration: 
+     copy:
+      - ./data
+      - ./model

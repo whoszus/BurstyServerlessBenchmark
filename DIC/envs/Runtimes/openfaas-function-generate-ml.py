@@ -19,8 +19,8 @@ def generate_config_file(functions_dir, models):
 
     configs = ''.join(tpl)
     for m in models:
-        configs += "\n  {func_name}: \n    lang: python3\n    handler: ./{model}    \n    image: tinker.siat.ac.cn/openfaas-fn/{func_name}:{version}".format(
-            func_name=m.lower(), version=version,model =m)
+        configs += "\n  {func_name}: \n    lang: python3-debian\n    handler: ./{model_path}    \n    image: tinker.siat.ac.cn/openfaas-fn/{func_name}:{version}\n    configuration: \n     copy:\n      - ./data\n      - ./model\n"\
+            .format(func_name=m.lower(), version=version, model_path=m)
     config_file = functions_dir + conf_file
     with open(config_file, 'w') as cfg:
         cfg.write(configs)
@@ -142,7 +142,7 @@ def generate_requirement(func_abs_path):
 def get_action_url_v2(path, models):
     s = ''
     for m in models:
-        s += '\n' + prefix.format(func_name=m)
+        s += '\n' + prefix.format(func_name=m.lower())
     urls_path = path + 'urls'
     with open(urls_path, 'w') as f:
         f.write(s)
