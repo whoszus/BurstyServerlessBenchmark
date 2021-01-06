@@ -19,9 +19,6 @@ RUN pip install scikit-learn
 
 WORKDIR /
 ADD kubeless.py .
-ADD ../../ml-inference-with-data-RT/models/FaceRecognition /function/model/
-ADD ../../ml-inference-with-data-RT/testData/FaceRecognition /function/data/
-
 USER 1000
 
 CMD ["python", "/kubeless.py"]
