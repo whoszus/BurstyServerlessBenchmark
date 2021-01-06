@@ -52,8 +52,8 @@ def generate_func(path, name):
     with open(func_tpl, 'r') as tpl:
         tpl_script = tpl.readlines()
     tp = ''.join(tpl_script)
-    model_container_path = './kubeless/model/{}'.format(name)
-    data_path = './kubeless/data/{}'.format(name)
+    model_container_path = '"/kubeless/model/{}"'.format(name)
+    data_path = '"/kubeless/data/{}"'.format(name)
     s = tp.format(model_path=model_container_path, data_path=data_path)
     s += "\n    return {'token':  'inference finished', 'startTime': int(round(startTime * 1000))}"
     with open(path, 'w') as func:

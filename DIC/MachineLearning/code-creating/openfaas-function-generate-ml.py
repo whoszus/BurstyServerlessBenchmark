@@ -15,30 +15,6 @@ model_path = conf['openfaas-config']['model_path']
 data_path = conf['openfaas-config']['data_path']
 
 
-def generate_config_file(functions_dir, models):
-    with open(conf_tpl, 'r') as ctpl:
-        tpl = ctpl.readlines()
-
-    configs = ''.join(tpl)
-    for m in models:
-        configs += "\n  {func_name}: \n    lang: python3-debian\n    handler: ./{model_path}    \n    image: tinker.siat.ac.cn/openfaas-fn/{func_name}:{version}\n    configuration: \n     copy:\n      - ./data\n      - ./model\n" \
-            .format(func_name=m.lower(), version=version, model_path=m)
-    config_file = functions_dir + conf_file
-    with open(config_file, 'w') as cfg:
-        cfg.write(configs)
-
-
-def copy_model_data(path, func_path, postfix='/model/'):
-    global ros, file_array
-    for root, dirs, files in os.walk(path, topdown=False):
-        file_array = files
-    for f in file_array:
-        dest = func_path + f + postfix
-        if not os.path.exists(dest):
-            os.makedirs(dest)
-        shutil.copy2(path + f, dest)
-
-
 def main():
     global models
     for root, dirs, files in os.walk(model_path, topdown=False):
@@ -58,8 +34,8 @@ def main():
     generate_action_deploy_shell(functions_dir)
     # get_action_url(functions_dir)
     get_action_url_v2(functions_dir, models)
-    copy_model_data(model_path,functions_dir,postfix='/model/')
-    copy_model_data(data_path,functions_dir,postfix='/data/')
+    copy_model_data(model_path, functions_dir, postfix='/model/')
+    copy_model_data(data_path, functions_dir, postfix='/data/')
 
 
 def get_sub_pack(name):
@@ -161,6 +137,30 @@ def get_action_url_v2(path, models):
     urls_path = path + 'urls'
     with open(urls_path, 'w') as f:
         f.write(s)
+
+
+def generate_config_file(functions_dir, models):
+    with open(conf_tpl, 'r') as ctpl:
+        tpl = ctpl.readlines()
+
+    configs = ''.join(tpl)
+    for m in models:
+        configs += "\n  {func_name}: \n    lang: python3-debian\n    handler: ./{model_path}    \n    image: tinker.siat.ac.cn/openfaas-fn/{func_name}:{version}\n    configuration: \n     copy:\n      - ./data\n      - ./model\n" \
+            .format(func_name=m.lower(), version=version, model_path=m)
+    config_file = functions_dir + conf_file
+    with open(config_file, 'w') as cfg:
+        cfg.write(configs)
+
+
+def copy_model_data(path, func_path, postfix='/model/'):
+    global ros, file_array
+    for root, dirs, files in os.walk(path, topdown=False):
+        file_array = files
+    for f in file_array:
+        dest = func_path + f + postfix
+        if not os.path.exists(dest):
+            os.makedirs(dest)
+        shutil.copy2(path + f, dest)
 
 
 main()

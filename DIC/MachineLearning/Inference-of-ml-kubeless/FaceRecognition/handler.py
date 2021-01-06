@@ -4,8 +4,8 @@ import pickle
 
 def handler(event, context):
     startTime = time.time()
-    model_path = ./kubeless/model/FaceRecognition
-    data_path = ./kubeless/data/FaceRecognition
+    model_path = "/kubeless/model/FaceRecognition"
+    data_path = "/kubeless/data/FaceRecognition"
     with open(model_path, 'rb') as f:
         clf = pickle.load(f)
     with open(data_path, 'rb') as d:
