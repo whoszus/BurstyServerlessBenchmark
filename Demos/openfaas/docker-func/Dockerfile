@@ -15,8 +15,8 @@ WORKDIR /home/app
 
 USER app
 
-COPY ./data /data
-COPY ./model /model
+COPY data /data
+COPY model /model
 COPY handler.py /home/app/
 
 # Populate example here - i.e. "cat", "sha512sum" or "node index.js"
