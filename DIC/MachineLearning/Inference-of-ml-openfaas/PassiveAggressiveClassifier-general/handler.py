@@ -5,8 +5,8 @@ import pickle
 
 def main(args):
     startTime = time.time()
-    model_path = "./model/PassiveAggressiveClassifier-general"
-    data_path = "./data/PassiveAggressiveClassifier-general"
+    model_path = "./function/model/PassiveAggressiveClassifier-general"
+    data_path = "./function/data/PassiveAggressiveClassifier-general"
     with open(model_path, 'rb') as f:
         clf = pickle.load(f)
     with open(data_path, 'rb') as d:

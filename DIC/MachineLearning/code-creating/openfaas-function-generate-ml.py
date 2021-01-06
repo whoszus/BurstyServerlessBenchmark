@@ -87,8 +87,8 @@ def generate_func(path, name):
     imp_name = get_sub_pack(model)
 
     import_modules = 'from {} import {}'.format(imp_name, model)
-    model_container_path = './model/{}'.format(name)
-    data_path = './data/{}'.format(name)
+    model_container_path = './function/model/{}'.format(name)
+    data_path = './function/data/{}'.format(name)
     model = '{}()'.format(model)
     s = tp.format(import_modules=import_modules, model_path=model_container_path, data_path=data_path, model=model)
     s += "\n    return {'token':  'inference finished', 'startTime': int(round(startTime * 1000))}"

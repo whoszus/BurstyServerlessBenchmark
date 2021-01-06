@@ -5,8 +5,8 @@ import pickle
 
 def main(args):
     startTime = time.time()
-    model_path = "./model/SVR-general"
-    data_path = "./data/SVR-general"
+    model_path = "./function/model/SVR-general"
+    data_path = "./function/data/SVR-general"
     with open(model_path, 'rb') as f:
         clf = pickle.load(f)
     with open(data_path, 'rb') as d:

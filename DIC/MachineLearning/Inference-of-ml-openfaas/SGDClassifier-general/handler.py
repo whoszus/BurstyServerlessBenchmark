@@ -5,8 +5,8 @@ import pickle
 
 def main(args):
     startTime = time.time()
-    model_path = "./model/SGDClassifier-general"
-    data_path = "./data/SGDClassifier-general"
+    model_path = "./function/model/SGDClassifier-general"
+    data_path = "./function/data/SGDClassifier-general"
     with open(model_path, 'rb') as f:
         clf = pickle.load(f)
     with open(data_path, 'rb') as d:
