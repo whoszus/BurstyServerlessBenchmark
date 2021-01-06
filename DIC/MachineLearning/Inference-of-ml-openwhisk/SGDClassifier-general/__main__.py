@@ -5,9 +5,6 @@ import pickle
 
 def main(args):
     startTime = time.time()
-
-    n_samples = args.get("n_samples", 3000)
-
     model_path = "/model/SGDClassifier-general"
     data_path = "/data/SGDClassifier-general"
     with open(model_path, 'rb') as f:

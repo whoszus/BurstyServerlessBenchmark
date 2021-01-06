@@ -7,7 +7,7 @@ docker_file_path = conf['BBServerless']['docker_file_path']
 version = conf['BBServerless']['version']
 functions_dir = '../Inference-of-ml-openwhisk/'
 
-tpl_py = './code-creating/openwhisk_function_tpl_py.py'
+tpl_py = conf['openwhisk']['tpl_py']
 model_path = conf['BBServerless']['model_path']
 
 data_path = '../../envs/Runtimes/ml-inference-with-data-RT/testData/'

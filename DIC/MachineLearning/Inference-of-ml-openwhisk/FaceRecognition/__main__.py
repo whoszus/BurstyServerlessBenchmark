@@ -5,9 +5,6 @@ import pickle
 
 def main(args):
     startTime = time.time()
-
-    n_samples = args.get("n_samples", 3000)
-
     model_path = "/model/FaceRecognition"
     data_path = "/data/FaceRecognition"
     with open(model_path, 'rb') as f:
