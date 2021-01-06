@@ -1,9 +1,9 @@
 import os
 
-model_path = 'ml-inference-with-data-RT/models/'
-data_path = 'ml-inference-with-data-RT/testData/'
+model_path = '../../envs/Runtimes/ml-inference-with-data-RT/models/'
+data_path = '../../envs/Runtimes/ml-inference-with-data-RT/testData/'
 basic_docker_file = 'templates/Dockerfile-openwhisk'
-docker_file_path = 'ml-inference-with-data-RT/'
+docker_file_path = '../../envs/Runtimes/ml-inference-with-data-RT/'
 
 
 def generate_rt():

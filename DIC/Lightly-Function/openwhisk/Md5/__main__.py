@@ -8,7 +8,7 @@ def main(args):
     startTime = time.time()
     array = args.get('file','file')
     if array == "file":
-        file_path = './ccf.pdf'
+        file_path = 'ccf.pdf'
         if os.path.isfile(file_path):
             f = open(file_path, 'rb')
             md5_obj = hashlib.md5()
