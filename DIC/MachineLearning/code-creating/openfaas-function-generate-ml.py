@@ -146,7 +146,7 @@ def get_action_url(path):
 def generate_requirement(func_abs_path):
     path = func_abs_path + 'requirements.txt'
     init_py = func_abs_path + '__init__.py'
-    requirements = 'scikit-learn\nnumpy\npickle'
+    requirements = 'scikit-learn\nnumpy'
     with open(path, 'w') as rq:
         rq.write(requirements)
 

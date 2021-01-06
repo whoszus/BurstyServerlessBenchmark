@@ -8,5 +8,5 @@ build
 DIC/envs/Runtimes/ml-inference-with-data-RT/models
 DIC/envs/Runtimes/ml-inference-with-data-RT/testData
 DIC/envs/ML_model_training/reuters
-DIC/MachineLearning/Inference-of-ml-openfaas/*/data
-DIC/MachineLearning/Inference-of-ml-openfaas/*/model
+DIC/MachineLearning/*/*/model
+DIC/MachineLearning/*/*/data
