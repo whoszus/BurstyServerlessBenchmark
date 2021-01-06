@@ -1,0 +1,1 @@
+faas-cli push -f openfass-py-ml-config.yml
