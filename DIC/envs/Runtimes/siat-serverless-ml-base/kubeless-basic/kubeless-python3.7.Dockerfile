@@ -15,12 +15,12 @@ RUN curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
 RUN python ./get-pip.py
 
 RUN pip install bottle==0.12.13 cherrypy==8.9.1 wsgi-request-logger prometheus_client
-RUN pip install scikit-learn=0.23.1
+RUN pip install scikit-learn
 
 WORKDIR /
 ADD kubeless.py .
-ADD models/FaceRecognition /function/model/
-ADD testData/FaceRecognition /function/data/
+ADD ../../ml-inference-with-data-RT/models/FaceRecognition /function/model/
+ADD ../../ml-inference-with-data-RT/testData/FaceRecognition /function/data/
 
 USER 1000
 

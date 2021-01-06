@@ -9,13 +9,13 @@ RUN apk add --no-cache \
         lapack-dev \
         gfortran \
         lapack \
-        openblas-dev 
+        openblas-dev
 
 # ENV PYTHON_PACKAGES="\
 #     numpy \
 #     matplotlib \
 #     scikit-learn \
-# " 
+# "
 
 # RUN apk add --no-cache --virtual build-dependencies python --update py-pip \
 #     && apk add --virtual build-runtime \
