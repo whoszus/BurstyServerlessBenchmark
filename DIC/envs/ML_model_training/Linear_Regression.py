@@ -25,7 +25,7 @@ def main(scal):
         n_train, n_test, n_features = 8000, 800, 60
 
     # #############################################################################
-    # testing bulk/atomic prediction speed for various regressors
+    # Platform-Testing bulk/atomic prediction speed for various regressors
     configuration_linear = {
         'n_train': n_train,
         'n_test': n_test,
@@ -237,7 +237,7 @@ def benchmark(configuration):
 #
 #     estimators : dict of (name (str), estimator) to benchmark
 #     n_train : nber of training instances (int)
-#     n_test : nber of testing instances (int)
+#     n_test : nber of Platform-Testing instances (int)
 #     n_features : list of feature-space dimensionality to test (int)
 #     percentile : percentile at which to measure the speed (int [0-100])
 #

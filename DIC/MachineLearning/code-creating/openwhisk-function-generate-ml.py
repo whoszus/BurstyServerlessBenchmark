@@ -5,7 +5,7 @@ conf = ConfigParser()
 conf.read("Settings_values.cfg")
 docker_file_path = conf['BBServerless']['docker_file_path']
 version = conf['BBServerless']['version']
-functions_dir = '../Inference-of-ml/'
+functions_dir = '../Inference-of-ml-openwhisk/'
 model_path = '../../envs/Runtimes/ml-inference-with-data-RT/models/'
 tpl_py = './code-creating/openwhisk_function_tpl_py.py'
 
