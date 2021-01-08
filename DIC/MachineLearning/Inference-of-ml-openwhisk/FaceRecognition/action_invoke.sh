@@ -1,1 +1,1 @@
-wsk -i  action invoke  facerecognition
+wsk -i  action invoke  facerecognition --result

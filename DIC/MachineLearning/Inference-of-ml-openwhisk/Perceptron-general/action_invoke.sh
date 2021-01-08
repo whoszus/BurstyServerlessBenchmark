@@ -1,1 +1,1 @@
-wsk -i  action invoke  perceptron
+wsk -i  action invoke  perceptron --result

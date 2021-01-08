@@ -72,15 +72,6 @@ def generate_func(path, name):
         func.write(s)
 
 
-def generate_invoke_shell(path, name):
-    path += 'action_invoke.sh'
-    model = name.split("-")[0]
-
-    s = 'wsk -i  action invoke  {model_name}'.format(model_name=model.lower())
-    with open(path, 'w') as func:
-        func.write(s)
-
-
 def generate_action_build_shell(path):
     path += 'action_build.sh'
     command = 'faas-cli build -f {}'.format(conf_file)
@@ -122,7 +113,7 @@ def get_action_url(path):
 def generate_requirement(func_abs_path):
     path = func_abs_path + 'requirements.txt'
     init_py = func_abs_path + '__init__.py'
-    requirements = 'scikit-learn\nnumpy'
+    requirements = 'scikit-learn'
     with open(path, 'w') as rq:
         rq.write(requirements)
 
