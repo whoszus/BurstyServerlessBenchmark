@@ -5,7 +5,7 @@ import random
 def split(filename):
     fp = file(filename, 'rb')
     buf = fp.read(128 * 1024 * 1024)
-    with open('../../BigData/train.txt', 'wb') as f:
+    with open('../../BigData/openwhisk/data/train.txt', 'wb') as f:
         f.write(buf)
 
 

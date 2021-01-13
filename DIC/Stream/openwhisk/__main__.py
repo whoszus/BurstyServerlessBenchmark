@@ -3,7 +3,6 @@ import time
 import random
 from urllib import request
 
-
 def main(args):
 
     startTime = time.time()
