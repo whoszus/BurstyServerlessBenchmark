@@ -539,3 +539,73 @@ throughput (n/s):
 
 exceptions:0
 success rate: 100.0 %
+ --result for hello-world-python, 12 requests--in 13.119s
+start time: 2021-01-13 15:00:54 , end_time: 2021-01-13 15:01:0812 requests finished in 13.39 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1093.25	1092	1100	1114	1114	1114
+throughput (n/s):
+0.90
+
+exceptions:0
+success rate: 100.0 %
+ --result for hello-world-python, 12 requests--in 16.44s
+start time: 2021-01-13 15:24:15 , end_time: 2021-01-13 15:24:3212 requests finished in 16.71 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1370.00	1100	1103	1110	1151	1151
+throughput (n/s):
+0.72
+
+exceptions:0
+success rate: 100.0 %
+ --result for hello-world-python, 12 requests--in 12.986s
+start time: 2021-01-13 15:24:54 , end_time: 2021-01-13 15:25:0712 requests finished in 13.26 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1082.17	1076	1087	1096	1097	1097
+throughput (n/s):
+0.91
+
+exceptions:0
+success rate: 100.0 %
+ --result for hello-world-python, 12 requests--in 16.321s
+start time: 1610523866.0184028 , end_time: 1610523882.66668312 requests finished in 16.60 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1360.08	1098	1100	1102	1117	1117
+throughput (n/s):
+0.72
+
+exceptions:0
+success rate: 100.0 %
+ --result for hello-world-python, 12 requests--in 13.087s
+start time: 1610523922.8572485 , end_time: 1610523936.273311112 requests finished in 13.36 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1090.58	1096	1101	1104	1105	1105
+throughput (n/s):
+0.90
+
+exceptions:0
+success rate: 100.0 %
+ --result for hello-world-python, 36 requests--in 39.108s
+start time: 1610524338.6231477 , end_time: 1610524378.70530936 requests finished in 40.03 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1086.33	1076	1099	1105	1107	1107
+throughput (n/s):
+0.90
+
+exceptions:0
+success rate: 100.0 %
+ --result for hello-world-python, 24 requests--in 26.12s
+start time: 1610526579.3258383 , end_time: 1610526606.098452324 requests finished in 26.72 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1088.33	1086	1102	1103	1103	1106
+throughput (n/s):
+0.90
+
+exceptions:0
+success rate: 100.0 %
