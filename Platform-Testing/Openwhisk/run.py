@@ -12,6 +12,7 @@ import concurrent.futures
 start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 end_time = 0
 
+
 mutex = Lock()
 
 
@@ -46,6 +47,8 @@ def handler(action_name, params, client_num, times):
     latencies = []
     minInvokeTime = 0x7fffffffffffffff
     maxEndTime = 0
+    first_invoke_time = ''
+
     # requests = client_num * times - exception_count
 
     for i in range(len(results)):
@@ -53,7 +56,8 @@ def handler(action_name, params, client_num, times):
         for j in range(len(clientResult)):
             outfile.write(clientResult[j][0] + ',' + clientResult[j][1] + ',' + clientResult[j][2] + '\n')
 
-            # Collect the latency
+            if first_invoke_time == '':
+                first_invoke_time = clientResult[j][0]
             latency = int(clientResult[j][-1]) - int(clientResult[j][0])
             latencies.append(latency)
 
@@ -62,13 +66,13 @@ def handler(action_name, params, client_num, times):
                 minInvokeTime = int(clientResult[j][0])
             if int(clientResult[j][-1]) > maxEndTime:
                 maxEndTime = int(clientResult[j][-1])
-    formatResult(latencies, maxEndTime - minInvokeTime, client_num, times, action_name, exception_count)
+    formatResult(latencies, maxEndTime - minInvokeTime, client_num, times, action_name, exception_count,first_invoke_time)
 
 
 def client(action_name, times, params, exception_count):
-    command = "./handler.sh -a {action_name} -t {times} -p '{params}'"
+    command = "./executor.sh -a {action_name} -t {times} -p '{params}'"
     command = command.format(action_name=action_name, times=times, params=params)
-    # print("client1:", command)
+    print("client1:", command)
     r = os.popen(command)
     text = r.read()
     r.close()
@@ -93,7 +97,7 @@ def parseResult(result):
         count = 0
         while count < 3:
             while i < len(line):
-                print("parseResult while:", line)
+                # print("parseResult while:", line)
                 if line[i].isdigit():
                     parsedTimes[count] = line[i:i + 13]
                     i += 13
@@ -105,7 +109,7 @@ def parseResult(result):
     return parsedResults
 
 
-def formatResult(latencies, duration, client, loop, action_name, exception_count):
+def formatResult(latencies, duration, client, loop, action_name, exception_count,first_invoke_time):
     total_req = client * loop
     end_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
@@ -147,8 +151,13 @@ def formatResult(latencies, duration, client, loop, action_name, exception_count
     resultfile.write("throughput (n/s):\n%.2f\n" % (request_num / (duration / 1000)))
     resultfile.write("\nexceptions:{}".format(exception_count))
     resultfile.write("\nsuccess rate: {} %".format(100 * (request_num / total_req)))
-
     resultfile.close()
+
+    overview = action_name + ',' + str(request_num)+ ',' +  str(first_invoke_time)+ ',' +  str(start_time)+ ',' +  str(end_time)+ ',' +  str(averageLatency)+ ',' +  str(_50pcLatency)+ ',' +  str(_75pcLatency)+ ',' + str(_90pcLatency) + ',' +  str(_95pcLatency)+ ',' +  str(_99pcLatency)
+    with open("overview.csv", "a+") as f:
+
+        f.write(overview)
+
 
 
 def form_params(params):
@@ -202,11 +211,11 @@ def main():
         mf_action = data_loaded.get("machine-learngig-inference")
 
     z = lf_action.copy()
-    z.update(mf_action)
+    # z.update(mf_action)
     request_threads = []
 
     for action_name, params in z.items():
-        t = threading.Thread(target=handler, args=(action_name, params, random.randrange(4, 20), 3))
+        t = threading.Thread(target=handler, args=(action_name, params, random.randrange(4, 5), 3))
         request_threads.append(t)
 
     total = len(request_threads)

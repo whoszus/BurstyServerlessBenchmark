@@ -479,3 +479,63 @@ throughput (n/s):
 
 exceptions:0
 success rate: 100.0 %
+ --result for hello-world-python, 18 requests--in 23.061s
+start time: 2021-01-13 13:50:22 , end_time: 2021-01-13 13:50:4618 requests finished in 23.49 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1281.17	1098	1104	1112	1113	1113
+throughput (n/s):
+0.77
+
+exceptions:0
+success rate: 100.0 %
+ --result for hello-world-python, 21 requests--in 26.289s
+start time: 2021-01-13 14:47:13 , end_time: 2021-01-13 14:47:4021 requests finished in 26.80 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1251.86	1098	1102	1108	1111	1111
+throughput (n/s):
+0.78
+
+exceptions:0
+success rate: 100.0 %
+ --result for hello-world-python, 21 requests--in 22.743s
+start time: 2021-01-13 14:47:58 , end_time: 2021-01-13 14:48:2221 requests finished in 23.25 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1083.00	1077	1088	1097	1098	1099
+throughput (n/s):
+0.90
+
+exceptions:0
+success rate: 100.0 %
+ --result for hello-world-python, 18 requests--in 19.581s
+start time: 2021-01-13 14:49:31 , end_time: 2021-01-13 14:49:5118 requests finished in 20.01 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1087.83	1082	1097	1104	1107	1107
+throughput (n/s):
+0.90
+
+exceptions:0
+success rate: 100.0 %
+ --result for hello-world-python, 57 requests--in 61.903s
+start time: 2021-01-13 14:52:11 , end_time: 2021-01-13 14:53:1457 requests finished in 63.40 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1086.02	1079	1096	1103	1106	1110
+throughput (n/s):
+0.90
+
+exceptions:0
+success rate: 100.0 %
+ --result for hello-world-python, 12 requests--in 13.021s
+start time: 2021-01-13 14:54:45 , end_time: 2021-01-13 14:54:5812 requests finished in 13.30 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1085.08	1076	1095	1097	1104	1104
+throughput (n/s):
+0.90
+
+exceptions:0
+success rate: 100.0 %

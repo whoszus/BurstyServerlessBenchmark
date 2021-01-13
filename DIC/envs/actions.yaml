@@ -25,7 +25,7 @@ machine-learngig-inference:
     #Linear regression:
     lr: "--param n_samples {n_samples}"
 
-Video transcoding:
+Big-Data:
     videoTrans: "--param name {name}"
 
-        
+Stream:
