@@ -4,7 +4,7 @@ import time
 
 def main(args):
     startTime = time.time()
-    fileName = "data/train.txt"
+    fileName = "/data/train.txt"
     with open(fileName, encoding='utf-8') as doc:
         count = Counter(doc.read().strip().split())
     for key, value in count.most_common(100):

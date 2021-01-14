@@ -3,10 +3,13 @@ provider:
   name: openfaas
   gateway: http://172.169.8.168:31112
 functions:
- pycon-ml-debian:
-   lang: python3-debian
-   handler: ./map-reduce
-   image: tinker.siat.ac.cn/tinker/map-reduce:1.0.0
-   configuration:
+ siat-bigdata-mr:
+    lang: python3-debian
+    handler: ./map-reduce
+    image: tinker.siat.ac.cn/tinker/map-reduce:1.0.0
+    configuration:
     copy:
       - ./data
+    environment:
+      read_timeout: 40s
+      write_timeout: 40s
