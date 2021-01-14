@@ -198,12 +198,14 @@ def main():
         data_loaded = yaml.safe_load(stream)
         lf_action = data_loaded.get("webservices")
         mf_action = data_loaded.get("machine-learngig-inference")
+        st_action = data_loaded.get("Stream")
 
-    z = lf_action.copy()
+    z = st_action.copy()
     # z.update(mf_action)
     request_threads = []
 
     for action_name, params in z.items():
+        #print(action_name)
         t = threading.Thread(target=handler, args=(action_name, params, 8, 3))
         request_threads.append(t)
 

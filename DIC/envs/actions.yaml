@@ -15,7 +15,7 @@ MlI:
   sgdregressor: ""
   svr: ""
 Big-Data:
-     bigdata: ""
+  bigdata: ""
 
 Stream:
-    stream: ""
+  stream: ""

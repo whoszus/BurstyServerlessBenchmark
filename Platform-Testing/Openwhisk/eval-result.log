@@ -619,3 +619,13 @@ throughput (n/s):
 
 exceptions:0
 success rate: 100.0 %
+ --result for hello-world-python, 24 requests--in 29.469s
+start time: 1610627434.0621767 , end_time: 1610627464.175851324 requests finished in 30.06 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1227.88	1079	1101	1106	1122	1160
+throughput (n/s):
+0.80
+
+exceptions:0
+success rate: 100.0 %

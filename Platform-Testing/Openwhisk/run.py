@@ -9,10 +9,8 @@ import yaml
 from numpy.random import seed
 import concurrent.futures
 
-
 start_time = time.time()
 end_time = 0
-
 
 mutex = Lock()
 
@@ -55,7 +53,8 @@ def handler(action_name, params, client_num, times):
     for i in range(len(results)):
         clientResult = parseResult(results[i])
         for j in range(len(clientResult)):
-            outfile.write(action_name+ ','+ clientResult[j][0] + ',' + clientResult[j][1] + ',' + clientResult[j][2] + '\n')
+            outfile.write(
+                action_name + ',' + clientResult[j][0] + ',' + clientResult[j][1] + ',' + clientResult[j][2] + '\n')
             latency = int(clientResult[j][-1]) - int(clientResult[j][0])
             latencies.append(latency)
 
@@ -64,7 +63,8 @@ def handler(action_name, params, client_num, times):
                 minInvokeTime = int(clientResult[j][0])
             if int(clientResult[j][-1]) > maxEndTime:
                 maxEndTime = int(clientResult[j][-1])
-    formatResult(latencies, maxEndTime - minInvokeTime, client_num, times, action_name, exception_count,first_invoke_time)
+    formatResult(latencies, maxEndTime - minInvokeTime, client_num, times, action_name, exception_count,
+                 first_invoke_time)
 
 
 def client(action_name, times, params, exception_count):
@@ -107,7 +107,7 @@ def parseResult(result):
     return parsedResults
 
 
-def formatResult(latencies, duration, client, loop, action_name, exception_count,first_invoke_time):
+def formatResult(latencies, duration, client, loop, action_name, exception_count, first_invoke_time):
     total_req = client * loop
     end_time = time.time()
 
@@ -150,11 +150,12 @@ def formatResult(latencies, duration, client, loop, action_name, exception_count
     resultfile.write("\nexceptions:{}".format(exception_count))
     resultfile.write("\nsuccess rate: {} %".format(100 * (request_num / total_req)))
     resultfile.close()
-    overview = '\n'+action_name + ',' + str(request_num)+ ',' +  str(start_time)+ ',' +  str(end_time)+ ',' +  str(averageLatency)+ ',' +  str(_50pcLatency)+ ',' +  str(_75pcLatency)+ ',' + str(_90pcLatency) + ',' +  str(_95pcLatency)+ ',' +  str(_99pcLatency)
+    overview = '\n' + action_name + ',' + str(request_num) + ',' + str(start_time) + ',' + str(end_time) + ',' + str(
+        averageLatency) + ',' + str(_50pcLatency) + ',' + str(_75pcLatency) + ',' + str(_90pcLatency) + ',' + str(
+        _95pcLatency) + ',' + str(_99pcLatency)
 
     with open("overview.csv", "a+") as f:
         f.write(overview)
-
 
 
 def form_params(params):
@@ -193,18 +194,49 @@ def form_params(params):
     return params
 
 
+def get_qps(type="webservices", mode="single", limit=100):
+    t = {
+        "webservices": 5,
+        "MlI": 8,
+        "Big-Data": 1,
+        "Stream": 1,
+    }
+    m = {
+        "webservices": 0.5,
+        "MlI": 0.125,
+        "Big-Data": 0.125,
+        "Stream": 0.25,
+    }
+    r = t[type]
+    k = m[type]
+
+    if mode == "single":
+        return int(limit / r)
+    if mode == "mix":
+        return int(limit / r * k)
+
+
 def main():
+    # def mode; limit
+    mode = "single"
+    limit = 100
+
     with open("../../DIC/envs/actions.yaml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
         lf_action = data_loaded.get("webservices")
-        mf_action = data_loaded.get("machine-learngig-inference")
+        mf_action = data_loaded.get("MlI")
+        bd_action = data_loaded.get("Big-Data")
+        stream_action = data_loaded.get("Stream")
 
     z = lf_action.copy()
     # z.update(mf_action)
+    # z.update(bd_action)
+    # z.update(stream_action)
     request_threads = []
 
     for action_name, params in z.items():
-        t = threading.Thread(target=handler, args=(action_name, params, 8, 3))
+        qps = get_qps(type="webservices", limit=100)
+        t = threading.Thread(target=handler, args=(action_name, params, qps, 2))
         request_threads.append(t)
 
     total = len(request_threads)
