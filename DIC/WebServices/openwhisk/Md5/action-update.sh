@@ -1,1 +1,1 @@
-zip -r env.zip ./* && wsk -i  action update  md5  env.zip --kind python:3
+wsk -i  action update  md5 __main__.py --kind python:3
