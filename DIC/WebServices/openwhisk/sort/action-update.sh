@@ -1,1 +1,1 @@
-zip -r sort.zip ./* && wsk -i  action update  quicksort  sort.zip --kind python:3
+wsk -i  action update  quicksort  __main__.py --kind python:3
