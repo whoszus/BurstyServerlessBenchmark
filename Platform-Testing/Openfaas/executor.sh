@@ -39,7 +39,7 @@ do
 
     echo Measure start up time: no.$i
     invokeTime=`date +%s%3N`
-    times=`wsk -i action invoke $ACTIONNAME --blocking --result $PARAMS` 
+    times=`curl http://172.16.101.168:31112/function/$ACTIONNAME`
     endTime=`date +%s%3N`
     startTime=`echo $times | jq -r '.startTime'`
     echo "invokeTime: $invokeTime, startTime: $startTime, endTime: $endTime"
@@ -89,4 +89,3 @@ if [ ! -z $RESULT ]; then
     echo -e "Avg\t50%\t75%\t90%\t95%\t99%\t" >> $RESULT
     echo -e "`expr $LATENCYSUM / $TIMES`\t$_50platency\t$_75platency\t$_90platency\t$_95platency\t$_99platency\t" >> $RESULT
 fi
-

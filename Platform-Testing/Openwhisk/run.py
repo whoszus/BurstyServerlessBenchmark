@@ -8,7 +8,6 @@ import time
 import yaml
 from numpy.random import seed
 import concurrent.futures
-from datetime import datetime
 
 
 start_time = time.time()
@@ -162,14 +161,6 @@ def form_params(params):
     if -1 != params.find("name"):
         name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=12))
         params = params.format(name=name)
-
-    # if -1 != params.find('array'):
-    #     seed(1)
-    #     random_i = random.randrange(1, 500)
-    #     sequence = [i for i in range(random_i)]
-    #     shuffle(sequence)
-    #     sequence = str(sequence)
-    #     params = params.format(array=sequence)
 
     if -1 != params.find('file'):
         params = params.format(file="file")

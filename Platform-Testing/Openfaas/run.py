@@ -9,8 +9,10 @@ import yaml
 from numpy.random import seed
 import concurrent.futures
 
-start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+
+start_time = time.time()
 end_time = 0
+
 
 mutex = Lock()
 
@@ -41,20 +43,19 @@ def handler(action_name, params, client_num, times):
                 future.cancel()
 
     outfile = open("result.csv", "w")
-    outfile.write("actionName, invokeTime,startTime,endTime\n")
+    outfile.write("action_name,invokeTime,startTime,endTime\n")
 
     latencies = []
     minInvokeTime = 0x7fffffffffffffff
     maxEndTime = 0
+    first_invoke_time = ''
+
     # requests = client_num * times - exception_count
 
     for i in range(len(results)):
         clientResult = parseResult(results[i])
         for j in range(len(clientResult)):
-            outfile.write(
-                action_name + ',' + clientResult[j][0] + ',' + clientResult[j][1] + ',' + clientResult[j][2] + '\n')
-
-            # Collect the latency
+            outfile.write(action_name+ ','+ clientResult[j][0] + ',' + clientResult[j][1] + ',' + clientResult[j][2] + '\n')
             latency = int(clientResult[j][-1]) - int(clientResult[j][0])
             latencies.append(latency)
 
@@ -63,12 +64,11 @@ def handler(action_name, params, client_num, times):
                 minInvokeTime = int(clientResult[j][0])
             if int(clientResult[j][-1]) > maxEndTime:
                 maxEndTime = int(clientResult[j][-1])
-    outfile.close()
-    formatResult(latencies, maxEndTime - minInvokeTime, client_num, times, action_name, exception_count)
+    formatResult(latencies, maxEndTime - minInvokeTime, client_num, times, action_name, exception_count,first_invoke_time)
 
 
 def client(action_name, times, params, exception_count):
-    command = "./handler.sh -a {action_name} -t {times} -p '{params}'"
+    command = "./executor.sh -a {action_name} -t {times} -p '{params}'"
     command = command.format(action_name=action_name, times=times, params=params)
     # print("client1:", command)
     r = os.popen(command)
@@ -95,7 +95,7 @@ def parseResult(result):
         count = 0
         while count < 3:
             while i < len(line):
-                print("parseResult while:", line)
+                # print("parseResult while:", line)
                 if line[i].isdigit():
                     parsedTimes[count] = line[i:i + 13]
                     i += 13
@@ -107,9 +107,9 @@ def parseResult(result):
     return parsedResults
 
 
-def formatResult(latencies, duration, client, loop, action_name, exception_count):
+def formatResult(latencies, duration, client, loop, action_name, exception_count,first_invoke_time):
     total_req = client * loop
-    end_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    end_time = time.time()
 
     request_num = len(latencies)
 
@@ -149,22 +149,18 @@ def formatResult(latencies, duration, client, loop, action_name, exception_count
     resultfile.write("throughput (n/s):\n%.2f\n" % (request_num / (duration / 1000)))
     resultfile.write("\nexceptions:{}".format(exception_count))
     resultfile.write("\nsuccess rate: {} %".format(100 * (request_num / total_req)))
-
     resultfile.close()
+    overview = '\n'+action_name + ',' + str(request_num)+ ',' +  str(start_time)+ ',' +  str(end_time)+ ',' +  str(averageLatency)+ ',' +  str(_50pcLatency)+ ',' +  str(_75pcLatency)+ ',' + str(_90pcLatency) + ',' +  str(_95pcLatency)+ ',' +  str(_99pcLatency)
+
+    with open("overview.csv", "a+") as f:
+        f.write(overview)
+
 
 
 def form_params(params):
     if -1 != params.find("name"):
         name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=12))
         params = params.format(name=name)
-
-    # if -1 != params.find('array'):
-    #     seed(1)
-    #     random_i = random.randrange(1, 500)
-    #     sequence = [i for i in range(random_i)]
-    #     shuffle(sequence)
-    #     sequence = str(sequence)
-    #     params = params.format(array=sequence)
 
     if -1 != params.find('file'):
         params = params.format(file="file")
@@ -200,15 +196,15 @@ def form_params(params):
 def main():
     with open("../../DIC/envs/actions.yaml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
-        lf_action = data_loaded.get("lightly-function")
+        lf_action = data_loaded.get("webservices")
         mf_action = data_loaded.get("machine-learngig-inference")
 
     z = lf_action.copy()
-    z.update(mf_action)
+    # z.update(mf_action)
     request_threads = []
 
     for action_name, params in z.items():
-        t = threading.Thread(target=handler, args=(action_name, params, random.randrange(4, 20), 3))
+        t = threading.Thread(target=handler, args=(action_name, params, 8, 3))
         request_threads.append(t)
 
     total = len(request_threads)

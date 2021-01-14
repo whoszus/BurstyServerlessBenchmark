@@ -1,15 +1,21 @@
 # actions
 webservices:
-    hello-world-python: "--param name {name}"
-#     # quicksort: "--param array {array}"
-#     # hash: "--param array {array}"
-#     md5: "--param file {file}"
-#     cryptography: "--param crypt {crypt}"
-
+  hello-world-python: "--param name {name}"
+  hash: ""
+  cryptography: ""
+  md5: ""
+  quicksort: ""
 MlI:
-
+  facerecognition: ""
+  multinomialnb: ""
+  passiveaggressiveclassifier: ""
+  perceptron: ""
+  randomforestregressor: ""
+  sgdclassifier: ""
+  sgdregressor: ""
+  svr: ""
 Big-Data:
-     videoTrans: "--param name {name}"
+     bigdata: ""
 
 Stream:
     stream: ""
