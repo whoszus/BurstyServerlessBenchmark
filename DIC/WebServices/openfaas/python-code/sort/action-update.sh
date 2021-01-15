@@ -1,1 +1,0 @@
-wsk -i  action update  quicksort-python-openwhisk  __main__.py --kind python:3

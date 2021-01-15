@@ -1,12 +1,13 @@
 import time
 import numpy
 import pickle
-
+import json
+import joblib as joblib #add this package
 
 def handle(args):
     startTime = time.time()
-    model_path = "./function/model/Perceptron-general"
-    data_path = "./function/data/Perceptron-general"
+    model_path = "./function/model/RandomForestRegressor-general"
+    data_path = "./function/data/RandomForestRegressor-general"
     with open(model_path, 'rb') as f:
         clf = pickle.load(f)
     with open(data_path, 'rb') as d:

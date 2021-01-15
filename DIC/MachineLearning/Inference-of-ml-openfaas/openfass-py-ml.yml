@@ -8,7 +8,6 @@ functions:
 #    handler: ./pycon
 #    image: tinker.siat.ac.cn/tinker/pycon-tk:latest
 
-
   facerecognition: 
     lang: python3-debian
     handler: ./FaceRecognition    
@@ -20,8 +19,8 @@ functions:
 
   multinomialnb: 
     lang: python3-debian
-    handler: ./MultinomialNB   
-    image: tinker.siat.ac.cn/openfaas-fn/multinomialnb-general:1.0.0
+    handler: ./MultinomialNB
+    image: tinker.siat.ac.cn/openfaas-fn/multinomialnb:1.0.0
     configuration: 
      copy:
       - ./data
@@ -29,8 +28,8 @@ functions:
 
   passiveaggressiveclassifier: 
     lang: python3-debian
-    handler: ./PassiveAggressiveClassifier   
-    image: tinker.siat.ac.cn/openfaas-fn/passiveaggressiveclassifier-general:1.0.0
+    handler: ./PassiveAggressiveClassifier
+    image: tinker.siat.ac.cn/openfaas-fn/passiveaggressiveclassifier:1.0.0
     configuration: 
      copy:
       - ./data
@@ -38,8 +37,8 @@ functions:
 
   perceptron: 
     lang: python3-debian
-    handler: ./Perceptron  
-    image: tinker.siat.ac.cn/openfaas-fn/perceptron-general:1.0.0
+    handler: ./Perceptron
+    image: tinker.siat.ac.cn/openfaas-fn/perceptron:1.0.0
     configuration: 
      copy:
       - ./data
@@ -47,8 +46,8 @@ functions:
 
   randomforestregressor: 
     lang: python3-debian
-    handler: ./RandomForestRegressor  
-    image: tinker.siat.ac.cn/openfaas-fn/randomforestregressor-general:1.0.0
+    handler: ./RandomForestRegressor 
+    image: tinker.siat.ac.cn/openfaas-fn/randomforestregressor:1.0.0
     configuration: 
      copy:
       - ./data
@@ -56,8 +55,8 @@ functions:
 
   sgdclassifier: 
     lang: python3-debian
-    handler: ./SGDClassifier   
-    image: tinker.siat.ac.cn/openfaas-fn/sgdclassifier-general:1.0.0
+    handler: ./SGDClassifier  
+    image: tinker.siat.ac.cn/openfaas-fn/sgdclassifier:1.0.0
     configuration: 
      copy:
       - ./data
@@ -65,8 +64,8 @@ functions:
 
   sgdregressor: 
     lang: python3-debian
-    handler: ./SGDRegressor 
-    image: tinker.siat.ac.cn/openfaas-fn/sgdregressor-general:1.0.0
+    handler: ./SGDRegressor
+    image: tinker.siat.ac.cn/openfaas-fn/sgdregressor:1.0.0
     configuration: 
      copy:
       - ./data
@@ -75,7 +74,7 @@ functions:
   svr: 
     lang: python3-debian
     handler: ./SVR
-    image: tinker.siat.ac.cn/openfaas-fn/svr-general:1.0.0
+    image: tinker.siat.ac.cn/openfaas-fn/svr:1.0.0
     configuration: 
      copy:
       - ./data

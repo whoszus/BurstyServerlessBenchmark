@@ -1,0 +1,10 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://172.169.8.168:31112
+
+functions:
+  hello-python-openfaas:
+    lang: python3-debian
+    handler: ./hello
+    image: tinker.siat.ac.cn/tinker/openfaas-hello-python:1.0.0

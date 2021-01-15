@@ -1,3 +1,3 @@
-docker build . -f kubeless-customized.Dockerfile -t  sgdregressor-general:1.0.0 &&\
-docker push  sgdregressor-general:1.0.0  &&\
-kubeless function deploy --runtime-image sgdregressor-general:1.0.0  --from-file ./handler.py --handler handler.handler --runtime python3.7 sgdregressor-general
+docker build . -f kubeless-customized.Dockerfile -t  tinker.siat.ac.cn/kubelss/sgdregressor:1.0.0 &&\
+docker push  tinker.siat.ac.cn/kubelss/sgdregressor:1.0.0  &&\
+kubeless function deploy --runtime-image tinker.siat.ac.cn/kubelss/sgdregressor:1.0.0  --from-file ./handler.py --handler handler.handler --runtime python3.7 sgdregressor

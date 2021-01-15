@@ -1,1 +1,1 @@
-faas-cli deploy -f openfass-py-ml-config.yml
+faas-cli deploy -f openfass-py-ml.yml

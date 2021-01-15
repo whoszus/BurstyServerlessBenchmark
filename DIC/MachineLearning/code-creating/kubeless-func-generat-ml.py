@@ -61,11 +61,13 @@ def generate_func(path, name):
 
 
 def create_invoker(path, name):
+    name = name.split("-")[0]
     path += 'invoke.sh'
-    tag = name.lower() + ':' + version
+    tag = "tinker.siat.ac.cn/kubelss/"+ name.lower() + ':' + version
 
     with open(shell_tpl, 'r') as tpl:
         tpl_script = tpl.readlines()
+    
     tp = ''.join(tpl_script).format(tag=tag, func_name=name.lower())
 
     with open(path, 'w') as f:

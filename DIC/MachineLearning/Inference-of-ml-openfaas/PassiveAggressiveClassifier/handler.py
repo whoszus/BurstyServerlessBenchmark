@@ -1,12 +1,13 @@
 import time
 import numpy
 import pickle
-
+import json
+import joblib as joblib #add this package
 
 def handle(args):
     startTime = time.time()
-    model_path = "./function/model/SGDClassifier-general"
-    data_path = "./function/data/SGDClassifier-general"
+    model_path = "./function/model/PassiveAggressiveClassifier-general"
+    data_path = "./function/data/PassiveAggressiveClassifier-general"
     with open(model_path, 'rb') as f:
         clf = pickle.load(f)
     with open(data_path, 'rb') as d:

@@ -1,3 +1,3 @@
-FROM tinker.siat.ac.cn/tinker/siat-serverless-ow-py:t.1.0
+FROM openwhisk/python3action:nightly
 
-COPY data /
+COPY data/train.txt /data/
