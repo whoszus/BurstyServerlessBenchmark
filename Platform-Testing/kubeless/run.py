@@ -196,7 +196,7 @@ def form_params(params):
 def main():
     with open("../../DIC/envs/actions.yaml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
-        lf_action = data_loaded.get("webservices")
+        lf_action = data_loaded.get("Stream")
         mf_action = data_loaded.get("machine-learngig-inference")
 
     z = lf_action.copy()
