@@ -197,9 +197,9 @@ def main():
     with open("../../DIC/envs/actions.yaml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
         lf_action = data_loaded.get("Stream")
-        mf_action = data_loaded.get("machine-learngig-inference")
+        mf_action = data_loaded.get("MlI")
 
-    z = lf_action.copy()
+    z = mf_action.copy()
     # z.update(mf_action)
     request_threads = []
 

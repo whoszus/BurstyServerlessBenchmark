@@ -9,3 +9,73 @@ throughput (n/s):
 
 exceptions:0
 success rate: 100.0 %
+ --result for facerecognition, 24 requests--in 21.56s
+start time: 1610718877.0641744 , end_time: 1610718899.249495524 requests finished in 22.13 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+898.33	891	911	926	929	932
+throughput (n/s):
+1.08
+
+exceptions:0
+success rate: 100.0 %
+ --result for sgdclassifier, 24 requests--in 25.042s
+start time: 1610718877.0641744 , end_time: 1610718902.738610724 requests finished in 25.61 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1043.42	1041	1069	1121	1125	1129
+throughput (n/s):
+0.94
+
+exceptions:0
+success rate: 100.0 %
+ --result for passiveaggressiveclassifier, 24 requests--in 25.073s
+start time: 1610718877.0641744 , end_time: 1610718902.741072724 requests finished in 25.61 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1044.71	1021	1070	1125	1130	1161
+throughput (n/s):
+0.94
+
+exceptions:0
+success rate: 100.0 %
+ --result for multinomialnb, 24 requests--in 25.09s
+start time: 1610718877.0641744 , end_time: 1610718902.769698624 requests finished in 25.64 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1045.42	1053	1084	1124	1149	1168
+throughput (n/s):
+0.94
+
+exceptions:0
+success rate: 100.0 %
+ --result for perceptron, 24 requests--in 26.007s
+start time: 1610718877.0641744 , end_time: 1610718903.699204724 requests finished in 26.57 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1083.62	1080	1119	1158	1214	1219
+throughput (n/s):
+0.90
+
+exceptions:0
+success rate: 100.0 %
+ --result for sgdregressor, 24 requests--in 26.22s
+start time: 1610718877.0641744 , end_time: 1610718903.91773324 requests finished in 26.78 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1092.50	1084	1138	1202	1210	1281
+throughput (n/s):
+0.90
+
+exceptions:0
+success rate: 100.0 %
+ --result for svr, 24 requests--in 86.208s
+start time: 1610718877.0641744 , end_time: 1610718963.90989924 requests finished in 86.78 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+3592.00	3181	3269	5036	5109	5308
+throughput (n/s):
+0.28
+
+exceptions:0
+success rate: 100.0 %
