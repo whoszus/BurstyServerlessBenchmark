@@ -1,7 +1,7 @@
 import hashlib
 import os
 import time
-
+import json
 
 def handle(args):
     global token
@@ -10,4 +10,4 @@ def handle(args):
     md5_obj.update(b"user_name.....")
     hash_code = md5_obj.hexdigest()
     token = str(hash_code).lower()
-    return {'token': token, 'startTime': int(round(startTime * 1000))}
+    return json.dumps({'token': token, 'startTime': int(round(startTime * 1000))})

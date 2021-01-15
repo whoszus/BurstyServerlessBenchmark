@@ -4,27 +4,27 @@ provider:
   gateway: http://172.169.8.168:31112
 
 functions:
-  hello-python-openfaas:
+  hello-python:
     lang: python3-debian
     handler: ./hello
     image: tinker.siat.ac.cn/tinker/openfaas-hello-python:1.0.0
 
-  hash-python-openfaas:
+  hash-python:
     lang: python3-debian
     handler: ./hash
     image: tinker.siat.ac.cn/tinker/openfaas-hash-python:1.0.0
 
-  sort-python-openfaas:
+  sort-python:
     lang: python3-debian
     handler: ./sort
     image: tinker.siat.ac.cn/tinker/openfaas-sort-python:1.0.0
 
-  md5-python-openfaas:
+  md5-python:
     lang: python3-debian
     handler: ./Md5
     image: tinker.siat.ac.cn/tinker/openfaas-md5-python:1.0.0
 
-  cryptography-python-openfaas:
+  cryptography-python:
     lang: python3-debian
     handler: ./cryptography
     image: tinker.siat.ac.cn/tinker/openfaas-cryptography-python:1.0.0

@@ -1,13 +1,17 @@
 import time
-
+import json
 
 def handle(args):
     startTime = time.time()
 
-    arr = args.get("array", [3, 6, 8, 10, 1, 2, 1, 4, 5, 6, 7, 8, 2232, 2, 4, 5, 7, 9, 20, 0, 88, 7, 34])
+    try:
+        arr = args.get("array", [3, 6, 8, 10, 1, 2, 1, 4, 5, 6, 7, 8, 2232, 2, 4, 5, 7, 9, 20, 0, 88, 7, 34])
+    except AttributeError:
+        arr = [3, 6, 8, 10, 1, 2, 1, 4, 5, 6, 7, 8, 2232, 2, 4, 5, 7, 9, 20, 0, 88, 7, 34]
+        pass
     result = quicksort(arr)
     token = str(result)
-    return {'token': token, 'startTime': int(round(startTime * 1000))}
+    return json.dumps({'token': token, 'startTime': int(round(startTime * 1000))})
 
 
 def quicksort(arr):

@@ -39,7 +39,7 @@ do
 
     echo Measure start up time: no.$i
     invokeTime=`date +%s%3N`
-    times=`wsk -i action invoke hello-go-whisk --blocking --result $PARAMS` 
+    times=`wsk -i action invoke $ACTIONNAME --blocking --result $PARAMS` 
     endTime=`date +%s%3N`
     startTime=`echo $times | jq -r '.startTime'`
     echo "invokeTime: $invokeTime, startTime: $startTime, endTime: $endTime"

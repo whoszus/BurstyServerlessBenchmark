@@ -20,7 +20,7 @@ def create_docker_file(path, name):
     path += '{model_name}.Dockerfile'.format(model_name=name.lower())
     with open(docker_tpl, 'r') as tpl:
         tpl_script = tpl.readlines()
-    tp = ''.join(tpl_script)
+    tp = ''.join(tpl_script).format(model_name = name)
     with open(path, 'w') as func:
         func.write(tp)
 
@@ -63,7 +63,7 @@ def generate_func(path, name):
 def create_invoker(path, name):
     name = name.split("-")[0]
     path += 'invoke.sh'
-    tag = "tinker.siat.ac.cn/kubelss/"+ name.lower() + ':' + version
+    tag = "tinker.siat.ac.cn/kubeless/"+ name.lower() + ':' + version
 
     with open(shell_tpl, 'r') as tpl:
         tpl_script = tpl.readlines()

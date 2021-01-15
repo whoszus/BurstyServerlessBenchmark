@@ -1,16 +1,16 @@
 # actions
 webservices:
-  hello-python-openwhisk: "--param name {name}"
-  hash-python-openwhisk: ""
-  cryptography-python-openwhisk: ""
-  md5-python-openwhisk: ""
-  quicksort-python-openwhisk: ""
+  hello-python: "--param name {name}"
+  hash-python: ""
+  cryptography-python: ""
+  md5-python: ""
+  quicksort-python: ""
 MlI:
   facerecognition: ""
   multinomialnb: ""
   passiveaggressiveclassifier: ""
   perceptron: ""
-  randomforestregressor: ""
+  #randomforestregressor: ""
   sgdclassifier: ""
   sgdregressor: ""
   svr: ""
@@ -19,6 +19,3 @@ Big-Data:
 
 Stream:
   stream: ""
-
-WebServices:
-  hello-go-whisk: "--param name {name}"

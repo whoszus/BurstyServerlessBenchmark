@@ -2,7 +2,6 @@ import time
 import numpy
 import pickle
 
-
 def main(args):
     startTime = time.time()
     model_path = "/model/SGDClassifier-general"

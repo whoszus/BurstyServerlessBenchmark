@@ -40,7 +40,7 @@ def handler(action_name, params, client_num, times):
                 # print("handler timeout in {}".format(thread_time_out))
                 future.cancel()
 
-    outfile = open("result.csv", "w")
+    outfile = open("result.csv", "a+")
     outfile.write("action_name,invokeTime,startTime,endTime\n")
 
     latencies = []
@@ -68,6 +68,7 @@ def handler(action_name, params, client_num, times):
 
 
 def client(action_name, times, params, exception_count):
+    print("exec ", action_name)
     command = "./executor.sh -a {action_name} -t {times} -p '{params}'"
     command = command.format(action_name=action_name, times=times, params=params)
     # print("client1:", command)
@@ -219,7 +220,7 @@ def get_qps(type="webservices", mode="single", limit=100):
 def main():
     # def mode; limit
     mode = "single"
-    limit = 100
+    limit = 200
 
     with open("../../DIC/envs/actions.yaml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
@@ -228,15 +229,15 @@ def main():
         bd_action = data_loaded.get("Big-Data")
         stream_action = data_loaded.get("Stream")
 
-    z = mf_action.copy()
+    z = lf_action.copy()
     # z.update(mf_action)
     # z.update(bd_action)
     # z.update(stream_action)
     request_threads = []
 
     for action_name, params in z.items():
-        qps = get_qps(type="webservices", limit=100)
-        t = threading.Thread(target=handler, args=(action_name, params, qps, 2))
+        qps = get_qps(type="webservices", limit=limit)
+        t = threading.Thread(target=handler, args=(action_name, params,3, qps))
         request_threads.append(t)
 
     total = len(request_threads)

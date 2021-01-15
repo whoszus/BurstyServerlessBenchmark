@@ -1,6 +1,6 @@
 import time
 from collections import Counter
-
+import json
 
 def handle(c):
     startTime = time.time()
@@ -9,4 +9,4 @@ def handle(c):
         count = Counter(doc.read().strip().split())
     # for key, value in count.most_common(100):
     #     print(key + " - " + str(value))
-    return {'token': 'inference finished', 'startTime': int(round(startTime * 1000))}
+    return json.dumps({'token': 'inference finished', 'startTime': int(round(startTime * 1000))})

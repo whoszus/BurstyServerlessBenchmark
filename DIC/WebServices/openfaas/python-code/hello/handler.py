@@ -1,7 +1,14 @@
-from helper import helper
+#from helper import helper
 import time
-
+import json
 
 def handle(args):
     startTime = time.time()
-    return {'token': helper(args), 'startTime': int(round(startTime * 1000))}
+
+    if 'name' in args:
+       name = args['name']
+    else:
+       name = "stranger"
+    greeting = "Hello from helper.py, " + name + "!"
+
+    return json.dumps({'token': greeting, 'startTime': int(round(startTime * 1000))})
