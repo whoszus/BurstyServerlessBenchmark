@@ -1,1 +1,0 @@
-zip -r env.zip ./* && wsk -i  action update  hello-world-python  env.zip --kind python:3

@@ -39,10 +39,10 @@ do
 
     echo Measure start up time: no.$i
     invokeTime=`date +%s%3N`
-    times=`curl http://172.16.101.168:31112/function/stream`
+    times=`curl http://172.16.101.168:31112/function/passiveaggressiveclassifier`
     echo $times
     endTime=`date +%s%3N`
-    startTime=`echo '$times' | jq -r '.startTime'`
+    startTime=`echo $times | jq -r '.startTime'`
     echo "invokeTime: $invokeTime, startTime: $startTime, endTime: $endTime"
     
     latency=`expr $endTime - $invokeTime`

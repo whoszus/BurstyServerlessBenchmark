@@ -1,0 +1,11 @@
+
+ --result for stream, 24 requests--in 2.21s
+start time: 1610631696.1506355 , end_time: 1610631698.986542224 requests finished in 2.78 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+92.08	92	97	104	111	126
+throughput (n/s):
+8.64
+
+exceptions:0
+success rate: 100.0 %

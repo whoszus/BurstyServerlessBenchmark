@@ -3,7 +3,7 @@ import numpy
 import pickle
 
 
-def main(args):
+def handle(args):
     startTime = time.time()
     model_path = "./function/model/Perceptron-general"
     data_path = "./function/data/Perceptron-general"
@@ -13,4 +13,4 @@ def main(args):
         data = pickle.load(d)
     clf.predict(data)
 
-    return {'token':  'inference finished', 'startTime': int(round(startTime * 1000))}
+    return json.dumps({'token':  'inference finished', 'startTime': int(round(startTime * 1000))})

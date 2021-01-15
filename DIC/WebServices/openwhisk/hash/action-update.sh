@@ -1,1 +1,0 @@
-wsk -i  action update  hash __main__.py --kind python:3

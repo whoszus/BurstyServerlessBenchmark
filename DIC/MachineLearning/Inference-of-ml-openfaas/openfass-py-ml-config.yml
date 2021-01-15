@@ -18,63 +18,63 @@ functions:
       - ./data
       - ./model
 
-  multinomialnb-general: 
+  multinomialnb: 
     lang: python3-debian
-    handler: ./MultinomialNB-general    
+    handler: ./MultinomialNB   
     image: tinker.siat.ac.cn/openfaas-fn/multinomialnb-general:1.0.0
     configuration: 
      copy:
       - ./data
       - ./model
 
-  passiveaggressiveclassifier-general: 
+  passiveaggressiveclassifier: 
     lang: python3-debian
-    handler: ./PassiveAggressiveClassifier-general    
+    handler: ./PassiveAggressiveClassifier   
     image: tinker.siat.ac.cn/openfaas-fn/passiveaggressiveclassifier-general:1.0.0
     configuration: 
      copy:
       - ./data
       - ./model
 
-  perceptron-general: 
+  perceptron: 
     lang: python3-debian
-    handler: ./Perceptron-general    
+    handler: ./Perceptron  
     image: tinker.siat.ac.cn/openfaas-fn/perceptron-general:1.0.0
     configuration: 
      copy:
       - ./data
       - ./model
 
-  randomforestregressor-general: 
+  randomforestregressor: 
     lang: python3-debian
-    handler: ./RandomForestRegressor-general    
+    handler: ./RandomForestRegressor  
     image: tinker.siat.ac.cn/openfaas-fn/randomforestregressor-general:1.0.0
     configuration: 
      copy:
       - ./data
       - ./model
 
-  sgdclassifier-general: 
+  sgdclassifier: 
     lang: python3-debian
-    handler: ./SGDClassifier-general    
+    handler: ./SGDClassifier   
     image: tinker.siat.ac.cn/openfaas-fn/sgdclassifier-general:1.0.0
     configuration: 
      copy:
       - ./data
       - ./model
 
-  sgdregressor-general: 
+  sgdregressor: 
     lang: python3-debian
-    handler: ./SGDRegressor-general    
+    handler: ./SGDRegressor 
     image: tinker.siat.ac.cn/openfaas-fn/sgdregressor-general:1.0.0
     configuration: 
      copy:
       - ./data
       - ./model
 
-  svr-general: 
+  svr: 
     lang: python3-debian
-    handler: ./SVR-general    
+    handler: ./SVR
     image: tinker.siat.ac.cn/openfaas-fn/svr-general:1.0.0
     configuration: 
      copy:

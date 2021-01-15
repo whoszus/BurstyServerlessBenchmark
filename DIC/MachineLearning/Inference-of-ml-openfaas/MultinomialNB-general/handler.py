@@ -1,9 +1,9 @@
 import time
 import numpy
 import pickle
+import json
 
-
-def main(args):
+def handle(args):
     startTime = time.time()
     model_path = "./function/model/MultinomialNB-general"
     data_path = "./function/data/MultinomialNB-general"
@@ -13,4 +13,4 @@ def main(args):
         data = pickle.load(d)
     clf.predict(data)
 
-    return {'token':  'inference finished', 'startTime': int(round(startTime * 1000))}
+    return json.dumps({'token':  'inference finished', 'startTime': int(round(startTime * 1000))})

@@ -1,0 +1,1 @@
+zip -r env.zip ./* && wsk -i  action update  hello-python-openwhisk  env.zip --kind python:3

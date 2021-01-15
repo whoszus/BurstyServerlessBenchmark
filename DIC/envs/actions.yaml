@@ -1,10 +1,10 @@
 # actions
 webservices:
-  hello-world-python: "--param name {name}"
-  hash: ""
-  cryptography: ""
-  md5: ""
-  quicksort: ""
+  hello-python-openwhisk: "--param name {name}"
+  hash-python-openwhisk: ""
+  cryptography-python-openwhisk: ""
+  md5-python-openwhisk: ""
+  quicksort-python-openwhisk: ""
 MlI:
   facerecognition: ""
   multinomialnb: ""
@@ -19,3 +19,6 @@ Big-Data:
 
 Stream:
   stream: ""
+
+WebServices:
+  hello-go-whisk: "--param name {name}"

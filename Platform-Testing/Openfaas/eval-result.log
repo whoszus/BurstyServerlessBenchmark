@@ -1,0 +1,21 @@
+
+ --result for stream, 24 requests--in 33.242s
+start time: 1610634647.408702 , end_time: 1610634681.30531324 requests finished in 33.84 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1385.08	1383	1395	1404	1406	1410
+throughput (n/s):
+0.71
+
+exceptions:0
+success rate: 100.0 %
+ --result for stream, 24 requests--in 33.292s
+start time: 1610635518.7480023 , end_time: 1610635552.68639124 requests finished in 33.88 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1387.17	1384	1395	1402	1405	1413
+throughput (n/s):
+0.71
+
+exceptions:0
+success rate: 100.0 %

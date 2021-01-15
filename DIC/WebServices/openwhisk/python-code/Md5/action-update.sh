@@ -1,0 +1,1 @@
+wsk -i  action update  md5-python-openwhisk __main__.py --kind python:3

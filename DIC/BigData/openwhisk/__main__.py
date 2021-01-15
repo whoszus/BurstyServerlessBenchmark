@@ -12,6 +12,3 @@ def main(args):
     end_time = time.time()
     print(end_time -startTime)
     return {'token': 'inference finished', 'startTime': int(round(startTime * 1000))}
-
-
-print(main({}))

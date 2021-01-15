@@ -228,7 +228,7 @@ def main():
         bd_action = data_loaded.get("Big-Data")
         stream_action = data_loaded.get("Stream")
 
-    z = lf_action.copy()
+    z = mf_action.copy()
     # z.update(mf_action)
     # z.update(bd_action)
     # z.update(stream_action)
