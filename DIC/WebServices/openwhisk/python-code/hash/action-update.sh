@@ -1,1 +1,1 @@
-wsk -i  action update  hash-python __main__.py --kind python:3
+wsk -i  action update  hash-python __main__.py --kind python:3 -t 300000

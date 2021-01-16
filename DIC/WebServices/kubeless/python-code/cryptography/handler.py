@@ -4,7 +4,10 @@ import time
 
 def handler(event, context):
     startTime = time.time()
-    obj = args.get("crypt", "crypt test")
+
+    obj = "hashtest"
+
+    #obj = args.get("crypt", "crypt test")
     obj = bytes(obj, 'utf-8')
     key1 = Fernet(Fernet.generate_key())
     key2 = Fernet(Fernet.generate_key())

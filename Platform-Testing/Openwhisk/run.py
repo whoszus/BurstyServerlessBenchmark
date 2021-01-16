@@ -9,36 +9,51 @@ import yaml
 from numpy.random import seed
 import concurrent.futures
 
-start_time = time.time()
-end_time = 0
-
-mutex = Lock()
-
 
 def handler(action_name, params, client_num, times):
-    # threads = []
+    start_time = time.time()
+
+    threads = []
     results = []
     exception_count = 0
     time_out = 0
     thread_time_out = 60
-    for i in range(client_num):
-        results.append('')
+    # for i in range(client_num):
+    #     results.append('')
 
     print("starting  request")
 
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        for i in range(client_num):
-            params = form_params(params)
-            future = executor.submit(client, action_name, times, params, exception_count)
-            try:
-                return_value = future.result(timeout=thread_time_out)
-                # print("handler1 return_value :", return_value)
-                if return_value.__contains__("invokeTime"):
-                    results.append(return_value)
-            except concurrent.futures.TimeoutError:
-                time_out += 1
-                # print("handler timeout in {}".format(thread_time_out))
-                future.cancel()
+    # with concurrent.futures.ThreadPoolExecutor(max_workers=1024) as executor:
+    #     for i in range(client_num):
+    #         params = form_params(params)
+    #         future = executor.submit(client, action_name, times, params, exception_count)
+    #         try:
+    #             return_value = future.result(timeout=thread_time_out)
+    #             # print("handler1 return_value :", return_value)
+    #             if return_value.__contains__("invokeTime"):
+    #                 results.append(return_value)
+    #         except concurrent.futures.TimeoutError:
+    #             time_out += 1
+    #             # print("handler timeout in {}".format(thread_time_out))
+    #             future.cancel()
+
+    for i in range(client_num):
+        t = threading.Thread(target=client_1,args=(i,results, action_name,times,params,exception_count))
+        threads.append(t)
+
+    # start the clients
+    for i in range(client_num):
+        threads[i].start()
+
+    print("start running functions")
+
+    for i in range(client_num):
+        threads[i].join()
+    
+
+    print("all functions finished ")
+    
+
 
     outfile = open("result.csv", "a+")
     outfile.write("action_name,invokeTime,startTime,endTime\n")
@@ -46,25 +61,33 @@ def handler(action_name, params, client_num, times):
     latencies = []
     minInvokeTime = 0x7fffffffffffffff
     maxEndTime = 0
-    first_invoke_time = ''
+    state = True  
 
+    while state:
+        l = len(results)
+        if l == client_num:
+            print("all finished!!!")
+            for i in range(len(results)):
+                clientResult = parseResult(results[i])
+                for j in range(len(clientResult)):
+                    outfile.write(
+                        action_name + ',' + clientResult[j][0] + ',' + clientResult[j][1] + ',' + clientResult[j][2] + '\n')
+                    latency = int(clientResult[j][-1]) - int(clientResult[j][0])
+                    latencies.append(latency)
+
+                    # Find the first invoked action and the last return one.
+                    if int(clientResult[j][0]) < minInvokeTime:
+                        minInvokeTime = int(clientResult[j][0])
+                    if int(clientResult[j][-1]) > maxEndTime:
+                        maxEndTime = int(clientResult[j][-1])
+            formatResult(latencies, maxEndTime - minInvokeTime, client_num, times, action_name, exception_count,
+                        start_time)
+            break
+        time.sleep(3)
+        print("wait more 3s, finished:", l, client_num)
+    
     # requests = client_num * times - exception_count
-
-    for i in range(len(results)):
-        clientResult = parseResult(results[i])
-        for j in range(len(clientResult)):
-            outfile.write(
-                action_name + ',' + clientResult[j][0] + ',' + clientResult[j][1] + ',' + clientResult[j][2] + '\n')
-            latency = int(clientResult[j][-1]) - int(clientResult[j][0])
-            latencies.append(latency)
-
-            # Find the first invoked action and the last return one.
-            if int(clientResult[j][0]) < minInvokeTime:
-                minInvokeTime = int(clientResult[j][0])
-            if int(clientResult[j][-1]) > maxEndTime:
-                maxEndTime = int(clientResult[j][-1])
-    formatResult(latencies, maxEndTime - minInvokeTime, client_num, times, action_name, exception_count,
-                 first_invoke_time)
+    
 
 
 def client(action_name, times, params, exception_count):
@@ -82,6 +105,24 @@ def client(action_name, times, params, exception_count):
         print("client3:", text)
         exception_count += 1
         return
+
+def client_1(i,result, action_name, times, params, exception_count):
+    print("exec ", action_name)
+    command = "./executor.sh -a {action_name} -t {times} -p '{params}'"
+    command = command.format(action_name=action_name, times=times, params=params)
+    # print("client1:", command)
+    r = os.popen(command)
+    text = r.read()
+    r.close()
+
+    if text.__contains__("Measure start up time"):
+        result.append(text)
+    else:
+        print("client3:", text)
+        exception_count += 1
+        return
+
+
 
 
 def parseResult(result):
@@ -108,7 +149,7 @@ def parseResult(result):
     return parsedResults
 
 
-def formatResult(latencies, duration, client, loop, action_name, exception_count, first_invoke_time):
+def formatResult(latencies, duration, client, loop, action_name, exception_count, start_time):
     total_req = client * loop
     end_time = time.time()
 
@@ -123,8 +164,9 @@ def formatResult(latencies, duration, client, loop, action_name, exception_count
     total = 0
     for latency in latencies:
         total += latency
+    duration = end_time - start_time    
     print("\n")
-    print("--result for {}, {} requests--in {}s".format(action_name, total_req, total / 1000))
+    print("--result for {}, {} requests--in {}s".format(action_name, total_req, duration))
     averageLatency = float(total) / request_num
     _50pcLatency = latencies[int(request_num * 0.5) - 1]
     _75pcLatency = latencies[int(request_num * 0.75) - 1]
@@ -135,7 +177,7 @@ def formatResult(latencies, duration, client, loop, action_name, exception_count
     print("latency (ms):\navg\t50%\t75%\t90%\t95%\t99%")
     print("%.2f\t%d\t%d\t%d\t%d\t%d" % (
         averageLatency, _50pcLatency, _75pcLatency, _90pcLatency, _95pcLatency, _99pcLatency))
-    print("throughput (n/s):\n%.2f" % (request_num / (duration / 1000)))
+    print("throughput (n/s):\n%.2f" % (request_num /duration))
     print("exceptions:", exception_count)
     print("success rate: {} %".format(100 * (request_num / total_req)))
 
@@ -143,7 +185,7 @@ def formatResult(latencies, duration, client, loop, action_name, exception_count
     resultfile = open("eval-result.log", "a")
     resultfile.write("\n --result for {}, {} requests--in {}s".format(action_name, total_req, total / 1000))
     resultfile.write("\nstart time: {} , end_time: {}".format(str(start_time), str(end_time)))
-    resultfile.write("%d requests finished in %.2f seconds\n" % (request_num, (duration / 1000)))
+    resultfile.write("%d requests finished in %.2f seconds\n" % (request_num, duration))
     resultfile.write("latency (ms):\navg\t50%\t75%\t90%\t95%\t99%\n")
     resultfile.write("%.2f\t%d\t%d\t%d\t%d\t%d\n" % (
         averageLatency, _50pcLatency, _75pcLatency, _90pcLatency, _95pcLatency, _99pcLatency))
@@ -220,7 +262,7 @@ def get_qps(type="webservices", mode="single", limit=100):
 def main():
     # def mode; limit
     mode = "single"
-    limit = 200
+    limit = 60
 
     with open("../../DIC/envs/actions.yaml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
@@ -237,7 +279,7 @@ def main():
 
     for action_name, params in z.items():
         qps = get_qps(type="webservices", limit=limit)
-        t = threading.Thread(target=handler, args=(action_name, params,3, qps))
+        t = threading.Thread(target=handler, args=(action_name, params,qps,3 ))
         request_threads.append(t)
 
     total = len(request_threads)
