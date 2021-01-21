@@ -1,0 +1,1 @@
+kubeless function deploy sort-java --runtime java1.8 --handler Sort.foo --from-file Sort.java --dependencies pom.xml

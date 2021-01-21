@@ -1,20 +1,18 @@
-import Foundation
-
-extension Date {
-    var timeStamp : String {
-        let timeInterval: TimeInterval = self.timeIntervalSince1970
-        let timeStamp = Int(timeInterval)
-        return "\(timeStamp)"
-    }
-
-    var milliStamp : String {
-        let timeInterval: TimeInterval = self.timeIntervalSince1970
-        let millisecond = CLongLong(round(timeInterval*1000))
-        return "\(millisecond)"
-    }
-}
-
 func main(args: [String:Any]) -> [String:Any] {
+    extension Date {
+        var timeStamp : String {
+            let timeInterval: TimeInterval = self.timeIntervalSince1970
+            let timeStamp = Int(timeInterval)
+            return "\(timeStamp)"
+        }
+
+        var milliStamp : String {
+            let timeInterval: TimeInterval = self.timeIntervalSince1970
+            let millisecond = CLongLong(round(timeInterval*1000))
+            return "\(millisecond)"
+        }
+    }
+
     let startTime = Date().milliStamp
     if let name = args["name"] as? String {
         return [ "token" : "Hello \(name)!" , "startTime" : startTime]

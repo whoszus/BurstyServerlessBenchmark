@@ -262,7 +262,7 @@ def get_qps(type="webservices", mode="single", limit=100):
 def main():
     # def mode; limit
     mode = "single"
-    limit = 60
+    limit = 200
 
     with open("../../DIC/envs/actions.yaml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)

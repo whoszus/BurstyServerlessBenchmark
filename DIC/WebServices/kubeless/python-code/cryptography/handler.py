@@ -5,7 +5,7 @@ import time
 def handler(event, context):
     startTime = time.time()
 
-    obj = "hashtest"
+    obj = "crypt test"
 
     #obj = args.get("crypt", "crypt test")
     obj = bytes(obj, 'utf-8')

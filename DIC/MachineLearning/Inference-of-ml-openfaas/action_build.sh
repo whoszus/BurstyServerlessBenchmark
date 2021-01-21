@@ -1,1 +1,1 @@
-faas-cli build -f openfass-py-ml.yml --no-cache
+faas-cli build -f openfass-py-ml.yml

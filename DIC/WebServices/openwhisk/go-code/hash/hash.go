@@ -16,10 +16,10 @@ func Main(obj map[string]interface{}) map[string]interface{} {
         str = "hashtest"
     }
 
-    Sha1Inst := sha1.New()
-    Sha1Inst.Write([]byte(str))
-    result = Sha1Inst.Sum([]byte(""))
-    sha1data := fmt.Sprintf("%x", result)
+    h := sha1.New()
+    h.Write([]byte(str))
+    bs := h.Sum(nil)
+    sha1data := fmt.Sprintf("%x", bs)
 
     msg := make(map[string]interface{})
     msg["token"] = string(sha1data)

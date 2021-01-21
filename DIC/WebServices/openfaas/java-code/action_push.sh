@@ -1,0 +1,1 @@
+faas-cli push -f java-openfaas.yml
