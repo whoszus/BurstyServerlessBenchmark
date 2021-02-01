@@ -42,8 +42,8 @@ def handler(action_name, params, client_num, times):
                 # print("handler timeout in {}".format(thread_time_out))
                 future.cancel()
 
-    outfile = open("result.csv", "w")
-    outfile.write("action_name,invokeTime,startTime,endTime\n")
+    outfile = open("result.csv", "a+")
+    # outfile.write("action_name,invokeTime,startTime,endTime\n")
 
     latencies = []
     minInvokeTime = 0x7fffffffffffffff
@@ -196,15 +196,15 @@ def form_params(params):
 def main():
     with open("../../DIC/envs/actions.yaml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
-        lf_action = data_loaded.get("Stream")
+        lf_action = data_loaded.get("webservices")
         mf_action = data_loaded.get("MlI")
 
-    z = mf_action.copy()
+    z = lf_action.copy()
     # z.update(mf_action)
     request_threads = []
 
     for action_name, params in z.items():
-        t = threading.Thread(target=handler, args=(action_name, params, 8, 3))
+        t = threading.Thread(target=handler, args=(action_name, params, 60, 3))
         request_threads.append(t)
 
     total = len(request_threads)
