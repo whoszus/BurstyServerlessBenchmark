@@ -39,7 +39,7 @@ do
 
     echo Measure start up time: no.$i
     invokeTime=`date +%s%3N`
-    times=`curl http://172.169.8.5:31112/function/$ACTIONNAME.openfaas-fn`
+    times=`curl -s http://172.169.8.5:31112/function/$ACTIONNAME.openfaas-fn`
     echo $times
     endTime=`date +%s%3N`
     startTime=`echo $times | jq -r '.startTime'`

@@ -91,7 +91,7 @@ def handler(action_name, params, client_num, times):
 
 
 def client(action_name, times, params, exception_count):
-    print("exec ", action_name)
+    # print("exec ", action_name)
     command = "./executor.sh -a {action_name} -t {times} -p '{params}'"
     command = command.format(action_name=action_name, times=times, params=params)
     # print("client1:", command)
@@ -262,7 +262,7 @@ def get_qps(type="webservices", mode="single", limit=100):
 def main():
     # def mode; limit
     mode = "single"
-    limit = 200
+    limit = 60
 
     with open("../../DIC/envs/actions.yaml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
@@ -279,7 +279,7 @@ def main():
 
     for action_name, params in z.items():
         qps = get_qps(type="webservices", limit=limit)
-        t = threading.Thread(target=handler, args=(action_name, params,qps,3 ))
+        t = threading.Thread(target=handler, args=(action_name, params,50,3))
         request_threads.append(t)
 
     total = len(request_threads)

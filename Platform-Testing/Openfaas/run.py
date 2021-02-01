@@ -14,8 +14,6 @@ start_time = time.time()
 end_time = 0
 
 
-mutex = Lock()
-
 
 def handler(action_name, params, client_num, times):
     # threads = []
@@ -42,7 +40,7 @@ def handler(action_name, params, client_num, times):
                 # print("handler timeout in {}".format(thread_time_out))
                 future.cancel()
 
-    outfile = open("result.csv", "w")
+    outfile = open("result.csv", "a+")
     outfile.write("action_name,invokeTime,startTime,endTime\n")
 
     latencies = []
@@ -200,13 +198,13 @@ def main():
         mf_action = data_loaded.get("MlI")
         st_action = data_loaded.get("Stream")
 
-    z = mf_action.copy()
+    z = lf_action.copy()
     # z.update(mf_action)
     request_threads = []
 
     for action_name, params in z.items():
         #print(action_name)
-        t = threading.Thread(target=handler, args=(action_name, params, 8, 3))
+        t = threading.Thread(target=handler, args=(action_name, params, 60, 3))
         request_threads.append(t)
 
     total = len(request_threads)

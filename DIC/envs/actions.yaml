@@ -13,10 +13,10 @@ webservices:
   hash-nodejs: ""
   md5-nodejs: ""
   sort-nodejs: ""
- # hello-go: "--param name {name}"
- # hash-go: ""
- # md5-go: ""
- # sort-go: ""
+  hello-go: "--param name {name}"
+  hash-go: ""
+  md5-go: ""
+  sort-go: ""
  # Go could run in openwhisk normally
 MlI:
   facerecognition: ""
