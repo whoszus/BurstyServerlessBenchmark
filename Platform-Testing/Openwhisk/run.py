@@ -8,6 +8,7 @@ import time
 import yaml
 from numpy.random import seed
 import concurrent.futures
+import random
 
 
 def handler(action_name, params, client_num, times):
@@ -38,7 +39,7 @@ def handler(action_name, params, client_num, times):
     #             future.cancel()
 
     for i in range(client_num):
-        t = threading.Thread(target=client_1,args=(i,results, action_name,times,params,exception_count))
+        t = threading.Thread(target=client_1, args=(i, results, action_name, times, params, exception_count))
         threads.append(t)
 
     # start the clients
@@ -49,11 +50,8 @@ def handler(action_name, params, client_num, times):
 
     for i in range(client_num):
         threads[i].join()
-    
 
     print("all functions finished ")
-    
-
 
     outfile = open("result.csv", "a+")
     outfile.write("action_name,invokeTime,startTime,endTime\n")
@@ -61,7 +59,7 @@ def handler(action_name, params, client_num, times):
     latencies = []
     minInvokeTime = 0x7fffffffffffffff
     maxEndTime = 0
-    state = True  
+    state = True
 
     while state:
         l = len(results)
@@ -71,7 +69,8 @@ def handler(action_name, params, client_num, times):
                 clientResult = parseResult(results[i])
                 for j in range(len(clientResult)):
                     outfile.write(
-                        action_name + ',' + clientResult[j][0] + ',' + clientResult[j][1] + ',' + clientResult[j][2] + '\n')
+                        action_name + ',' + clientResult[j][0] + ',' + clientResult[j][1] + ',' + clientResult[j][
+                            2] + '\n')
                     latency = int(clientResult[j][-1]) - int(clientResult[j][0])
                     latencies.append(latency)
 
@@ -81,13 +80,12 @@ def handler(action_name, params, client_num, times):
                     if int(clientResult[j][-1]) > maxEndTime:
                         maxEndTime = int(clientResult[j][-1])
             formatResult(latencies, maxEndTime - minInvokeTime, client_num, times, action_name, exception_count,
-                        start_time)
+                         start_time)
             break
         time.sleep(3)
         print("wait more 3s, finished:", l, client_num)
-    
+
     # requests = client_num * times - exception_count
-    
 
 
 def client(action_name, times, params, exception_count):
@@ -106,7 +104,8 @@ def client(action_name, times, params, exception_count):
         exception_count += 1
         return
 
-def client_1(i,result, action_name, times, params, exception_count):
+
+def client_1(i, result, action_name, times, params, exception_count):
     print("exec ", action_name)
     command = "./executor.sh -a {action_name} -t {times} -p '{params}'"
     command = command.format(action_name=action_name, times=times, params=params)
@@ -121,8 +120,6 @@ def client_1(i,result, action_name, times, params, exception_count):
         print("client3:", text)
         exception_count += 1
         return
-
-
 
 
 def parseResult(result):
@@ -164,7 +161,7 @@ def formatResult(latencies, duration, client, loop, action_name, exception_count
     total = 0
     for latency in latencies:
         total += latency
-    duration = end_time - start_time    
+    duration = end_time - start_time
     print("\n")
     print("--result for {}, {} requests--in {}s".format(action_name, total_req, duration))
     averageLatency = float(total) / request_num
@@ -177,7 +174,7 @@ def formatResult(latencies, duration, client, loop, action_name, exception_count
     print("latency (ms):\navg\t50%\t75%\t90%\t95%\t99%")
     print("%.2f\t%d\t%d\t%d\t%d\t%d" % (
         averageLatency, _50pcLatency, _75pcLatency, _90pcLatency, _95pcLatency, _99pcLatency))
-    print("throughput (n/s):\n%.2f" % (request_num /duration))
+    print("throughput (n/s):\n%.2f" % (request_num / duration))
     print("exceptions:", exception_count)
     print("success rate: {} %".format(100 * (request_num / total_req)))
 
@@ -261,8 +258,10 @@ def get_qps(type="webservices", mode="single", limit=100):
 
 def main():
     # def mode; limit
-    mode = "single"
-    limit = 60
+    mode = "mix"
+    radio = 0.3
+    limit_qps = 720 * radio
+    loop_per_thread = 3
 
     with open("../../DIC/envs/actions.yaml", 'r') as stream:
         data_loaded = yaml.safe_load(stream)
@@ -271,17 +270,30 @@ def main():
         bd_action = data_loaded.get("Big-Data")
         stream_action = data_loaded.get("Stream")
 
-    z = lf_action.copy()
+    # z = lf_action.copy()
     # z.update(mf_action)
     # z.update(bd_action)
     # z.update(stream_action)
     request_threads = []
 
-    for action_name, params in z.items():
-        qps = get_qps(type="webservices", limit=limit)
-        t = threading.Thread(target=handler, args=(action_name, params,50,3))
+    for action_name, params in lf_action.items():
+        qps = get_qps(type="webservices", limit=limit_qps, mode=mode)
+        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
+        request_threads.append(t)
+    for action_name, params in mf_action.items():
+        qps = get_qps(type="MlI", limit=limit_qps, mode=mode)
+        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
+        request_threads.append(t)
+    for action_name, params in bd_action.items():
+        qps = get_qps(type="Big-Data", limit=limit_qps, mode=mode)
+        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
+        request_threads.append(t)
+    for action_name, params in stream_action.items():
+        qps = get_qps(type="Stream", limit=limit_qps, mode=mode)
+        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
         request_threads.append(t)
 
+    random.shuffle(request_threads)
     total = len(request_threads)
     for i in range(total):
         request_threads[i].start()
