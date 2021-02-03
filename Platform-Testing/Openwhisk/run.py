@@ -79,7 +79,7 @@ def handler(action_name, params, client_num, times):
                         minInvokeTime = int(clientResult[j][0])
                     if int(clientResult[j][-1]) > maxEndTime:
                         maxEndTime = int(clientResult[j][-1])
-            formatResult(latencies, maxEndTime - minInvokeTime, client_num, times, action_name, exception_count,
+            formatResult(latencies, client_num, times, action_name, exception_count,
                          start_time)
             break
         time.sleep(3)
@@ -89,7 +89,6 @@ def handler(action_name, params, client_num, times):
 
 
 def client(action_name, times, params, exception_count):
-    # print("exec ", action_name)
     command = "./executor.sh -a {action_name} -t {times} -p '{params}'"
     command = command.format(action_name=action_name, times=times, params=params)
     # print("client1:", command)
@@ -146,22 +145,18 @@ def parseResult(result):
     return parsedResults
 
 
-def formatResult(latencies, duration, client, loop, action_name, exception_count, start_time):
+def formatResult(latencies, client, loop, action_name, exception_count, start_time):
     total_req = client * loop
     end_time = time.time()
 
     request_num = len(latencies)
 
-    if request_num == 0:
-        print("formatResult, All failed in {}".format(duration / 1000))
-        return
     latencies.sort()
-    duration = float(duration)
 
     total = 0
     for latency in latencies:
         total += latency
-    duration = end_time - start_time
+    duration = end_time -start_time
     print("\n")
     print("--result for {}, {} requests--in {}s".format(action_name, total_req, duration))
     averageLatency = float(total) / request_num
@@ -186,13 +181,13 @@ def formatResult(latencies, duration, client, loop, action_name, exception_count
     resultfile.write("latency (ms):\navg\t50%\t75%\t90%\t95%\t99%\n")
     resultfile.write("%.2f\t%d\t%d\t%d\t%d\t%d\n" % (
         averageLatency, _50pcLatency, _75pcLatency, _90pcLatency, _95pcLatency, _99pcLatency))
-    resultfile.write("throughput (n/s):\n%.2f\n" % (request_num / (duration / 1000)))
+    throughput = request_num / duration
+    resultfile.write("throughput (n/s):\n%.2f\n" % (throughput))
     resultfile.write("\nexceptions:{}".format(exception_count))
     resultfile.write("\nsuccess rate: {} %".format(100 * (request_num / total_req)))
     resultfile.close()
-    overview = '\n' + action_name + ',' + str(request_num) + ',' + str(start_time) + ',' + str(end_time) + ',' + str(
-        averageLatency) + ',' + str(_50pcLatency) + ',' + str(_75pcLatency) + ',' + str(_90pcLatency) + ',' + str(
-        _95pcLatency) + ',' + str(_99pcLatency)
+    overview = '\n'+action_name + ',' + str(request_num)+ ',' +  str(start_time)+ ',' +  str(end_time)+ ',' +  str(averageLatency)+ ',' +  str(_50pcLatency)+ ',' +  str(_75pcLatency)+ ',' + str(_90pcLatency) + ',' +  str(_95pcLatency)+ ',' +  str(_99pcLatency) + ',' +  str(throughput) 
+
 
     with open("overview.csv", "a+") as f:
         f.write(overview)
@@ -260,7 +255,7 @@ def main():
     # def mode; limit
     mode = "mix"
     radio = 0.3
-    limit_qps = 720 * radio
+    limit_qps = int(720 * radio)
     loop_per_thread = 3
 
     with open("../../DIC/envs/actions.yaml", 'r') as stream:
@@ -270,10 +265,6 @@ def main():
         bd_action = data_loaded.get("Big-Data")
         stream_action = data_loaded.get("Stream")
 
-    # z = lf_action.copy()
-    # z.update(mf_action)
-    # z.update(bd_action)
-    # z.update(stream_action)
     request_threads = []
 
     for action_name, params in lf_action.items():

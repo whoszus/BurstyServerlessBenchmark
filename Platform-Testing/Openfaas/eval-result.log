@@ -349,3 +349,153 @@ throughput (n/s):
 
 exceptions:0
 success rate: 100.0 %
+ --result for hash-python, 27 requests--in 3.136s
+start time: 1612357198.7972069 , end_time: 1612357202.63893227 requests finished in 3.79 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+116.15	115	118	120	122	124
+throughput (n/s):
+7.13
+
+exceptions:0
+success rate: 100.0 %
+ --result for sort-python, 27 requests--in 3.256s
+start time: 1612357198.7972069 , end_time: 1612357202.762458627 requests finished in 3.90 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+120.59	119	124	128	128	129
+throughput (n/s):
+6.92
+
+exceptions:0
+success rate: 100.0 %
+ --result for hello-python, 27 requests--in 3.642s
+start time: 1612357198.7972069 , end_time: 1612357203.145966827 requests finished in 4.29 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+134.89	139	140	143	143	144
+throughput (n/s):
+6.29
+
+exceptions:0
+success rate: 100.0 %
+ --result for md5-python, 27 requests--in 3.812s
+start time: 1612357198.7972069 , end_time: 1612357203.314371827 requests finished in 4.46 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+141.19	144	146	148	148	148
+throughput (n/s):
+6.06
+
+exceptions:0
+success rate: 100.0 %
+ --result for cryptography-python, 27 requests--in 8.667s
+start time: 1612357198.7972069 , end_time: 1612357208.168549827 requests finished in 9.31 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+321.00	319	336	341	344	346
+throughput (n/s):
+2.90
+
+exceptions:0
+success rate: 100.0 %
+ --result for hash-python, 27 requests--in 3.141s
+start time: 1612357408.3509386 , end_time: 1612357412.202492527 requests finished in 3.79 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+116.33	116	118	120	121	122
+throughput (n/s):
+7.12
+
+exceptions:0
+success rate: 100.0 %
+ --result for sort-python, 27 requests--in 3.223s
+start time: 1612357408.3509386 , end_time: 1612357412.278326527 requests finished in 3.87 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+119.37	119	121	123	124	126
+throughput (n/s):
+6.99
+
+exceptions:0
+success rate: 100.0 %
+ --result for hello-python, 27 requests--in 3.697s
+start time: 1612357408.3509386 , end_time: 1612357412.747502827 requests finished in 4.34 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+136.93	139	141	142	142	142
+throughput (n/s):
+6.22
+
+exceptions:0
+success rate: 100.0 %
+ --result for md5-python, 27 requests--in 3.866s
+start time: 1612357408.3509386 , end_time: 1612357412.928630427 requests finished in 4.52 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+143.19	144	145	147	148	148
+throughput (n/s):
+5.98
+
+exceptions:0
+success rate: 100.0 %
+ --result for cryptography-python, 27 requests--in 8.668s
+start time: 1612357408.3509386 , end_time: 1612357417.726590227 requests finished in 9.32 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+321.04	317	337	338	345	346
+throughput (n/s):
+2.90
+
+exceptions:0
+success rate: 100.0 %
+ --result for hash-python, 54 requests--in 6.401s
+start time: 1612358210.0733736 , end_time: 1612358217.895266854 requests finished in 7.76 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+118.54	119	121	122	123	126
+throughput (n/s):
+6.95
+
+exceptions:0
+success rate: 100.0 %
+ --result for sort-python, 54 requests--in 6.53s
+start time: 1612358210.0733736 , end_time: 1612358218.02374354 requests finished in 7.89 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+120.93	120	124	127	129	132
+throughput (n/s):
+6.85
+
+exceptions:0
+success rate: 100.0 %
+ --result for hello-python, 54 requests--in 7.17s
+start time: 1612358210.0733736 , end_time: 1612358218.67311654 requests finished in 8.54 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+132.78	138	141	142	142	144
+throughput (n/s):
+6.32
+
+exceptions:0
+success rate: 100.0 %
+ --result for md5-python, 54 requests--in 7.225s
+start time: 1612358210.0733736 , end_time: 1612358218.72570754 requests finished in 8.59 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+133.80	131	144	145	147	148
+throughput (n/s):
+6.29
+
+exceptions:0
+success rate: 100.0 %
+ --result for cryptography-python, 54 requests--in 17.467s
+start time: 1612358210.0733736 , end_time: 1612358228.962076254 requests finished in 18.83 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+323.46	325	334	340	342	345
+throughput (n/s):
+2.87
+
+exceptions:0
+success rate: 100.0 %
