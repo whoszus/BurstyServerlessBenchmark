@@ -131,7 +131,7 @@ def formatResult(latencies, client, loop, action_name, exception_count, start_ti
     failure_rate = exception_count / total_req
     resultfile.write("\nfailure rate: {} %".format(100 * (failure_rate)))
     resultfile.close()
-    overview = '\n' + action_name + ',' + str(request_num) + ',' + str(start_time) + ',' + str(end_time) + ',' + str(
+    overview = '\n' + action_name + ',' + str(total_req) + ',' + str(start_time) + ',' + str(end_time) + ',' + str(
         averageLatency) + ',' + str(_50pcLatency) + ',' + str(_75pcLatency) + ',' + str(_90pcLatency) + ',' + str(
         _95pcLatency) + ',' + str(_99pcLatency) + ',' + str(throughput) + ',' + str(failure_rate)
 
