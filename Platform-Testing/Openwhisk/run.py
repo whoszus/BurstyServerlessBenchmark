@@ -9,6 +9,7 @@ import yaml
 from numpy.random import seed
 import concurrent.futures
 import random
+import json
 
 
 def handler(action_name, params, client_num, times):
@@ -16,30 +17,13 @@ def handler(action_name, params, client_num, times):
 
     threads = []
     results = []
-    exception_count = 0
-    time_out = 0
-    thread_time_out = 60
-    # for i in range(client_num):
-    #     results.append('')
-
+    exceptions = 0
+    action_runs_all_thread = []
+    latencies_all_thread = []
     print("starting  request")
 
-    # with concurrent.futures.ThreadPoolExecutor(max_workers=1024) as executor:
-    #     for i in range(client_num):
-    #         params = form_params(params)
-    #         future = executor.submit(client, action_name, times, params, exception_count)
-    #         try:
-    #             return_value = future.result(timeout=thread_time_out)
-    #             # print("handler1 return_value :", return_value)
-    #             if return_value.__contains__("invokeTime"):
-    #                 results.append(return_value)
-    #         except concurrent.futures.TimeoutError:
-    #             time_out += 1
-    #             # print("handler timeout in {}".format(thread_time_out))
-    #             future.cancel()
-
     for i in range(client_num):
-        t = threading.Thread(target=client_1, args=(i, results, action_name, times, params, exception_count))
+        t = threading.Thread(target=client_1, args=(results, action_name, times, params))
         threads.append(t)
 
     # start the clients
@@ -53,58 +37,49 @@ def handler(action_name, params, client_num, times):
 
     print("all functions finished ")
 
-    outfile = open("result.csv", "a+")
-    outfile.write("action_name,invokeTime,startTime,endTime\n")
+    for item in results:
+        action_runs, latencies, exception = parse_result(action_name, item)
+        action_runs_all_thread += action_runs
+        latencies_all_thread += latencies
+        exceptions += exception
 
+    formatResult(action_runs_all_thread, client_num, times, action_name, exceptions, start_time)
+
+
+def parse_result(action_name, result):
+    lines = result.split('\n')
+    # parsed_results = []
+    action_runs = []
     latencies = []
-    minInvokeTime = 0x7fffffffffffffff
-    maxEndTime = 0
-    state = True
+    exception = 0
+    for line in lines:
+        if line.find("invokeTime") == -1:
+            continue
 
-    while state:
-        l = len(results)
-        if l == client_num:
-            print("all finished!!!")
-            for i in range(len(results)):
-                clientResult = parseResult(results[i])
-                for j in range(len(clientResult)):
-                    outfile.write(
-                        action_name + ',' + clientResult[j][0] + ',' + clientResult[j][1] + ',' + clientResult[j][
-                            2] + '\n')
-                    latency = int(clientResult[j][-1]) - int(clientResult[j][0])
-                    latencies.append(latency)
+        parsed_times = ['', '', '']
+        line = line.replace("\'", '"')
+        line = line.replace("'", '"')
+        if line.find('"startTime": ,') != -1:
+            exception += 1
+            continue
+        pas = json.loads(line)
+        runs = int(pas["endTime"]) - int(pas["invokeTime"])
+        schedule_latency = int(pas["startTime"]) - int(pas["invokeTime"])
+        action_runs.append(runs)
+        latencies.append(schedule_latency)
+        parsed_times[0] = pas["invokeTime"]
+        parsed_times[1] = pas["startTime"]
+        parsed_times[2] = pas["endTime"]
 
-                    # Find the first invoked action and the last return one.
-                    if int(clientResult[j][0]) < minInvokeTime:
-                        minInvokeTime = int(clientResult[j][0])
-                    if int(clientResult[j][-1]) > maxEndTime:
-                        maxEndTime = int(clientResult[j][-1])
-            formatResult(latencies, client_num, times, action_name, exception_count,
-                         start_time)
-            break
-        time.sleep(3)
-        print("wait more 3s, finished:", l, client_num)
+        with open("result.csv", "a+") as file:
+            file.write(action_name + ',' + str(pas["invokeTime"]) + ',' + str(pas["startTime"]) + ',' + str(
+                pas["endTime"]) + '\n')
+        # parsed_results.append(parsed_times)
 
-    # requests = client_num * times - exception_count
+    return action_runs, latencies, exception
 
 
-def client(action_name, times, params, exception_count):
-    command = "./executor.sh -a {action_name} -t {times} -p '{params}'"
-    command = command.format(action_name=action_name, times=times, params=params)
-    # print("client1:", command)
-    r = os.popen(command)
-    text = r.read()
-    r.close()
-
-    if text.__contains__("Measure start up time"):
-        return text
-    else:
-        print("client3:", text)
-        exception_count += 1
-        return
-
-
-def client_1(i, result, action_name, times, params, exception_count):
+def client_1(result, action_name, times, params):
     print("exec ", action_name)
     command = "./executor.sh -a {action_name} -t {times} -p '{params}'"
     command = command.format(action_name=action_name, times=times, params=params)
@@ -115,51 +90,20 @@ def client_1(i, result, action_name, times, params, exception_count):
 
     if text.__contains__("Measure start up time"):
         result.append(text)
-    else:
-        print("client3:", text)
-        exception_count += 1
-        return
-
-
-def parseResult(result):
-    lines = result.split('\n')
-    parsedResults = []
-    for line in lines:
-        if line.find("invokeTime") == -1:
-            continue
-        parsedTimes = ['', '', '']
-
-        i = 0
-        count = 0
-        while count < 3:
-            while i < len(line):
-                # print("parseResult while:", line)
-                if line[i].isdigit():
-                    parsedTimes[count] = line[i:i + 13]
-                    i += 13
-                    count += 1
-                    continue
-                i += 1
-
-        parsedResults.append(parsedTimes)
-    return parsedResults
 
 
 def formatResult(latencies, client, loop, action_name, exception_count, start_time):
     total_req = client * loop
     end_time = time.time()
-
     request_num = len(latencies)
-
     latencies.sort()
-
     total = 0
     for latency in latencies:
         total += latency
-    duration = end_time -start_time
+    duration = end_time - start_time
     print("\n")
     print("--result for {}, {} requests--in {}s".format(action_name, total_req, duration))
-    averageLatency = float(total) / request_num
+    averageLatency = total / request_num
     _50pcLatency = latencies[int(request_num * 0.5) - 1]
     _75pcLatency = latencies[int(request_num * 0.75) - 1]
     _90pcLatency = latencies[int(request_num * 0.9) - 1]
@@ -171,7 +115,7 @@ def formatResult(latencies, client, loop, action_name, exception_count, start_ti
         averageLatency, _50pcLatency, _75pcLatency, _90pcLatency, _95pcLatency, _99pcLatency))
     print("throughput (n/s):\n%.2f" % (request_num / duration))
     print("exceptions:", exception_count)
-    print("success rate: {} %".format(100 * (request_num / total_req)))
+    print("failure rate: {} %".format(100 * (exception_count / total_req)))
 
     # output result to file
     resultfile = open("eval-result.log", "a")
@@ -184,10 +128,12 @@ def formatResult(latencies, client, loop, action_name, exception_count, start_ti
     throughput = request_num / duration
     resultfile.write("throughput (n/s):\n%.2f\n" % (throughput))
     resultfile.write("\nexceptions:{}".format(exception_count))
-    resultfile.write("\nsuccess rate: {} %".format(100 * (request_num / total_req)))
+    failure_rate = exception_count / total_req
+    resultfile.write("\nfailure rate: {} %".format(100 * (failure_rate)))
     resultfile.close()
-    overview = '\n'+action_name + ',' + str(request_num)+ ',' +  str(start_time)+ ',' +  str(end_time)+ ',' +  str(averageLatency)+ ',' +  str(_50pcLatency)+ ',' +  str(_75pcLatency)+ ',' + str(_90pcLatency) + ',' +  str(_95pcLatency)+ ',' +  str(_99pcLatency) + ',' +  str(throughput) 
-
+    overview = '\n' + action_name + ',' + str(request_num) + ',' + str(start_time) + ',' + str(end_time) + ',' + str(
+        averageLatency) + ',' + str(_50pcLatency) + ',' + str(_75pcLatency) + ',' + str(_90pcLatency) + ',' + str(
+        _95pcLatency) + ',' + str(_99pcLatency) + ',' + str(throughput) + ',' + str(failure_rate)
 
     with open("overview.csv", "a+") as f:
         f.write(overview)
@@ -252,7 +198,6 @@ def get_qps(type="webservices", mode="single", limit=100):
 
 
 def main():
-    # def mode; limit
     mode = "mix"
     radio = 0.3
     limit_qps = int(720 * radio)
@@ -269,22 +214,22 @@ def main():
 
     for action_name, params in lf_action.items():
         qps = get_qps(type="webservices", limit=limit_qps, mode=mode)
-        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
+        t = threading.Thread(target=handler, args=(action_name, params, 144, loop_per_thread))
         request_threads.append(t)
-    for action_name, params in mf_action.items():
-        qps = get_qps(type="MlI", limit=limit_qps, mode=mode)
-        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
-        request_threads.append(t)
-    for action_name, params in bd_action.items():
-        qps = get_qps(type="Big-Data", limit=limit_qps, mode=mode)
-        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
-        request_threads.append(t)
-    for action_name, params in stream_action.items():
-        qps = get_qps(type="Stream", limit=limit_qps, mode=mode)
-        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
-        request_threads.append(t)
+    # for action_name, params in mf_action.items():
+    #     qps = get_qps(type="MlI", limit=limit_qps, mode=mode)
+    #     t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
+    #     request_threads.append(t)
+    # for action_name, params in bd_action.items():
+    #     qps = get_qps(type="Big-Data", limit=limit_qps, mode=mode)
+    #     t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
+    #     request_threads.append(t)
+    # for action_name, params in stream_action.items():
+    #     qps = get_qps(type="Stream", limit=limit_qps, mode=mode)
+    #     t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
+    #     request_threads.append(t)
 
-    random.shuffle(request_threads)
+    # random.shuffle(request_threads)
     total = len(request_threads)
     for i in range(total):
         request_threads[i].start()
