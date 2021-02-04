@@ -131,7 +131,7 @@ def formatResult(latencies, client, loop, action_name, exception_count, start_ti
     failure_rate = exception_count / total_req
     resultfile.write("\nfailure rate: {} %".format(100 * (failure_rate)))
     resultfile.close()
-    overview = '\n' + action_name + ',' + str(request_num) + ',' + str(start_time) + ',' + str(end_time) + ',' + str(
+    overview = '\n' + action_name + ',' + str(total_req) + ',' + str(start_time) + ',' + str(end_time) + ',' + str(
         averageLatency) + ',' + str(_50pcLatency) + ',' + str(_75pcLatency) + ',' + str(_90pcLatency) + ',' + str(
         _95pcLatency) + ',' + str(_99pcLatency) + ',' + str(throughput) + ',' + str(failure_rate)
 
@@ -200,7 +200,7 @@ def get_qps(type="webservices", mode="single", limit=100):
 def main():
     mode = "mix"
     radio = 0.3
-    limit_qps = int(720 * radio)
+    limit_qps = int(3000 * radio)
     loop_per_thread = 3
 
     with open("../../DIC/envs/actions.yaml", 'r') as stream:
@@ -214,22 +214,22 @@ def main():
 
     for action_name, params in lf_action.items():
         qps = get_qps(type="webservices", limit=limit_qps, mode=mode)
-        t = threading.Thread(target=handler, args=(action_name, params, 144, loop_per_thread))
+        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
         request_threads.append(t)
-    # for action_name, params in mf_action.items():
-    #     qps = get_qps(type="MlI", limit=limit_qps, mode=mode)
-    #     t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
-    #     request_threads.append(t)
-    # for action_name, params in bd_action.items():
-    #     qps = get_qps(type="Big-Data", limit=limit_qps, mode=mode)
-    #     t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
-    #     request_threads.append(t)
-    # for action_name, params in stream_action.items():
-    #     qps = get_qps(type="Stream", limit=limit_qps, mode=mode)
-    #     t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
-    #     request_threads.append(t)
+    for action_name, params in mf_action.items():
+        qps = get_qps(type="MlI", limit=limit_qps, mode=mode)
+        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
+        request_threads.append(t)
+    for action_name, params in bd_action.items():
+        qps = get_qps(type="Big-Data", limit=limit_qps, mode=mode)
+        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
+        request_threads.append(t)
+    for action_name, params in stream_action.items():
+        qps = get_qps(type="Stream", limit=limit_qps, mode=mode)
+        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
+        request_threads.append(t)
 
-    # random.shuffle(request_threads)
+    random.shuffle(request_threads)
     total = len(request_threads)
     for i in range(total):
         request_threads[i].start()

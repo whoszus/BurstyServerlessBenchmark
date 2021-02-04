@@ -199,8 +199,8 @@ def get_qps(type="webservices", mode="single", limit=100):
 
 def main():
     mode = "mix"
-    radio = 0.3
-    limit_qps = int(720 * radio)
+    radio = 0.5
+    limit_qps = int(3000 * radio)
     loop_per_thread = 3
 
     with open("../../DIC/envs/actions.yaml", 'r') as stream:
@@ -214,22 +214,22 @@ def main():
 
     for action_name, params in lf_action.items():
         qps = get_qps(type="webservices", limit=limit_qps, mode=mode)
-        t = threading.Thread(target=handler, args=(action_name, params, 144, loop_per_thread))
+        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
         request_threads.append(t)
-    # for action_name, params in mf_action.items():
-    #     qps = get_qps(type="MlI", limit=limit_qps, mode=mode)
-    #     t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
-    #     request_threads.append(t)
-    # for action_name, params in bd_action.items():
-    #     qps = get_qps(type="Big-Data", limit=limit_qps, mode=mode)
-    #     t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
-    #     request_threads.append(t)
-    # for action_name, params in stream_action.items():
-    #     qps = get_qps(type="Stream", limit=limit_qps, mode=mode)
-    #     t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
-    #     request_threads.append(t)
+    for action_name, params in mf_action.items():
+        qps = get_qps(type="MlI", limit=limit_qps, mode=mode)
+        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
+        request_threads.append(t)
+    for action_name, params in bd_action.items():
+        qps = get_qps(type="Big-Data", limit=limit_qps, mode=mode)
+        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
+        request_threads.append(t)
+    for action_name, params in stream_action.items():
+        qps = get_qps(type="Stream", limit=limit_qps, mode=mode)
+        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
+        request_threads.append(t)
 
-    # random.shuffle(request_threads)
+    random.shuffle(request_threads)
     total = len(request_threads)
     for i in range(total):
         request_threads[i].start()

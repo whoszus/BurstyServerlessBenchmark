@@ -189,3 +189,853 @@ throughput (n/s):
 
 exceptions:0
 success rate: 100.0 %
+ --result for sort-python, 27 requests--in 1.835s
+start time: 1612423633.7551908 , end_time: 1612423634.107289827 requests finished in 0.35 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+67.96	67	72	74	76	84
+throughput (n/s):
+76.68
+
+exceptions:0
+failure rate: 0.0 %
+ --result for md5-python, 27 requests--in 1.842s
+start time: 1612423633.7529025 , end_time: 1612423634.108436827 requests finished in 0.36 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+68.22	66	72	80	85	86
+throughput (n/s):
+75.94
+
+exceptions:0
+failure rate: 0.0 %
+ --result for hello-python, 27 requests--in 1.84s
+start time: 1612423633.751735 , end_time: 1612423634.1122727 requests finished in 0.36 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+68.15	66	73	76	80	83
+throughput (n/s):
+74.89
+
+exceptions:0
+failure rate: 0.0 %
+ --result for hash-python, 27 requests--in 1.936s
+start time: 1612423633.7520297 , end_time: 1612423634.115280427 requests finished in 0.36 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+71.70	71	77	82	84	86
+throughput (n/s):
+74.33
+
+exceptions:0
+failure rate: 0.0 %
+ --result for cryptography-python, 27 requests--in 2.912s
+start time: 1612423633.7524862 , end_time: 1612423634.221563827 requests finished in 0.47 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+107.85	108	113	116	119	121
+throughput (n/s):
+57.56
+
+exceptions:0
+failure rate: 0.0 %
+ --result for md5-python, 54 requests--in 4.222s
+start time: 1612424648.8708923 , end_time: 1612424649.480474754 requests finished in 0.61 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+78.19	75	86	104	104	116
+throughput (n/s):
+88.59
+
+exceptions:0
+failure rate: 0.0 %
+ --result for hello-python, 54 requests--in 4.236s
+start time: 1612424648.86866 , end_time: 1612424649.505787154 requests finished in 0.64 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+78.44	77	86	97	102	104
+throughput (n/s):
+84.76
+
+exceptions:0
+failure rate: 0.0 %
+ --result for hash-python, 54 requests--in 4.126s
+start time: 1612424648.8690345 , end_time: 1612424649.509892754 requests finished in 0.64 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+76.41	76	82	87	99	105
+throughput (n/s):
+84.26
+
+exceptions:0
+failure rate: 0.0 %
+ --result for sort-python, 54 requests--in 4.4s
+start time: 1612424648.871535 , end_time: 1612424649.511539554 requests finished in 0.64 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+81.48	76	96	108	117	123
+throughput (n/s):
+84.37
+
+exceptions:0
+failure rate: 0.0 %
+ --result for cryptography-python, 54 requests--in 6.846s
+start time: 1612424648.8704796 , end_time: 1612424649.611277354 requests finished in 0.74 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+126.78	120	140	165	169	178
+throughput (n/s):
+72.89
+
+exceptions:0
+failure rate: 0.0 %
+ --result for sort-python, 108 requests--in 8.771s
+start time: 1612424679.8461199 , end_time: 1612424680.9808574108 requests finished in 1.13 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+81.21	79	91	102	105	111
+throughput (n/s):
+95.18
+
+exceptions:0
+failure rate: 0.0 %
+ --result for hash-python, 108 requests--in 8.545s
+start time: 1612424679.8428116 , end_time: 1612424681.011269108 requests finished in 1.17 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+79.12	76	88	98	106	114
+throughput (n/s):
+92.43
+
+exceptions:0
+failure rate: 0.0 %
+ --result for md5-python, 108 requests--in 9.356s
+start time: 1612424679.8438985 , end_time: 1612424681.0517259108 requests finished in 1.21 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+86.63	86	96	109	114	126
+throughput (n/s):
+89.42
+
+exceptions:0
+failure rate: 0.0 %
+ --result for hello-python, 108 requests--in 8.927s
+start time: 1612424679.841761 , end_time: 1612424681.053601108 requests finished in 1.21 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+82.66	81	90	103	110	123
+throughput (n/s):
+89.12
+
+exceptions:0
+failure rate: 0.0 %
+ --result for cryptography-python, 108 requests--in 14.378s
+start time: 1612424679.8434236 , end_time: 1612424681.1278958108 requests finished in 1.28 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+133.13	123	134	156	210	266
+throughput (n/s):
+84.08
+
+exceptions:0
+failure rate: 0.0 %
+ --result for hello-python, 216 requests--in 16.696s
+start time: 1612424690.1538415 , end_time: 1612424692.3167036216 requests finished in 2.16 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+77.30	74	83	95	100	117
+throughput (n/s):
+99.87
+
+exceptions:0
+failure rate: 0.0 %
+ --result for md5-python, 216 requests--in 16.796s
+start time: 1612424690.1570399 , end_time: 1612424692.3338284216 requests finished in 2.18 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+77.76	77	84	91	99	109
+throughput (n/s):
+99.23
+
+exceptions:0
+failure rate: 0.0 %
+ --result for hash-python, 216 requests--in 16.649s
+start time: 1612424690.1551409 , end_time: 1612424692.3360105216 requests finished in 2.18 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+77.08	76	84	92	98	106
+throughput (n/s):
+99.04
+
+exceptions:0
+failure rate: 0.0 %
+ --result for cryptography-python, 216 requests--in 37.548s
+start time: 1612424690.1559818 , end_time: 1612424692.350239216 requests finished in 2.19 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+173.83	127	152	359	418	549
+throughput (n/s):
+98.44
+
+exceptions:0
+failure rate: 0.0 %
+ --result for sort-python, 216 requests--in 36.954s
+start time: 1612424690.159063 , end_time: 1612424692.9429157216 requests finished in 2.78 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+171.08	94	284	421	469	479
+throughput (n/s):
+77.59
+
+exceptions:0
+failure rate: 0.0 %
+ --result for md5-python, 384 requests--in 27.263s
+start time: 1612424702.3939016 , end_time: 1612424706.8049808384 requests finished in 4.41 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+71.00	69	77	84	90	100
+throughput (n/s):
+87.05
+
+exceptions:0
+failure rate: 0.0 %
+ --result for hash-python, 384 requests--in 26.654s
+start time: 1612424702.3911107 , end_time: 1612424706.8204458384 requests finished in 4.43 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+69.41	68	75	81	85	96
+throughput (n/s):
+86.69
+
+exceptions:0
+failure rate: 0.0 %
+ --result for hello-python, 384 requests--in 27.103s
+start time: 1612424702.3894095 , end_time: 1612424706.843264384 requests finished in 4.45 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+70.58	69	76	83	87	100
+throughput (n/s):
+86.22
+
+exceptions:0
+failure rate: 0.0 %
+ --result for sort-python, 384 requests--in 29.647s
+start time: 1612424702.3959892 , end_time: 1612424706.874039384 requests finished in 4.48 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+77.21	75	87	96	103	119
+throughput (n/s):
+85.75
+
+exceptions:0
+failure rate: 0.0 %
+ --result for cryptography-python, 384 requests--in 46.167s
+start time: 1612424702.392308 , end_time: 1612424706.9552777384 requests finished in 4.56 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+120.23	113	121	132	151	263
+throughput (n/s):
+84.16
+
+exceptions:0
+failure rate: 0.0 %
+ --result for sort-python, 90 requests--in 7.06s
+start time: 1612431764.6281269 , end_time: 1612431766.367315390 requests finished in 1.74 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+78.44	77	85	92	98	111
+throughput (n/s):
+51.75
+
+exceptions:0
+failure rate: 0.0 %
+ --result for hash-python, 90 requests--in 6.728s
+start time: 1612431764.6230054 , end_time: 1612431766.386916690 requests finished in 1.76 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+74.76	74	81	88	92	106
+throughput (n/s):
+51.02
+
+exceptions:0
+failure rate: 0.0 %
+ --result for bigdata, 111 requests--in 8.195s
+start time: 1612431764.6064274 , end_time: 1612431766.5237586111 requests finished in 1.92 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+73.83	72	80	87	91	98
+throughput (n/s):
+57.89
+
+exceptions:0
+failure rate: 0.0 %
+ --result for md5-python, 90 requests--in 6.35s
+start time: 1612431764.6103284 , end_time: 1612431766.5776190 requests finished in 1.97 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+70.56	70	75	83	84	88
+throughput (n/s):
+45.75
+
+exceptions:0
+failure rate: 0.0 %
+ --result for stream, 225 requests--in 23.545s
+start time: 1612431764.598909 , end_time: 1612431766.664958225 requests finished in 2.07 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+104.64	103	114	126	137	148
+throughput (n/s):
+108.90
+
+exceptions:0
+failure rate: 0.0 %
+ --result for hello-python, 90 requests--in 8.855s
+start time: 1612431764.6357877 , end_time: 1612431766.707084290 requests finished in 2.07 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+98.39	87	109	165	175	185
+throughput (n/s):
+43.45
+
+exceptions:0
+failure rate: 0.0 %
+ --result for cryptography-python, 90 requests--in 24.117s
+start time: 1612431764.5974689 , end_time: 1612431766.747410890 requests finished in 2.15 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+267.97	181	311	724	754	775
+throughput (n/s):
+41.86
+
+exceptions:0
+failure rate: 0.0 %
+ --result for passiveaggressiveclassifier, 12 requests--in 11.342s
+start time: 1612431764.6002834 , end_time: 1612431767.600234312 requests finished in 3.00 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+945.17	918	1011	1028	1029	1029
+throughput (n/s):
+4.00
+
+exceptions:0
+failure rate: 0.0 %
+ --result for sgdclassifier, 12 requests--in 12.129s
+start time: 1612431764.6107824 , end_time: 1612431768.25955912 requests finished in 3.65 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1010.75	957	1112	1152	1162	1162
+throughput (n/s):
+3.29
+
+exceptions:0
+failure rate: 0.0 %
+ --result for perceptron, 12 requests--in 10.549s
+start time: 1612431764.6184075 , end_time: 1612431768.452103912 requests finished in 3.83 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+879.08	867	941	989	995	995
+throughput (n/s):
+3.13
+
+exceptions:0
+failure rate: 0.0 %
+ --result for multinomialnb, 12 requests--in 15.353s
+start time: 1612431764.6241732 , end_time: 1612431769.052723212 requests finished in 4.43 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1279.42	1227	1344	1388	1541	1541
+throughput (n/s):
+2.71
+
+exceptions:0
+failure rate: 0.0 %
+ --result for facerecognition, 12 requests--in 12.77s
+start time: 1612431764.6197634 , end_time: 1612431769.209809312 requests finished in 4.59 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1064.17	1013	1167	1289	1290	1290
+throughput (n/s):
+2.61
+
+exceptions:0
+failure rate: 0.0 %
+ --result for sgdregressor, 12 requests--in 16.317s
+start time: 1612431764.6007931 , end_time: 1612431769.35917312 requests finished in 4.76 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1359.75	1381	1451	1479	1579	1579
+throughput (n/s):
+2.52
+
+exceptions:0
+failure rate: 0.0 %
+ --result for randomforestregressor, 12 requests--in 18.655s
+start time: 1612431764.615198 , end_time: 1612431770.757730512 requests finished in 6.14 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1554.58	1520	1723	1780	1901	1901
+throughput (n/s):
+1.95
+
+exceptions:0
+failure rate: 0.0 %
+ --result for svr, 12 requests--in 36.868s
+start time: 1612431764.6012037 , end_time: 1612431775.433879112 requests finished in 10.83 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+3072.33	3115	3139	3142	3150	3150
+throughput (n/s):
+1.11
+
+exceptions:0
+failure rate: 0.0 %
+ --result for hash-python, 270 requests--in 23.757s
+start time: 1612431811.0396721 , end_time: 1612431818.5234132270 requests finished in 7.48 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+87.99	66	72	81	92	607
+throughput (n/s):
+36.08
+
+exceptions:0
+failure rate: 0.0 %
+ --result for md5-python, 270 requests--in 38.207s
+start time: 1612431811.0403981 , end_time: 1612431818.665367270 requests finished in 7.62 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+141.51	68	87	438	671	934
+throughput (n/s):
+35.41
+
+exceptions:0
+failure rate: 0.0 %
+ --result for bigdata, 336 requests--in 21.847s
+start time: 1612431811.03482 , end_time: 1612431818.6779392336 requests finished in 7.64 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+65.02	64	69	74	77	90
+throughput (n/s):
+43.96
+
+exceptions:0
+failure rate: 0.0 %
+ --result for sort-python, 270 requests--in 20.794s
+start time: 1612431811.0609188 , end_time: 1612431818.7136612270 requests finished in 7.65 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+77.01	74	86	97	104	118
+throughput (n/s):
+35.28
+
+exceptions:0
+failure rate: 0.0 %
+ --result for hello-python, 270 requests--in 17.59s
+start time: 1612431811.04807 , end_time: 1612431818.7389948270 requests finished in 7.69 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+65.15	64	69	75	80	86
+throughput (n/s):
+35.11
+
+exceptions:0
+failure rate: 0.0 %
+ --result for stream, 675 requests--in 82.274s
+start time: 1612431811.0539148 , end_time: 1612431818.8130877675 requests finished in 7.76 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+121.89	96	110	174	391	492
+throughput (n/s):
+86.99
+
+exceptions:0
+failure rate: 0.0 %
+ --result for perceptron, 42 requests--in 44.005s
+start time: 1612431811.0422149 , end_time: 1612431818.836053842 requests finished in 7.79 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1047.74	1037	1120	1205	1253	1291
+throughput (n/s):
+5.39
+
+exceptions:0
+failure rate: 0.0 %
+ --result for cryptography-python, 270 requests--in 30.448s
+start time: 1612431811.0377605 , end_time: 1612431818.8879688270 requests finished in 7.85 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+112.77	106	112	142	168	192
+throughput (n/s):
+34.39
+
+exceptions:0
+failure rate: 0.0 %
+ --result for sgdclassifier, 42 requests--in 67.652s
+start time: 1612431811.0367014 , end_time: 1612431820.249178642 requests finished in 9.21 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1610.76	1257	1445	2231	3700	4092
+throughput (n/s):
+4.56
+
+exceptions:0
+failure rate: 0.0 %
+ --result for facerecognition, 42 requests--in 61.082s
+start time: 1612431811.0581686 , end_time: 1612431820.63759542 requests finished in 9.58 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1454.33	1437	1602	1866	1915	1996
+throughput (n/s):
+4.38
+
+exceptions:0
+failure rate: 0.0 %
+ --result for multinomialnb, 42 requests--in 80.732s
+start time: 1612431811.0371144 , end_time: 1612431820.79661542 requests finished in 9.76 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1922.19	1602	1786	1930	4647	4741
+throughput (n/s):
+4.30
+
+exceptions:0
+failure rate: 0.0 %
+ --result for passiveaggressiveclassifier, 42 requests--in 47.906s
+start time: 1612431811.047018 , end_time: 1612431821.922195742 requests finished in 10.88 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1140.62	1084	1182	1369	1589	1948
+throughput (n/s):
+3.86
+
+exceptions:0
+failure rate: 0.0 %
+ --result for sgdregressor, 42 requests--in 84.348s
+start time: 1612431811.0526013 , end_time: 1612431822.409005942 requests finished in 11.36 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+2008.29	1732	2080	2457	4018	4740
+throughput (n/s):
+3.70
+
+exceptions:0
+failure rate: 0.0 %
+ --result for randomforestregressor, 42 requests--in 100.557s
+start time: 1612431811.0447915 , end_time: 1612431823.61662742 requests finished in 12.57 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+2394.21	2191	2403	2668	4224	5711
+throughput (n/s):
+3.34
+
+exceptions:0
+failure rate: 0.0 %
+ --result for svr, 42 requests--in 205.605s
+start time: 1612431811.053357 , end_time: 1612431839.705263642 requests finished in 28.65 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+4895.36	3568	3991	6759	13540	14394
+throughput (n/s):
+1.47
+
+exceptions:0
+failure rate: 0.0 %
+ --result for hash-python, 450 requests--in 28.254s
+start time: 1612433053.078287 , end_time: 1612433068.1956532450 requests finished in 15.12 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+62.79	62	65	70	74	81
+throughput (n/s):
+29.77
+
+exceptions:0
+failure rate: 0.0 %
+ --result for hello-python, 450 requests--in 28.273s
+start time: 1612433053.0701156 , end_time: 1612433068.3172739450 requests finished in 15.25 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+62.83	62	66	70	73	80
+throughput (n/s):
+29.51
+
+exceptions:0
+failure rate: 0.0 %
+ --result for md5-python, 450 requests--in 28.146s
+start time: 1612433053.0927992 , end_time: 1612433068.3216689450 requests finished in 15.23 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+62.55	62	66	70	72	76
+throughput (n/s):
+29.55
+
+exceptions:0
+failure rate: 0.0 %
+ --result for bigdata, 561 requests--in 35.989s
+start time: 1612433053.1033142 , end_time: 1612433068.3760474561 requests finished in 15.27 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+64.15	63	67	72	75	80
+throughput (n/s):
+36.73
+
+exceptions:0
+failure rate: 0.0 %
+ --result for cryptography-python, 450 requests--in 54.105s
+start time: 1612433053.0723088 , end_time: 1612433068.5524738450 requests finished in 15.48 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+120.23	106	138	155	176	202
+throughput (n/s):
+29.07
+
+exceptions:0
+failure rate: 0.0 %
+ --result for sort-python, 450 requests--in 29.584s
+start time: 1612433053.1027536 , end_time: 1612433068.5532672450 requests finished in 15.45 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+65.74	63	68	79	84	100
+throughput (n/s):
+29.13
+
+exceptions:0
+failure rate: 0.0 %
+ --result for stream, 1125 requests--in 107.482s
+start time: 1612433053.08506 , end_time: 1612433068.58824471125 requests finished in 15.50 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+95.54	91	101	111	124	274
+throughput (n/s):
+72.57
+
+exceptions:0
+failure rate: 0.0 %
+ --result for sgdclassifier, 69 requests--in 88.559s
+start time: 1612433053.0902746 , end_time: 1612433069.384054469 requests finished in 16.29 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1283.46	1252	1392	1519	1654	1932
+throughput (n/s):
+4.23
+
+exceptions:0
+failure rate: 0.0 %
+ --result for facerecognition, 69 requests--in 108.668s
+start time: 1612433053.0844336 , end_time: 1612433070.318332769 requests finished in 17.23 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1574.90	1484	1599	1722	2869	3541
+throughput (n/s):
+4.00
+
+exceptions:0
+failure rate: 0.0 %
+ --result for perceptron, 69 requests--in 75.064s
+start time: 1612433053.0948458 , end_time: 1612433070.452578369 requests finished in 17.36 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1087.88	1013	1111	1215	1839	2961
+throughput (n/s):
+3.98
+
+exceptions:0
+failure rate: 0.0 %
+ --result for passiveaggressiveclassifier, 69 requests--in 83.756s
+start time: 1612433053.0807924 , end_time: 1612433071.054478469 requests finished in 17.97 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1213.86	1181	1229	1328	1623	2088
+throughput (n/s):
+3.84
+
+exceptions:0
+failure rate: 0.0 %
+ --result for multinomialnb, 69 requests--in 108.584s
+start time: 1612433053.07472 , end_time: 1612433072.037412469 requests finished in 18.96 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1573.68	1169	1427	3755	4160	4894
+throughput (n/s):
+3.64
+
+exceptions:0
+failure rate: 0.0 %
+ --result for sgdregressor, 69 requests--in 94.908s
+start time: 1612433053.0977964 , end_time: 1612433072.12528869 requests finished in 19.03 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1375.48	1380	1492	1573	1661	1768
+throughput (n/s):
+3.63
+
+exceptions:0
+failure rate: 0.0 %
+ --result for randomforestregressor, 69 requests--in 194.821s
+start time: 1612433053.1016238 , end_time: 1612433080.848219969 requests finished in 27.75 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+2823.49	1629	2195	6966	9371	10253
+throughput (n/s):
+2.49
+
+exceptions:0
+failure rate: 0.0 %
+ --result for svr, 69 requests--in 417.574s
+start time: 1612433053.0737371 , end_time: 1612433086.077074569 requests finished in 33.00 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+6051.80	3647	4103	14160	19325	21882
+throughput (n/s):
+2.09
+
+exceptions:0
+failure rate: 0.0 %
+ --result for passiveaggressiveclassifier, 96 requests--in 162.271s
+start time: 1612433115.2973883 , end_time: 1612433139.35079396 requests finished in 24.05 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1690.32	1112	1232	4135	5824	6183
+throughput (n/s):
+3.99
+
+exceptions:0
+failure rate: 0.0 %
+ --result for perceptron, 96 requests--in 106.481s
+start time: 1612433115.300545 , end_time: 1612433139.370539796 requests finished in 24.07 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1109.18	1053	1140	1221	1263	3564
+throughput (n/s):
+3.99
+
+exceptions:0
+failure rate: 0.0 %
+ --result for cryptography-python, 630 requests--in 82.362s
+start time: 1612433115.2904744 , end_time: 1612433139.8617177630 requests finished in 24.57 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+130.73	131	148	164	181	203
+throughput (n/s):
+25.64
+
+exceptions:0
+failure rate: 0.0 %
+ --result for hash-python, 630 requests--in 40.004s
+start time: 1612433115.2927248 , end_time: 1612433139.8757782630 requests finished in 24.58 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+63.50	61	64	68	71	108
+throughput (n/s):
+25.63
+
+exceptions:0
+failure rate: 0.0 %
+ --result for hello-python, 630 requests--in 41.731s
+start time: 1612433115.296641 , end_time: 1612433139.8926735630 requests finished in 24.60 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+66.24	62	65	69	72	171
+throughput (n/s):
+25.61
+
+exceptions:0
+failure rate: 0.0 %
+ --result for sort-python, 630 requests--in 41.371s
+start time: 1612433115.2946708 , end_time: 1612433139.9348907630 requests finished in 24.64 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+65.67	64	69	76	86	99
+throughput (n/s):
+25.57
+
+exceptions:0
+failure rate: 0.0 %
+ --result for bigdata, 786 requests--in 48.792s
+start time: 1612433115.2881742 , end_time: 1612433140.0369933786 requests finished in 24.75 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+62.08	62	65	68	70	76
+throughput (n/s):
+31.76
+
+exceptions:0
+failure rate: 0.0 %
+ --result for md5-python, 630 requests--in 175.67s
+start time: 1612433115.313168 , end_time: 1612433140.0861185630 requests finished in 24.77 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+278.84	80	543	873	1005	1385
+throughput (n/s):
+25.43
+
+exceptions:0
+failure rate: 0.0 %
+ --result for stream, 1575 requests--in 189.185s
+start time: 1612433115.303346 , end_time: 1612433140.12091351575 requests finished in 24.82 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+120.12	92	106	175	333	550
+throughput (n/s):
+63.46
+
+exceptions:0
+failure rate: 0.0 %
+ --result for sgdclassifier, 96 requests--in 113.217s
+start time: 1612433115.2980516 , end_time: 1612433141.662484496 requests finished in 26.36 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1179.34	1119	1214	1302	1357	3576
+throughput (n/s):
+3.64
+
+exceptions:0
+failure rate: 0.0 %
+ --result for randomforestregressor, 96 requests--in 171.678s
+start time: 1612433115.3039992 , end_time: 1612433142.57141196 requests finished in 27.27 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1788.31	1767	1902	2100	2211	2494
+throughput (n/s):
+3.52
+
+exceptions:0
+failure rate: 0.0 %
+ --result for multinomialnb, 96 requests--in 165.836s
+start time: 1612433115.3142877 , end_time: 1612433142.694028996 requests finished in 27.38 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+1727.46	1338	1469	3436	4796	5078
+throughput (n/s):
+3.51
+
+exceptions:0
+failure rate: 0.0 %
+ --result for facerecognition, 96 requests--in 233.605s
+start time: 1612433115.3027978 , end_time: 1612433150.42066596 requests finished in 35.12 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+2433.39	1282	2759	6954	7991	8095
+throughput (n/s):
+2.73
+
+exceptions:0
+failure rate: 0.0 %
+ --result for sgdregressor, 96 requests--in 269.071s
+start time: 1612433115.3103988 , end_time: 1612433151.91364696 requests finished in 36.60 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+2802.82	1351	2055	7785	10489	10759
+throughput (n/s):
+2.62
+
+exceptions:0
+failure rate: 0.0 %
+ --result for svr, 96 requests--in 795.641s
+start time: 1612433115.2871892 , end_time: 1612433163.70404196 requests finished in 48.42 seconds
+latency (ms):
+avg	50%	75%	90%	95%	99%
+8287.93	4059	4466	28105	31107	32511
+throughput (n/s):
+1.98
+
+exceptions:0
+failure rate: 0.0 %
