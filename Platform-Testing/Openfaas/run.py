@@ -12,7 +12,7 @@ import random
 import json
 
 
-def handler(action_name, params, client_num, times):
+def handler(action_name, params, client_num, times,radio):
     start_time = time.time()
 
     threads = []
@@ -38,7 +38,7 @@ def handler(action_name, params, client_num, times):
     print("all functions finished ")
 
     for item in results:
-        action_runs, latencies, exception = parse_result(action_name, item)
+        action_runs, latencies, exception = parse_result(action_name, item, radio)
         action_runs_all_thread += action_runs
         latencies_all_thread += latencies
         exceptions += exception
@@ -46,7 +46,7 @@ def handler(action_name, params, client_num, times):
     formatResult(action_runs_all_thread, client_num, times, action_name, exceptions, start_time)
 
 
-def parse_result(action_name, result):
+def parse_result(action_name, result,req):
     lines = result.split('\n')
     # parsed_results = []
     action_runs = []
@@ -72,8 +72,9 @@ def parse_result(action_name, result):
         parsed_times[2] = pas["endTime"]
 
         with open("result.csv", "a+") as file:
-            file.write(action_name + ',' + str(pas["invokeTime"]) + ',' + str(pas["startTime"]) + ',' + str(
-                pas["endTime"]) + '\n')
+            file.write('OpenWhisk' + ',' + action_name + ',' + str(pas["invokeTime"]) + ',' + str(
+                pas["startTime"]) + ',' + str(
+                pas["endTime"]) + ',' + str(req) + ',' + str(schedule_latency) + '\n')
         # parsed_results.append(parsed_times)
 
     return action_runs, latencies, exception
@@ -199,7 +200,7 @@ def get_qps(type="webservices", mode="single", limit=100):
 
 def main():
     mode = "mix"
-    radio = 0.5
+    radio = 0.1
     limit_qps = int(3000 * radio)
     loop_per_thread = 3
 
@@ -214,19 +215,19 @@ def main():
 
     for action_name, params in lf_action.items():
         qps = get_qps(type="webservices", limit=limit_qps, mode=mode)
-        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
+        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread,radio))
         request_threads.append(t)
     for action_name, params in mf_action.items():
         qps = get_qps(type="MlI", limit=limit_qps, mode=mode)
-        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
+        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread,radio))
         request_threads.append(t)
     for action_name, params in bd_action.items():
         qps = get_qps(type="Big-Data", limit=limit_qps, mode=mode)
-        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
+        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread,radio))
         request_threads.append(t)
     for action_name, params in stream_action.items():
         qps = get_qps(type="Stream", limit=limit_qps, mode=mode)
-        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread))
+        t = threading.Thread(target=handler, args=(action_name, params, qps, loop_per_thread,radio))
         request_threads.append(t)
 
     random.shuffle(request_threads)
