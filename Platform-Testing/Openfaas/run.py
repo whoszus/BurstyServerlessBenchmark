@@ -200,7 +200,7 @@ def get_qps(type="webservices", mode="single", limit=100):
 
 def main():
     mode = "mix"
-    radio = 0.1
+    radio = 0.5
     limit_qps = int(3000 * radio)
     loop_per_thread = 3
 
