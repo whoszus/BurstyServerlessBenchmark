@@ -1,0 +1,1 @@
+wsk -i  action invoke  multinomialnb-general --result

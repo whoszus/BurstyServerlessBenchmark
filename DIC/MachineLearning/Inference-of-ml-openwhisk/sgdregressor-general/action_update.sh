@@ -1,0 +1,1 @@
+wsk -i  action update  sgdregressor-general __main__.py --docker k.harbor.siat.ac.cn/openwhisk/openwhisk-sgdregressor:1.0.0

@@ -1,0 +1,35 @@
+# actions
+webservices:
+  # hello-python: "--param name {name}"
+  # hash-python: ""
+  # cryptography-python: ""
+  md5-python: ""
+  sort-python: ""
+#  hello-java: "--param name {name}"
+#  hash-java: ""
+#  md5-java: ""
+#  sort-java: ""
+#  hello-nodejs: "--param name {name}"
+#  hash-nodejs: ""
+#  md5-nodejs: ""
+#  sort-nodejs: ""
+#  hello-go: "--param name {name}"
+#  hash-go: ""
+#  md5-go: ""
+#  sort-go: ""
+ # Go could run in openwhisk normally
+MlI:
+  facerecognition-general: ""
+  multinomialnb-general: ""
+  passiveaggressiveclassifier-general: ""
+  perceptron-general: ""
+  randomforestregressor-general: ""
+  sgdclassifier-general: ""
+  sgdregressor-general: ""
+  svr-general: ""
+  
+Big-Data:
+  bigdata: ""
+
+Stream:
+  stream: ""

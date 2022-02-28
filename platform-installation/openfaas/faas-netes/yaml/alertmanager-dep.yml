@@ -1,0 +1,67 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: openfaas
+    component: alertmanager
+  name: alertmanager
+  namespace: "openfaas"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alertmanager
+  template:
+    metadata:
+      labels:
+        app: alertmanager
+      annotations:
+        sidecar.istio.io/inject: "true"
+        checksum/alertmanager-config: "5120e453a662be282f804518875b8414cd93f6dbea2fef08d7f480a42de1182b"
+    spec:
+      containers:
+      - name: alertmanager
+        image: prom/alertmanager:v0.18.0
+        imagePullPolicy: Always
+        command:
+          - "alertmanager"
+          - "--config.file=/alertmanager.yml"
+          - "--storage.path=/alertmanager"
+          - "--cluster.listen-address="
+        livenessProbe:
+          httpGet:
+            path: /-/ready
+            port: 9093
+          timeoutSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /-/ready
+            port: 9093
+          timeoutSeconds: 30
+        ports:
+        - containerPort: 9093
+          protocol: TCP
+        resources:
+            limits:
+              memory: 50Mi
+            requests:
+              memory: 25Mi
+        volumeMounts:
+        - mountPath: /alertmanager.yml
+          name: alertmanager-config
+          subPath: alertmanager.yml
+        - name: auth
+          readOnly: true
+          mountPath: "/var/secrets"
+      volumes:
+        - name: alertmanager-config
+          configMap:
+            name: alertmanager-config
+            items:
+              - key: alertmanager.yml
+                path: alertmanager.yml
+                mode: 0644
+        - name: auth
+          secret:
+            secretName: basic-auth

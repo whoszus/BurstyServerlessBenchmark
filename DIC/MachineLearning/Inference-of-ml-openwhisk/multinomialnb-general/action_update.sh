@@ -1,0 +1,1 @@
+wsk -i  action update  multinomialnb-general __main__.py --docker k.harbor.siat.ac.cn/openwhisk/openwhisk-multinomialnb:1.0.0

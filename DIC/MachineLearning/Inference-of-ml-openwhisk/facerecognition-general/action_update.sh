@@ -1,0 +1,1 @@
+wsk -i  action update  facerecognition-general __main__.py --docker k.harbor.siat.ac.cn/openwhisk/openwhisk-facerecognition:1.0.0

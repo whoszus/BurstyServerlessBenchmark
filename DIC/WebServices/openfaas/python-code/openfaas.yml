@@ -1,0 +1,30 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://serverless.siat.ac.cn:31112
+
+functions:
+  hello-python:
+    lang: python3-debian
+    handler: ./hello
+    image: k.harbor.siat.ac.cn/openfaas/python-hello:1.0.0
+
+  hash-python:
+    lang: python3-debian
+    handler: ./hash
+    image: k.harbor.siat.ac.cn/openfaas/python-hash:1.0.0
+
+  sort-python:
+    lang: python3-debian
+    handler: ./sort
+    image: k.harbor.siat.ac.cn/openfaas/python-sort:1.0.0
+
+  md5-python:
+    lang: python3-debian
+    handler: ./Md5
+    image: k.harbor.siat.ac.cn/openfaas/python-md5:1.0.0
+
+  cryptography-python:
+    lang: python3-debian
+    handler: ./cryptography
+    image: k.harbor.siat.ac.cn/openfaas/python-cryptography:1.0.0

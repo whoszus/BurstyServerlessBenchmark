@@ -1,0 +1,1 @@
+wsk -i  action update  svr-general __main__.py --docker k.harbor.siat.ac.cn/openwhisk/openwhisk-svr:1.0.0

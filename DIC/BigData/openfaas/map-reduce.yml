@@ -1,0 +1,15 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://serverless.siat.ac.cn:31112
+functions:
+  bigdata:
+    lang: python3-debian
+    handler: ./map-reduce
+    image: k.harbor.siat.ac.cn/openfaas/map-reduce:1.0.1
+    configuration:
+    copy:
+      - ./data
+    environment:
+      read_timeout: 40s
+      write_timeout: 40s

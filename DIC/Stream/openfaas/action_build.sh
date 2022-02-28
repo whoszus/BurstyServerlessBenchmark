@@ -1,0 +1,1 @@
+faas-cli build -f stream.yml

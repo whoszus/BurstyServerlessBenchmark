@@ -1,0 +1,82 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://serverless.siat.ac.cn:31112
+functions:
+#  pycon:
+#    lang: python3
+#    handler: ./pycon
+#    image: tinker.siat.ac.cn/tinker/pycon-tk:latest
+
+
+  sgdclassifier-general: 
+    lang: python3-debian
+    handler: ./sgdclassifier-general    
+    image: k.harbor.siat.ac.cn/openfaas/sgdclassifier-general:1.2
+    configuration: 
+     copy:
+      - ./data
+      - ./model
+
+  facerecognition-general: 
+    lang: python3-debian
+    handler: ./facerecognition-general    
+    image: k.harbor.siat.ac.cn/openfaas/facerecognition-general:1.2
+    configuration: 
+     copy:
+      - ./data
+      - ./model
+
+  multinomialnb-general: 
+    lang: python3-debian
+    handler: ./multinomialnb-general    
+    image: k.harbor.siat.ac.cn/openfaas/multinomialnb-general:1.2
+    configuration: 
+     copy:
+      - ./data
+      - ./model
+
+  randomforestregressor-general: 
+    lang: python3-debian
+    handler: ./randomforestregressor-general    
+    image: k.harbor.siat.ac.cn/openfaas/randomforestregressor-general:1.2
+    configuration: 
+     copy:
+      - ./data
+      - ./model
+
+  perceptron-general: 
+    lang: python3-debian
+    handler: ./perceptron-general    
+    image: k.harbor.siat.ac.cn/openfaas/perceptron-general:1.2
+    configuration: 
+     copy:
+      - ./data
+      - ./model
+
+  svr-general: 
+    lang: python3-debian
+    handler: ./svr-general    
+    image: k.harbor.siat.ac.cn/openfaas/svr-general:1.2
+    configuration: 
+     copy:
+      - ./data
+      - ./model
+
+  passiveaggressiveclassifier-general: 
+    lang: python3-debian
+    handler: ./passiveaggressiveclassifier-general    
+    image: k.harbor.siat.ac.cn/openfaas/passiveaggressiveclassifier-general:1.2
+    configuration: 
+     copy:
+      - ./data
+      - ./model
+
+  sgdregressor-general: 
+    lang: python3-debian
+    handler: ./sgdregressor-general    
+    image: k.harbor.siat.ac.cn/openfaas/sgdregressor-general:1.2
+    configuration: 
+     copy:
+      - ./data
+      - ./model

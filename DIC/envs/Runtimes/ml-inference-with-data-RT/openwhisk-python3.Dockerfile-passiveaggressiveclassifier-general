@@ -1,0 +1,4 @@
+FROM k.harbor.siat.ac.cn/openwhisk/openwhisk-ml-base:v1.0
+
+COPY models/passiveaggressiveclassifier-general /model/
+COPY testData/passiveaggressiveclassifier-general /data/

@@ -1,0 +1,28 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://serverless.siat.ac.cn:31112
+
+functions:
+  hello-nodejs:
+    lang: node
+    handler: ./hello
+    image: k.harbor.siat.ac.cn/openfaas/nodejs-hello:1.0.0
+
+functions:
+  hash-nodejs:
+    lang: node
+    handler: ./hash
+    image: k.harbor.siat.ac.cn/openfaas/nodejs-hash:1.0.0
+
+functions:
+  sort-nodejs:
+    lang: node
+    handler: ./sort
+    image: k.harbor.siat.ac.cn/openfaas/nodejs-sort:1.0.0
+
+functions:
+  md5-nodejs:
+    lang: node
+    handler: ./md5
+    image: k.harbor.siat.ac.cn/openfaas/nodejs-md5:1.0.0

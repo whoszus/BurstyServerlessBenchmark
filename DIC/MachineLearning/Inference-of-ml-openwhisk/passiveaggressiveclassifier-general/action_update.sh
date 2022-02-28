@@ -1,0 +1,1 @@
+wsk -i  action update  passiveaggressiveclassifier-general __main__.py --docker k.harbor.siat.ac.cn/openwhisk/openwhisk-passiveaggressiveclassifier:1.0.0

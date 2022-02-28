@@ -1,0 +1,1 @@
+faas-cli deploy -f openfaas.yml

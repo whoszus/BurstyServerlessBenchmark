@@ -1,0 +1,25 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://serverless.siat.ac.cn:31112
+
+functions:
+  hello-java:
+    lang: java11
+    handler: ./hello
+    image: k.harbor.siat.ac.cn/openfaas/java-hello:1.0.0
+
+  hash-java:
+    lang: java11
+    handler: ./hash
+    image: k.harbor.siat.ac.cn/openfaas/java-hash:1.0.0
+
+  md5-java:
+    lang: java11
+    handler: ./md5
+    image: k.harbor.siat.ac.cn/openfaas/java-md5:1.0.0
+
+  sort-java:
+    lang: java11
+    handler: ./sort
+    image: k.harbor.siat.ac.cn/openfaas/java-sort:1.0.0

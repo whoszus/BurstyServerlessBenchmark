@@ -1,0 +1,9 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://serverless.siat.ac.cn:31112
+functions:
+  stream:
+    lang: python3-debian
+    handler: ./stream
+    image: k.harbor.siat.ac.cn/openfaas/openfaas-stream:1.0.0

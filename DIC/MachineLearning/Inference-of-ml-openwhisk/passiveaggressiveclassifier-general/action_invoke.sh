@@ -1,0 +1,1 @@
+wsk -i  action invoke  passiveaggressiveclassifier-general --result

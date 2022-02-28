@@ -1,0 +1,58 @@
+#
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+dist: xenial
+sudo: required
+
+env:
+  global:
+  - secure: d7CuMXbhT83W2x78qiLwgogX1+3aPicd1PlTwwNNDN6QSkImbxareyKThnsqlHIiNj3o5l5DBuiYjy7wrF/xD1g8BQMmTwm99DRx5q3CI3Im3VCi/ZK8SaNjuOy24d7cf5k2tB/87Gk7zmKsMDYm+fpCl+GpgUmIEeIwthiAxuXSDWZ8eQPIptmxj56DeFRNouvXG+dEUtBfWiwN27UPxNKExCixFnegmdtffLbz6hhst7BHr5Ry9acbycre98PCwWZcu9lxFs+SJ1kvnzX2iue4otmDkF1WkJjxaOFPJVs/D3YItg+neLCSxjwBskPed+Fct8bOjcM/uVROJPNIq5icBmaPX2isH0lvtxOeVw/dmioWYXYPN9ygBOe4eO/vtPllN0bcAUo5xl9jXev8ciAozYrYpHVh9Fplfd81rcYTeYzALmRJBdoiWoc3KQGzwGc9sB1ffmy+KWgG9T0zbnS4fALSR4PSzyNlKSLXw9vuvdNP0OBYtO+6yTJXavIxqmDoj64Lb93n+uGPatnaIGPTKEEBMJTSjsgYVEfxzzZuxUT9Ldkf2lzqvN2PCllGoMqxkgsdb8i4v4QgRaMWBDbKa5Va4k0O4dnhRmtdbJavOSKN6fECJbyfoJlV1VvJGxk5znVLRznBmUPBKbNccyPZJULugKD3QIh4q8Q5jBU=
+  - secure: CJtnU94HTDqd4A6uvhFl8IpnmU+wTdlzb8bPBFUl/lI/VKXiRrYpgJdKUro5xEoxFKuqMprLhbyf66niyWLTIeogjUAEu/h/o2dBVeGgSGKoqC0hQgqvnxKFeGlzFJ0XuEs3vbStJGRnQszGsfnnDrscJtR0x9X+1w4aBKI7iPyyuFtVkDD1UsmBbSi+M8FTeq7G7A0reMDaey7uog3CFCpIMl4geshcohQEcKEGbnXQZoLPFpb7cBOE83VXBJ7Y7Dgf/U4keiLovvnuJThGKZm/SVV2KlELmBmtmbx3rMT6Vb5k9ChSdRWapromNnnzmJBIQ5Scc2mwV3A93/SMha1F3IlYpDKs5djfTw8jZfVnuiou7HhTaRjHkmmcwP12/k30gLe2kw0Vezg1TCY4zgtOpcmCxc8RHEy0ceA74rKvRi8LbexTCwX+iAMQFn/pSrh/OqAq/50JbLyczcoO1zXWS38txUQNLW8i+XllhCg9pjkjyfBeGjOOcWiVIz9rWJd2XufjSXDcj6xoZHtkh1XDt1CnVkpsYKtyyZucQnhUM9ebmaWqbSW2+bpqC/2hI+G+kOyyCesGdB1q+VmN1augMMs6RgWjk4yw5dyLAshATSoUlE8KH2cDcJL19r4ECaQ99PSLwxoB89yfPoJiNc42vwxRdsLmB1BMNyPa81Y=
+  matrix:
+    - TRAVIS_KUBE_VERSION=v1.16 OW_INCLUDE_SYSTEM_TESTS=true OW_CONTAINER_FACTORY=kubernetes
+    - TRAVIS_KUBE_VERSION=v1.16 OW_INCLUDE_SYSTEM_TESTS=false OW_CONTAINER_FACTORY=kubernetes OW_LEAN_MODE=true
+    - TRAVIS_KUBE_VERSION=v1.17 OW_INCLUDE_SYSTEM_TESTS=false OW_CONTAINER_FACTORY=kubernetes
+    - TRAVIS_KUBE_VERSION=v1.18 OW_INCLUDE_SYSTEM_TESTS=false OW_CONTAINER_FACTORY=kubernetes
+
+services:
+  - docker
+
+notifications:
+  email: false
+  webhooks:
+    urls:
+      # travis2slack webhook to enable DMs on openwhisk-team.slack.com to PR authors with TravisCI results
+      secure: "ZeBGKeQ99PtVgEQNl5H/NUaXohNmNOWSOpZv8nekeoonOJlR3P1xYpPF4R3pNWI/+/TU5356sUZj8f/o36g/OSFQJ9HeR35RBS/HSWmYpU+Wd716QzW6ml3KTdVG/+qXQHXv1XxPRxU3bqLL8iflN4X2sE1+iO2F+AqAHuQAg/NipUbEu1BEQv+t0jKYgtMHv8xJr7PujAloitIaDqqoGuyZCQ/NSK/qiKlKI3NqLGxVaWsFjnLzCuXp2YdGR3OuERMasT3ZX3m8MS3KaexWs0WWu2x3tgG820P06f2s1JrA+M87Ldq4282mPKXVb+WOU4t/nItXKWFiOHo8U849XAEpnX+oJHHkpKOhXYf9hqpfKxrdqxfdmGBXtzXYxtb+CqyAt8VuY8LSan5O9XyNpNzw2b/K0ZC3tMVNGaiLb7zrXibUgNXpILUJMIZRa08WwuZSKnLiS3P+a5gB+DQvH1MtYM9u/v4CzWr+T+njTDw/0fVkK7z5o3NzgpLSXd7sFlUo1t6Sj3CnIlaoPkCtfIR7KIP2602hQ3218aWi2s7QF1ymJe/CLY1ObSW4YM8o/Eb6GXzGvkpDr/1LHBs2jm/Ajeqp5xxmZ2myeXPNuvB3i46Bk4T8zQuAvVAq67qOUoowr0suREx6FsLPIEoQ7tpL+aLBLNH7dJ6WA90Q9bc="
+
+before_install:
+  - ./tools/travis/setupscan.sh
+  - ./tools/travis/scancode.sh
+  - ./tools/travis/setup.sh
+  - ./tools/travis/start-kind.sh
+
+script:
+  - ./tools/travis/deploy-chart.sh
+  - travis_wait 42 ./tools/travis/run-tests.sh
+  - ./tools/travis/collect-logs.sh
+  - ./tools/travis/box-upload.py "logs" "deploy-kube-$TRAVIS_BUILD_ID-$TRAVIS_BRANCH-$TRAVIS_JOB_NUMBER.tar.gz"
+
+deploy:
+- provider: script
+  script: ./tools/travis/publish-images.sh
+  on:
+    branch: master
+    repo: apache/openwhisk-deploy-kube

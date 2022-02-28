@@ -1,0 +1,1 @@
+wsk -i  action update  sgdclassifier-general __main__.py --docker k.harbor.siat.ac.cn/openwhisk/openwhisk-sgdclassifier:1.0.0

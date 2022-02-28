@@ -1,0 +1,14 @@
+ml-model:
+  inferences:
+    SGDClassifier
+    FaceRecognition
+    Text-SGD
+    TEXT-Perceptron
+    TEXT-NB-Multinomial
+    TEXT-Passive-Aggressive
+
+  unsupervised:
+    Kmeans
+    DBScan
+    OPTICS
+

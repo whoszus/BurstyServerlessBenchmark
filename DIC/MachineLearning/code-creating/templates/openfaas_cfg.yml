@@ -1,0 +1,10 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://serverless.siat.ac.cn:31112
+functions:
+#  pycon:
+#    lang: python3
+#    handler: ./pycon
+#    image: tinker.siat.ac.cn/tinker/pycon-tk:latest
+

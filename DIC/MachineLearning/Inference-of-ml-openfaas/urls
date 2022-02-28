@@ -1,0 +1,9 @@
+
+http://serverless.siat.ac.cn:31112/function/sgdclassifier-general.openfaas-fn
+http://serverless.siat.ac.cn:31112/function/facerecognition-general.openfaas-fn
+http://serverless.siat.ac.cn:31112/function/multinomialnb-general.openfaas-fn
+http://serverless.siat.ac.cn:31112/function/randomforestregressor-general.openfaas-fn
+http://serverless.siat.ac.cn:31112/function/perceptron-general.openfaas-fn
+http://serverless.siat.ac.cn:31112/function/svr-general.openfaas-fn
+http://serverless.siat.ac.cn:31112/function/passiveaggressiveclassifier-general.openfaas-fn
+http://serverless.siat.ac.cn:31112/function/sgdregressor-general.openfaas-fn

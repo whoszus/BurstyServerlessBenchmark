@@ -1,0 +1,21 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://serverless.siat.ac.cn:31112
+functions:
+  hash-go:
+    lang: go
+    handler: ./hash
+    image: k.harbor.siat.ac.cn/openfaas/go-hash:1.0.0
+  hello-go:
+    lang: go
+    handler: ./hello
+    image: k.harbor.siat.ac.cn/openfaas/go-hello:1.0.0 
+  md5-go:
+    lang: go
+    handler: ./md5
+    image: k.harbor.siat.ac.cn/openfaas/go-md5:1.0.0
+  sort-go:
+    lang: go
+    handler: ./sort
+    image: k.harbor.siat.ac.cn/openfaas/go-sort:1.0.0

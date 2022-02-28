@@ -1,0 +1,1 @@
+wsk -i  action update  randomforestregressor-general __main__.py --docker k.harbor.siat.ac.cn/openwhisk/openwhisk-randomforestregressor:1.0.0 -m 1024

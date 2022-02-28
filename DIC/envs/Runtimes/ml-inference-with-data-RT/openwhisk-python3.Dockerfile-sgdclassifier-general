@@ -1,0 +1,4 @@
+FROM k.harbor.siat.ac.cn/openwhisk/openwhisk-ml-base:v1.0
+
+COPY models/sgdclassifier-general /model/
+COPY testData/sgdclassifier-general /data/
