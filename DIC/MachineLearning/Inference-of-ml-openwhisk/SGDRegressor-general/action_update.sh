@@ -1,1 +1,0 @@
-wsk -i  action update  sgdregressor __main__.py --docker tinker.siat.ac.cn/tinker/siat-serverless-sgdregressor:1.0.0

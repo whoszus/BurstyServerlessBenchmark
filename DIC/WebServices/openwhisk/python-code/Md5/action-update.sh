@@ -1,1 +1,0 @@
-wsk -i  action update  md5-python __main__.py --kind python:3 -t 300000

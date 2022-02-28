@@ -1,1 +1,0 @@
-kubectl get pods -n ow | grep  guest | tail -n +2 | awk -F ' ' '{print $1}' | wc -l

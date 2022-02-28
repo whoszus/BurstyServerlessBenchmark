@@ -1,1 +1,0 @@
-wsk -i action invoke Kmeans --param n_samples 10000 --result

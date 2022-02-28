@@ -1,6 +1,0 @@
-From tinker.siat.ac.cn/tinker/python38-alpine:20201218
-
-# RUN pip install scikit-learn
-RUN apk add --no-cache  py3-scipy 
-RUN apk add --no-cache	py3-scikit-learn
-RUN rm -rf /root/.cache

@@ -1,1 +1,0 @@
-kubeless function deploy hello-go --runtime go1.14 --handler hello.Handler --from-file hello.go

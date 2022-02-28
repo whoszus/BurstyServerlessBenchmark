@@ -1,1 +1,0 @@
-faas-cli push -f map-reduce.yml

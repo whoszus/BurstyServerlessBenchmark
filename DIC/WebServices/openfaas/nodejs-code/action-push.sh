@@ -1,1 +1,0 @@
-faas-cli push -f nodejs-openfaas.yml

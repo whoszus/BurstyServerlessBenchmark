@@ -1,1 +1,0 @@
-faas-cli build -f openfass-py-ml.yml

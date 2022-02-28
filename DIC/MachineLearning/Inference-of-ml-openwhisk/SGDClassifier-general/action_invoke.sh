@@ -1,1 +1,0 @@
-wsk -i  action invoke  sgdclassifier --result

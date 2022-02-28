@@ -1,1 +1,0 @@
-wsk -i action invoke TEXT-NB-Multinomial-general --result

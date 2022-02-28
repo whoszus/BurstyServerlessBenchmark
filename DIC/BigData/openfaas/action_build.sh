@@ -1,1 +1,0 @@
-faas-cli build -f map-reduce.yml --no-cache

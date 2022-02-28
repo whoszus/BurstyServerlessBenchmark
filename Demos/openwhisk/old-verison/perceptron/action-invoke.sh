@@ -1,1 +1,0 @@
-wsk -i action invoke Perceptron --param n_samples 5000 --result

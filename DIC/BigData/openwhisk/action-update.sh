@@ -1,1 +1,0 @@
-wsk -i  action update  bigdata __main__.py --docker tinker.siat.ac.cn/tinker/bigdata-py:1.0.3 -m 2048

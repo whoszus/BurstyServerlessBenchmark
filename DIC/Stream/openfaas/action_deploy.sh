@@ -1,1 +1,0 @@
-faas-cli deploy -f stream.yml
